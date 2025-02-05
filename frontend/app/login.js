@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions, Platform, SafeAreaView, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
+import axios from 'axios';
 
 const { width, height } = Dimensions.get('window');
 
@@ -10,9 +11,26 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const router = useRouter();
 
-    const handleLogin = () => {
-        // Automatically navigate to HomePage
-        router.push('/homepage');
+    const handleLogin = async () => {
+        try {
+            // Send a POST request to the login endpoint
+            const response = await axios.post('http://localhost:5000/api/v1.0/login', null, {
+                auth: {
+                    username: email, // Use email as the username
+                    password: password,
+                },
+            });
+    
+            // If login is successful, store the token and navigate to the homepage
+            if (response.data.token) {
+                console.log('Login successful! Token:', response.data.token);
+                router.push('/homepage'); // Navigate to the homepage
+            } else {
+                console.error('Login failed:', response.data.error);
+            }
+        } catch (error) {
+            console.error('Error during login:', error.response ? error.response.data : error.message);
+        }
     };
 
     return (
@@ -27,6 +45,7 @@ const Login = () => {
                         value={email}
                         onChangeText={setEmail}
                         keyboardType="email-address"
+                        autoCapitalize="none"
                     />
                     <TextInput
                         style={styles.input}
@@ -34,6 +53,7 @@ const Login = () => {
                         value={password}
                         onChangeText={setPassword}
                         secureTextEntry
+                        autoCapitalize="none"
                     />
                     <TouchableOpacity style={styles.button} onPress={handleLogin}>
                         <Text style={styles.buttonText}>Log In</Text>

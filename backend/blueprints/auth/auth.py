@@ -11,7 +11,7 @@ auth_bp = Blueprint('auth_bp', __name__)
 users_collection = globals.db.users
 blacklist_collection = globals.db.blacklist
 
-@auth_bp.route('/api/v1.0/login', methods=['GET'])
+@auth_bp.route('/api/v1.0/login', methods=['POST'])  # Change methods to ['POST']
 def login():
     auth = request.authorization
     if auth:
