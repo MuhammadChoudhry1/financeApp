@@ -7,7 +7,8 @@ from blueprints.expenses.expenses import expense_bp
 from blueprints.saving_goals.saving_Goals import saving_bp
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+# Allow CORS for all origins and methods
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.register_blueprint(expense_bp)
 app.register_blueprint(salaries_bp)
