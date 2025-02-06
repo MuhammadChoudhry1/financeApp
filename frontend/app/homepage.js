@@ -1,15 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView, Platform, SafeAreaView, Image, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 const { width, height } = Dimensions.get('window');
 
 const HomePage = () => {
     const navigation = useNavigation();
+    const [expenses, setExpenses] = useState([]); // State to store expenses
+    const [pageNum, setPageNum] = useState(1); // State for pagination
+    const [pageSize, setPageSize] = useState(10); // State for page size
+
+    // Fetch expenses from the backend
+    const fetchExpenses = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/api/v1.0/expenses', {
+                params: {
+                    pn: pageNum,
+                    ps: pageSize,
+                },
+            });
+            setExpenses(response.data); // Update state with fetched data
+        } catch (error) {
+            console.error('Error fetching expenses:', error);
+        }
+    };
+
+    // Fetch expenses when the component mounts or when pagination changes
+    useEffect(() => {
+        fetchExpenses();
+    }, [pageNum, pageSize]);
 
     return (
         <SafeAreaView style={styles.safeArea}>
             <View style={styles.container}>
+                {/* Top Section with Logo and Balance */}
                 <View style={styles.topBackground}>
                     <View style={styles.headerContainer}>
                         <TouchableOpacity style={styles.logoContainer}>
@@ -21,6 +46,8 @@ const HomePage = () => {
                         </View>
                     </View>
                 </View>
+
+                {/* Navigation Buttons */}
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.navBarContainer} contentContainerStyle={styles.navBarContent}>
                     <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('expense-tracking')}>
                         <Text style={styles.navBarText}>Expense Tracking</Text>
@@ -35,28 +62,21 @@ const HomePage = () => {
                         <Text style={styles.navBarText}>Reporting Analytics</Text>
                     </TouchableOpacity>
                 </ScrollView>
-                <ScrollView contentContainerStyle={styles.expenseListContent}>
-                    {/* Remove the sample expense */}
-                </ScrollView>
-                <Modal
-                    visible={false}
-                    transparent={true}
-                    animationType="fade"
-                >
-                    <View style={styles.popupOverlay}>
-                        <View style={styles.logoutPopupContainer}>
-                            <Text style={styles.logoutText}>Are you sure you want to logout?</Text>
-                            <View style={styles.logoutButtons}>
-                                <TouchableOpacity style={styles.confirmLogoutButton}>
-                                    <Text style={styles.confirmLogoutButtonText}>Yes</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={styles.cancelLogoutButton}>
-                                    <Text style={styles.cancelLogoutButtonText}>No</Text>
-                                </TouchableOpacity>
+
+                {/* Expenses List */}
+                <View style={styles.expenseListContainer}>
+                    <ScrollView contentContainerStyle={styles.expenseListContent}>
+                        {expenses.map((expense) => (
+                            <View key={expense._id} style={styles.expenseItem}>
+                                <View>
+                                    <Text style={styles.expenseDescription}>{expense.description}</Text>
+                                    <Text style={styles.expenseCategory}>{expense.category}</Text>
+                                </View>
+                                <Text style={styles.expenseAmount}>${expense.amount.toFixed(2)}</Text>
                             </View>
-                        </View>
-                    </View>
-                </Modal>
+                        ))}
+                    </ScrollView>
+                </View>
             </View>
         </SafeAreaView>
     );
@@ -73,7 +93,7 @@ const styles = StyleSheet.create({
     },
     topBackground: {
         width: '100%',
-        height: '40%',
+        height: '30%', // Adjusted height
         justifyContent: 'center',
         padding: 16,
         backgroundColor: '#6A5ACD',
@@ -116,6 +136,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingBottom: 0,
         marginBottom: 0,
+        paddingTop: 10,
     },
     navBarContent: {
         flexDirection: 'row',
@@ -144,10 +165,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
+    expenseListContainer: {
+        flex: 15, // Take up remaining space
+        padding: 10,
+    },
     expenseListContent: {
         flexGrow: 1,
-        alignItems: 'center',
-        padding: 10,
     },
     expenseItem: {
         flexDirection: 'row',
@@ -178,101 +201,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#888',
         fontStyle: 'italic',
-    },
-    floatingButton: {
-        position: 'absolute',
-        bottom: 20,
-        right: 20,
-        backgroundColor: '#6A5ACD',
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-        elevation: 5,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-    },
-    floatingButtonText: {
-        color: 'white',
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
-    popupOverlay: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    popupContainer: {
-        width: '80%',
-        padding: 20,
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        elevation: 10,
-    },
-    closeButton: {
-        marginTop: 10,
-        backgroundColor: '#FF6347',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 8,
-        alignItems: 'center',
-    },
-    closeButtonText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    logoutPopupContainer: {
-        width: '80%',
-        padding: 20,
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        elevation: 10,
-        alignItems: 'center',
-    },
-    logoutText: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 20,
-        textAlign: 'center',
-    },
-    logoutButtons: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-    },
-    confirmLogoutButton: {
-        backgroundColor: '#FF6347',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 8,
-        alignItems: 'center',
-        marginRight: 10,
-        flex: 1,
-        minWidth: 100,
-    },
-    confirmLogoutButtonText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    cancelLogoutButton: {
-        backgroundColor: '#6A5ACD',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 8,
-        alignItems: 'center',
-        flex: 1,
-        minWidth: 100,
-    },
-    cancelLogoutButtonText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: 'bold',
     },
 });
 
