@@ -45,17 +45,19 @@ def add_expense():
     """
     POST: Add a new expense.
     """
-    if "name" in request.form and "amount" in request.form:
+    data = request.get_json()
+    if "name" in data and "amount" in data and "category" in data:
         new_expense = {
-            "name": request.form["name"],
-            "amount": request.form["amount"],
+            "name": data["name"],
+            "amount": data["amount"],
+            "category": data["category"],
             "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Automatically add current date and time
         }
         new_expense_id = expense_collection.insert_one(new_expense)
-        new_expense_link = url_for('show_one_expense', id=str(new_expense_id.inserted_id), _external=True)
+        new_expense_link = url_for('expense_bp.show_one_expense', id=str(new_expense_id.inserted_id), _external=True)
         return make_response(jsonify({"url": new_expense_link}), 201)
     else:
-        return make_response(jsonify({"error": "Missing form data"}), 404)
+        return make_response(jsonify({"error": "Missing form data"}), 400)
 
 @expense_bp.route("/api/v1.0/expenses/<string:id>", methods=["PUT"])
 def edit_expense(id):

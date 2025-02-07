@@ -49,7 +49,7 @@ const HomePage = () => {
 
                 {/* Navigation Buttons */}
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.navBarContainer} contentContainerStyle={styles.navBarContent}>
-                    <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('expense-tracking')}>
+                    <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('expensetracking')}>
                         <Text style={styles.navBarText}>Expense Tracking</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('incomeDoc')}>
