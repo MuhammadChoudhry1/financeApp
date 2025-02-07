@@ -51,7 +51,7 @@ def add_salary():
             "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Automatically add current date and time
         }
         new_salary_id = salaries_collection.insert_one(new_salary)
-        new_salary_link = url_for('show_one_salary', id=str(new_salary_id.inserted_id), _external=True)
+        new_salary_link = url_for('salaries_bp.show_one_salary', id=str(new_salary_id.inserted_id), _external=True)
         return make_response(jsonify({"url": new_salary_link}), 201)
     else:
         return make_response(jsonify({"error": "Missing form data"}), 404)
@@ -71,7 +71,7 @@ def edit_salary(id):
             }}
         )
         if result.matched_count == 1:
-            edited_salary_link = url_for('show_one_salary', id=id, _external=True)
+            edited_salary_link = url_for('salaries_bp.show_one_salary', id=id, _external=True)
             return make_response(jsonify({"url": edited_salary_link}), 200)
         else:
             return make_response(jsonify({"error": "Invalid salary ID"}), 404)

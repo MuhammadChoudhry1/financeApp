@@ -53,7 +53,7 @@ def add_saving_goal():
             "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Automatically add current date and time
         }
         new_saving_goal_id = saving_goals_collection.insert_one(new_saving_goal)
-        new_saving_goal_link = url_for('show_one_saving_goal', id=str(new_saving_goal_id.inserted_id), _external=True)
+        new_saving_goal_link = url_for('saving_bp.show_one_saving_goal', id=str(new_saving_goal_id.inserted_id), _external=True)
         return make_response(jsonify({"url": new_saving_goal_link}), 201)
     else:
         return make_response(jsonify({"error": "Missing form data"}), 400)  # Corrected status code to 400
@@ -73,7 +73,7 @@ def edit_saving_goal(id):
             }}
         )
         if result.matched_count == 1:
-            edited_saving_goal_link = url_for('show_one_saving_goal', id=id, _external=True)
+            edited_saving_goal_link = url_for('saving_bp.show_one_saving_goal', id=id, _external=True)
             return make_response(jsonify({"url": edited_saving_goal_link}), 200)
         else:
             return make_response(jsonify({"error": "Invalid saving goal ID"}), 404)
@@ -90,3 +90,4 @@ def delete_saving_goal(id):
         return make_response(jsonify({}), 204)
     else:
         return make_response(jsonify({"error": "Invalid saving goal ID"}), 404)
+    

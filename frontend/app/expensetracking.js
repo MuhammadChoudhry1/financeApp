@@ -33,28 +33,29 @@ const ExpenseTracking = () => {
         setEditedExpense(expenses[index]);
     };
 
-    const handleSaveEdit = async (idd) => {
+    const handleSaveEdit = async (id) => {
         if (!editedExpense.description || !editedExpense.amount || !editedExpense.category) {
             Alert.alert('Error', 'All fields are required.');
             return;
         }
     
         try {
-            const response = await fetch(`http://localhost:5000/api/v1.0/expenses/${idd}`, {
+            const formData = new URLSearchParams();
+            formData.append('name', editedExpense.description);
+            formData.append('amount', editedExpense.amount);
+            formData.append('category', editedExpense.category);
+    
+            const response = await fetch(`http://localhost:5000/api/v1.0/expenses/${id}`, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: JSON.stringify({
-                    name: editedExpense.description,
-                    amount: editedExpense.amount,
-                    category: editedExpense.category,
-                }),
+                body: formData.toString(),
             });
     
             if (response.ok) {
                 const updatedExpenses = expenses.map(expense => 
-                    expense._id === idd ? { ...editedExpense, _id: idd } : expense
+                    expense._id === id ? { ...editedExpense, _id: id } : expense
                 );
                 setExpenses(updatedExpenses);
                 setEditMode(null);
@@ -72,23 +73,25 @@ const ExpenseTracking = () => {
             Alert.alert('Error', 'All fields are required.');
             return;
         }
-
+    
         try {
+            const formData = new URLSearchParams();
+            formData.append('name', newExpense.description);
+            formData.append('amount', newExpense.amount);
+            formData.append('category', newExpense.category);
+    
             const response = await fetch('http://localhost:5000/api/v1.0/expenses', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: JSON.stringify({
-                    name: newExpense.description,
-                    amount: newExpense.amount,
-                    category: newExpense.category,
-                }),
+                body: formData.toString(),
             });
-
+    
             if (response.ok) {
                 const result = await response.json();
-                setExpenses([...expenses, { ...newExpense, amount: parseFloat(newExpense.amount) }]);
+                const newExpenseWithId = { ...newExpense, amount: parseFloat(newExpense.amount), _id: result.url.split('/').pop() };
+                setExpenses([...expenses, newExpenseWithId]);
                 setNewExpense({ description: '', amount: '', category: '' });
                 setShowInputExpense(false);
             } else {

@@ -25,56 +25,55 @@ def show_all_expenses():
         data_to_return.append(expense)
     return make_response(jsonify(data_to_return), 200)
 
-@expense_bp.route("/api/v1.0/expenses/<string:id>", methods=["GET"])
-@jwt_required
+@expense_bp.route("/api/v1.0/expenses/<id>", methods=["GET"])
 def show_one_expense(id):
     """
-    GET: Retrieve a single expense by ID.
+    GET: Retrieve a single expense by its ID.
     """
     if not ObjectId.is_valid(id):
         return make_response(jsonify({"error": "Invalid expense ID format"}), 400)
-    expense = expense_collection.find_one({'_id': ObjectId(id)})
-    if expense is not None:
+    expense = expense_collection.find_one({"_id": ObjectId(id)})
+    if expense:
         expense['_id'] = str(expense['_id'])
         return make_response(jsonify(expense), 200)
     else:
-        return make_response(jsonify({"error": "Invalid expense ID"}), 404)
+        return make_response(jsonify({"error": "Expense not found"}), 404)
 
 @expense_bp.route("/api/v1.0/expenses", methods=["POST"])
 def add_expense():
     """
     POST: Add a new expense.
     """
-    data = request.get_json()
-    if "name" in data and "amount" in data and "category" in data:
+    if "name" in request.form and "amount" in request.form and "category" in request.form:
         new_expense = {
-            "name": data["name"],
-            "amount": data["amount"],
-            "category": data["category"],
+            "name": request.form["name"],
+            "amount": request.form["amount"],
+            "category": request.form["category"],
             "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Automatically add current date and time
         }
         new_expense_id = expense_collection.insert_one(new_expense)
         new_expense_link = url_for('expense_bp.show_one_expense', id=str(new_expense_id.inserted_id), _external=True)
         return make_response(jsonify({"url": new_expense_link}), 201)
     else:
-        return make_response(jsonify({"error": "Missing form data"}), 400)
-
+        return make_response(jsonify({"error": "Missing form data"}), 404)
+        
 @expense_bp.route("/api/v1.0/expenses/<string:id>", methods=["PUT"])
 def edit_expense(id):
     """
     PUT: Edit an existing expense by ID.
     """
-    if "name" in request.form and "amount" in request.form and "date" in request.form:
+    if "name" in request.form and "amount" in request.form and "category" in request.form:
         result = expense_collection.update_one(
             {"_id": ObjectId(id)},
             {"$set": {
                 "name": request.form["name"],
                 "amount": request.form["amount"],
-                "date": request.form["date"]
+                "category": request.form["category"],
+                "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Automatically update current date and time
             }}
         )
         if result.matched_count == 1:
-            edited_expense_link = url_for('show_one_expense', id=id, _external=True)
+            edited_expense_link = url_for('expense_bp.show_one_expense', id=id, _external=True)
             return make_response(jsonify({"url": edited_expense_link}), 200)
         else:
             return make_response(jsonify({"error": "Invalid expense ID"}), 404)
