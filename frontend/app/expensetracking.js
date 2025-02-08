@@ -22,7 +22,11 @@ const ExpenseTracking = () => {
         try {
             const response = await fetch('http://localhost:5000/api/v1.0/expenses');
             const data = await response.json();
-            setExpenses(data);
+            const parsedData = data.map(expense => ({
+                ...expense,
+                amount: parseFloat(expense.amount)
+            }));
+            setExpenses(parsedData);
         } catch (error) {
             Alert.alert('Error', 'Failed to fetch expenses.');
         }
@@ -138,7 +142,7 @@ const ExpenseTracking = () => {
     }, {});
 
     const categoryTotals = Object.keys(groupedExpenses).reduce((acc, category) => {
-        const total = groupedExpenses[category].reduce((sum, expense) => sum + expense.amount, 0);
+        const total = groupedExpenses[category].reduce((sum, expense) => sum + parseFloat(expense.amount), 0);
         acc[category] = total;
         return acc;
     }, {});

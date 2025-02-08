@@ -72,7 +72,7 @@ const HomePage = () => {
                                     <Text style={styles.expenseDescription}>{expense.description}</Text>
                                     <Text style={styles.expenseCategory}>{expense.category}</Text>
                                 </View>
-                                <Text style={styles.expenseAmount}>${expense.amount.toFixed(2)}</Text>
+                                <Text style={styles.expenseAmount}>${Number(expense.amount).toFixed(2)}</Text>
                             </View>
                         ))}
                     </ScrollView>
