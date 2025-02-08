@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert, Modal } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useRouter } from 'expo-router'; // Import useRouter
@@ -13,9 +13,36 @@ const ExpenseTracking = () => {
     const [editedExpense, setEditedExpense] = useState({ description: '', amount: '', category: '' });
     const [categories] = useState(['Food', 'Transport', 'Entertainment', 'Utilities', 'Investments']);
 
-    const handleDeleteExpense = (id) => {
-        const expenseToDelete = expenses[id];
-        setExpenses(expenses.filter((expense, index) => index !== id));
+    // Fetch expenses from the API on component mount
+    useEffect(() => {
+        fetchExpenses();
+    }, []);
+
+    const fetchExpenses = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/v1.0/expenses');
+            const data = await response.json();
+            setExpenses(data);
+        } catch (error) {
+            Alert.alert('Error', 'Failed to fetch expenses.');
+        }
+    };
+
+    const handleDeleteExpense = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:5000/api/v1.0/expenses/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                // Remove the deleted expense from the state
+                setExpenses(expenses.filter(expense => expense._id !== id));
+            } else {
+                Alert.alert('Error', 'Failed to delete expense.');
+            }
+        } catch (error) {
+            Alert.alert('Error', 'An error occurred while deleting the expense.');
+        }
     };
 
     const toggleDeleteMode = (id) => {
@@ -168,7 +195,7 @@ const ExpenseTracking = () => {
                                             <TouchableOpacity style={styles.editButton} onPress={() => toggleEditMode(expenseIndex)}>
                                                 <Text style={styles.editButtonText}>Edit</Text>
                                             </TouchableOpacity>
-                                            <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteExpense(expenseIndex)}>
+                                            <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteExpense(expense._id)}>
                                                 <Text style={styles.deleteButtonText}>Delete</Text>
                                             </TouchableOpacity>
                                         </View>
