@@ -88,3 +88,4 @@ def delete_salary(id):
         return make_response(jsonify({}), 204)
     else:
         return make_response(jsonify({"error": "Invalid salary ID"}), 404)
+    

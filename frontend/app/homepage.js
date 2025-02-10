@@ -52,10 +52,10 @@ const HomePage = () => {
                     <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('expensetracking')}>
                         <Text style={styles.navBarText}>Expense Tracking</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('incomeDoc')}>
+                    <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('incomeDocumentation')}>
                         <Text style={styles.navBarText}>Income Documentation</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('saving-goals')}>
+                    <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('saving_goals')}>
                         <Text style={styles.navBarText}>Saving Goals</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('reporting-analytics')}>
