@@ -1,0 +1,501 @@
+id,description,amount,category,status,date
+f7f983cd-ea25-435c-a472-,Goal 1,500.0,Electronics,save,2025-02-01 16:37:46
+c0b855b3-45c6-4c3b-815f-,Goal 2,650.75,Vacation,ongoing,2025-02-02 16:37:46
+c9be1901-7122-43d3-8e8d-,Goal 3,801.5,Education,completed,2025-02-03 16:37:46
+902c82d8-1dc0-404f-9686-,Goal 4,952.25,Emergency Fund,save,2025-02-04 16:37:46
+a535d928-d336-439f-bbe6-,Goal 5,1103.0,Electronics,ongoing,2025-02-05 16:37:46
+940b90dd-2765-42d4-aef3-,Goal 6,1253.75,Vacation,completed,2025-02-06 16:37:46
+475661bd-3b1b-4e02-819e-,Goal 7,1404.5,Education,save,2025-02-07 16:37:46
+46d03a49-13a4-4554-a4b4-,Goal 8,500.0,Emergency Fund,ongoing,2025-02-08 16:37:46
+c1eeddd4-d362-4bd9-9e20-,Goal 9,650.75,Electronics,completed,2025-02-09 16:37:46
+4f845ed8-c74f-45ba-bd71-,Goal 10,801.5,Vacation,save,2025-02-10 16:37:46
+4143d45d-f88a-477e-a719-,Goal 11,952.25,Education,ongoing,2025-02-11 16:37:46
+0ed1c14a-7078-4ec8-bd2e-,Goal 12,1103.0,Emergency Fund,completed,2025-02-12 16:37:46
+46fcd2e2-34ef-4152-b66c-,Goal 13,1253.75,Electronics,save,2025-02-13 16:37:46
+7744a867-83d3-449f-9842-,Goal 14,1404.5,Vacation,ongoing,2025-02-14 16:37:46
+34cb467b-70eb-475a-a999-,Goal 15,500.0,Education,completed,2025-02-15 16:37:46
+f66fd620-8d14-4053-87a6-,Goal 16,650.75,Emergency Fund,save,2025-02-16 16:37:46
+08b79292-c030-4681-a2f1-,Goal 17,801.5,Electronics,ongoing,2025-02-17 16:37:46
+d9398df8-74b2-4f5b-9957-,Goal 18,952.25,Vacation,completed,2025-02-18 16:37:46
+8afed275-402d-4d50-8ffd-,Goal 19,1103.0,Education,save,2025-02-19 16:37:46
+dc2da16c-8bbe-4b41-a5af-,Goal 20,1253.75,Emergency Fund,ongoing,2025-02-20 16:37:46
+9b8d44ab-3205-4d05-a21f-,Goal 21,1404.5,Electronics,completed,2025-02-21 16:37:46
+41481486-ee41-43b6-ad43-,Goal 22,500.0,Vacation,save,2025-02-22 16:37:46
+a128932d-0475-460d-b7cd-,Goal 23,650.75,Education,ongoing,2025-02-23 16:37:46
+bd7a525c-b841-445f-bb1e-,Goal 24,801.5,Emergency Fund,completed,2025-02-24 16:37:46
+59c21713-187b-420f-9f7a-,Goal 25,952.25,Electronics,save,2025-02-25 16:37:46
+7363cccb-d675-4d59-a9e6-,Goal 26,1103.0,Vacation,ongoing,2025-02-26 16:37:46
+1f134971-eef0-4135-ba14-,Goal 27,1253.75,Education,completed,2025-02-27 16:37:46
+2fc9380b-d522-47de-a282-,Goal 28,1404.5,Emergency Fund,save,2025-02-28 16:37:46
+f022a1a3-f379-4e67-9a9b-,Goal 29,500.0,Electronics,ongoing,2025-03-01 16:37:46
+fbd68a43-8484-44b4-9055-,Goal 30,650.75,Vacation,completed,2025-03-02 16:37:46
+00ca6d53-ae8c-4ded-9f14-,Goal 31,801.5,Education,save,2025-03-03 16:37:46
+f74693ff-ed6d-4cdb-88fa-,Goal 32,952.25,Emergency Fund,ongoing,2025-03-04 16:37:46
+f640bdc5-5142-4bcd-b43b-,Goal 33,1103.0,Electronics,completed,2025-03-05 16:37:46
+2a49df8a-8292-45ac-8c6d-,Goal 34,1253.75,Vacation,save,2025-03-06 16:37:46
+7d1479cc-4e11-4aed-bce9-,Goal 35,1404.5,Education,ongoing,2025-03-07 16:37:46
+9921b7ad-51a0-46c0-a9cb-,Goal 36,500.0,Emergency Fund,completed,2025-03-08 16:37:46
+ee6f6152-1b91-415c-95e8-,Goal 37,650.75,Electronics,save,2025-03-09 16:37:46
+8adaac34-6503-4ca5-a143-,Goal 38,801.5,Vacation,ongoing,2025-03-10 16:37:46
+3a7ff983-b42f-4ead-8eb6-,Goal 39,952.25,Education,completed,2025-03-11 16:37:46
+6d84fa8f-a082-4b2d-bc3b-,Goal 40,1103.0,Emergency Fund,save,2025-03-12 16:37:46
+7900b74f-5fbd-4c0d-8987-,Goal 41,1253.75,Electronics,ongoing,2025-03-13 16:37:46
+63c7fa01-00da-4d2a-ac28-,Goal 42,1404.5,Vacation,completed,2025-03-14 16:37:46
+66017d1e-53fc-4240-93a6-,Goal 43,500.0,Education,save,2025-03-15 16:37:46
+9f882f5d-c856-49f6-aca8-,Goal 44,650.75,Emergency Fund,ongoing,2025-03-16 16:37:46
+608ea60c-be9d-4971-bd79-,Goal 45,801.5,Electronics,completed,2025-03-17 16:37:46
+456eb558-6814-4c52-8841-,Goal 46,952.25,Vacation,save,2025-03-18 16:37:46
+e4c73c0f-5268-4b45-a35a-,Goal 47,1103.0,Education,ongoing,2025-03-19 16:37:46
+ac801721-8cce-4008-991f-,Goal 48,1253.75,Emergency Fund,completed,2025-03-20 16:37:46
+a0bc3a28-b8f0-40a6-acc1-,Goal 49,1404.5,Electronics,save,2025-03-21 16:37:46
+f918964d-ed00-465e-8f04-,Goal 50,500.0,Vacation,ongoing,2025-03-22 16:37:46
+2781538d-0aaf-4523-834d-,Goal 51,650.75,Education,completed,2025-03-23 16:37:46
+8f2f4664-874c-489a-86e6-,Goal 52,801.5,Emergency Fund,save,2025-03-24 16:37:46
+d8270200-4ddc-412b-936f-,Goal 53,952.25,Electronics,ongoing,2025-03-25 16:37:46
+89e419b6-ea9b-42b8-91d3-,Goal 54,1103.0,Vacation,completed,2025-03-26 16:37:46
+e4fbdd96-76ff-4003-aa55-,Goal 55,1253.75,Education,save,2025-03-27 16:37:46
+250f7f48-bfa0-49a7-b710-,Goal 56,1404.5,Emergency Fund,ongoing,2025-03-28 16:37:46
+58446761-1917-4e1b-8f25-,Goal 57,500.0,Electronics,completed,2025-03-29 16:37:46
+a4ec110a-c957-4015-93eb-,Goal 58,650.75,Vacation,save,2025-03-30 16:37:46
+3e315fd5-eff5-45c4-8fce-,Goal 59,801.5,Education,ongoing,2025-03-31 16:37:46
+48fe7c06-901b-4523-ace1-,Goal 60,952.25,Emergency Fund,completed,2025-04-01 16:37:46
+ce92566d-35ce-4038-a5ec-,Goal 61,1103.0,Electronics,save,2025-04-02 16:37:46
+e75eeac9-4037-49c0-a4f2-,Goal 62,1253.75,Vacation,ongoing,2025-04-03 16:37:46
+52c2bb1e-0da1-4706-9b38-,Goal 63,1404.5,Education,completed,2025-04-04 16:37:46
+3d706bf0-c0fa-43d3-bc68-,Goal 64,500.0,Emergency Fund,save,2025-04-05 16:37:46
+8b2d3453-81c8-4bdb-8756-,Goal 65,650.75,Electronics,ongoing,2025-04-06 16:37:46
+5c35958e-85cf-4ded-b4f2-,Goal 66,801.5,Vacation,completed,2025-04-07 16:37:46
+3cf50696-a843-4944-a55e-,Goal 67,952.25,Education,save,2025-04-08 16:37:46
+e69d7701-877c-4208-9d63-,Goal 68,1103.0,Emergency Fund,ongoing,2025-04-09 16:37:46
+577b64e6-abe4-4264-8692-,Goal 69,1253.75,Electronics,completed,2025-04-10 16:37:46
+b8e68077-b4c7-4518-b116-,Goal 70,1404.5,Vacation,save,2025-04-11 16:37:46
+b16d170b-6293-40e0-bd88-,Goal 71,500.0,Education,ongoing,2025-04-12 16:37:46
+ad954132-f9e0-46be-8aec-,Goal 72,650.75,Emergency Fund,completed,2025-04-13 16:37:46
+f4fd3270-71b8-49a5-8d9f-,Goal 73,801.5,Electronics,save,2025-04-14 16:37:46
+a4a783ea-22fa-443b-abe2-,Goal 74,952.25,Vacation,ongoing,2025-04-15 16:37:46
+df281a30-0425-4b2b-99f1-,Goal 75,1103.0,Education,completed,2025-04-16 16:37:46
+cd81d33c-3452-4f82-b788-,Goal 76,1253.75,Emergency Fund,save,2025-04-17 16:37:46
+7550fef2-c445-431e-8b9c-,Goal 77,1404.5,Electronics,ongoing,2025-04-18 16:37:46
+9aa280ab-3998-4553-a0e2-,Goal 78,500.0,Vacation,completed,2025-04-19 16:37:46
+2263dd3c-4e29-447b-886a-,Goal 79,650.75,Education,save,2025-04-20 16:37:46
+95945af0-da32-47d5-9dce-,Goal 80,801.5,Emergency Fund,ongoing,2025-04-21 16:37:46
+09c5a423-f45a-40dc-9b6c-,Goal 81,952.25,Electronics,completed,2025-04-22 16:37:46
+7d161318-cc6b-4475-b2ce-,Goal 82,1103.0,Vacation,save,2025-04-23 16:37:46
+e6a31828-40d9-45e1-adb0-,Goal 83,1253.75,Education,ongoing,2025-04-24 16:37:46
+f683b395-1593-42fc-a694-,Goal 84,1404.5,Emergency Fund,completed,2025-04-25 16:37:46
+73f94284-0d42-4c2b-9ad8-,Goal 85,500.0,Electronics,save,2025-04-26 16:37:46
+d578e1cd-ff6f-40e7-9d89-,Goal 86,650.75,Vacation,ongoing,2025-04-27 16:37:46
+04f39635-1618-4e1e-9628-,Goal 87,801.5,Education,completed,2025-04-28 16:37:46
+28ac3d0a-a2b6-4e0d-954b-,Goal 88,952.25,Emergency Fund,save,2025-04-29 16:37:46
+06513aa8-b476-4188-8de1-,Goal 89,1103.0,Electronics,ongoing,2025-04-30 16:37:46
+0885d2de-d9b0-4bd7-8d96-,Goal 90,1253.75,Vacation,completed,2025-05-01 16:37:46
+cef5c10b-760c-48fe-8676-,Goal 91,1404.5,Education,save,2025-05-02 16:37:46
+1af247d0-4cad-4255-b58b-,Goal 92,500.0,Emergency Fund,ongoing,2025-05-03 16:37:46
+eb87b30c-2e1e-4ffe-8400-,Goal 93,650.75,Electronics,completed,2025-05-04 16:37:46
+017ece08-11c4-4e59-bb9b-,Goal 94,801.5,Vacation,save,2025-05-05 16:37:46
+d846c3c4-3866-486d-a310-,Goal 95,952.25,Education,ongoing,2025-05-06 16:37:46
+545290a5-1750-4af6-9fc7-,Goal 96,1103.0,Emergency Fund,completed,2025-05-07 16:37:46
+1b87b620-7dc8-4632-b3f7-,Goal 97,1253.75,Electronics,save,2025-05-08 16:37:46
+9c6b489e-9292-4a5a-b797-,Goal 98,1404.5,Vacation,ongoing,2025-05-09 16:37:46
+78e0a054-0d37-4812-b7f1-,Goal 99,500.0,Education,completed,2025-05-10 16:37:46
+d1087220-e955-4c63-96ce-,Goal 100,650.75,Emergency Fund,save,2025-05-11 16:37:46
+c93399c1-94b4-4b7e-80ce-,Goal 101,801.5,Electronics,ongoing,2025-05-12 16:37:46
+ac590606-1214-4ebd-8e5e-,Goal 102,952.25,Vacation,completed,2025-05-13 16:37:46
+03712d8e-ecf2-4631-a00e-,Goal 103,1103.0,Education,save,2025-05-14 16:37:46
+876d4699-a4f6-4a29-9f1d-,Goal 104,1253.75,Emergency Fund,ongoing,2025-05-15 16:37:46
+2ac05bb7-6b02-4b05-9e0c-,Goal 105,1404.5,Electronics,completed,2025-05-16 16:37:46
+51caa2fb-80b4-4c99-afd8-,Goal 106,500.0,Vacation,save,2025-05-17 16:37:46
+f9a7c0f2-eaec-42bc-88c0-,Goal 107,650.75,Education,ongoing,2025-05-18 16:37:46
+6aec3e7a-c68d-45b0-ba81-,Goal 108,801.5,Emergency Fund,completed,2025-05-19 16:37:46
+a5eb6458-da46-44fc-a0d3-,Goal 109,952.25,Electronics,save,2025-05-20 16:37:46
+678452ed-b7a4-4d08-b3e1-,Goal 110,1103.0,Vacation,ongoing,2025-05-21 16:37:46
+d65f943c-5920-49a4-b569-,Goal 111,1253.75,Education,completed,2025-05-22 16:37:46
+51ef12e2-44fd-414d-a1b6-,Goal 112,1404.5,Emergency Fund,save,2025-05-23 16:37:46
+21c37a60-26d4-43b1-9f18-,Goal 113,500.0,Electronics,ongoing,2025-05-24 16:37:46
+e2d046b7-d57e-47b8-b82d-,Goal 114,650.75,Vacation,completed,2025-05-25 16:37:46
+a03452ce-2945-4d64-abdb-,Goal 115,801.5,Education,save,2025-05-26 16:37:46
+99da9b0c-98e0-4620-9264-,Goal 116,952.25,Emergency Fund,ongoing,2025-05-27 16:37:46
+92864342-73da-4877-b048-,Goal 117,1103.0,Electronics,completed,2025-05-28 16:37:46
+fb48b01b-8a3c-44eb-b1ce-,Goal 118,1253.75,Vacation,save,2025-05-29 16:37:46
+72cba815-5c20-4af8-862f-,Goal 119,1404.5,Education,ongoing,2025-05-30 16:37:46
+204f9640-db89-4c9a-ac3d-,Goal 120,500.0,Emergency Fund,completed,2025-05-31 16:37:46
+4c34118e-90a7-4efb-af4d-,Goal 121,650.75,Electronics,save,2025-06-01 16:37:46
+db4bed77-d0ec-4912-a2a7-,Goal 122,801.5,Vacation,ongoing,2025-06-02 16:37:46
+f09cbcc3-c0cc-41a4-882f-,Goal 123,952.25,Education,completed,2025-06-03 16:37:46
+78eb3cfb-f979-48c4-a157-,Goal 124,1103.0,Emergency Fund,save,2025-06-04 16:37:46
+f689be9e-3718-4998-acf6-,Goal 125,1253.75,Electronics,ongoing,2025-06-05 16:37:46
+93156f7c-297f-4e37-a37e-,Goal 126,1404.5,Vacation,completed,2025-06-06 16:37:46
+4ce45807-ef16-4744-bce1-,Goal 127,500.0,Education,save,2025-06-07 16:37:46
+c1ebe61f-411d-4994-b232-,Goal 128,650.75,Emergency Fund,ongoing,2025-06-08 16:37:46
+a4e17f1f-9885-43b7-8885-,Goal 129,801.5,Electronics,completed,2025-06-09 16:37:46
+96c9a248-4b60-414c-a882-,Goal 130,952.25,Vacation,save,2025-06-10 16:37:46
+c4c1b00f-be3e-48e2-9d98-,Goal 131,1103.0,Education,ongoing,2025-06-11 16:37:46
+97041890-838c-4a11-85bf-,Goal 132,1253.75,Emergency Fund,completed,2025-06-12 16:37:46
+9720a6ad-1346-47e6-81ae-,Goal 133,1404.5,Electronics,save,2025-06-13 16:37:46
+cb9d5dea-6b0e-4625-b28c-,Goal 134,500.0,Vacation,ongoing,2025-06-14 16:37:46
+0b0743cc-1f59-473a-8435-,Goal 135,650.75,Education,completed,2025-06-15 16:37:46
+0ee21e31-86d4-43fc-b7a8-,Goal 136,801.5,Emergency Fund,save,2025-06-16 16:37:46
+ee845732-76bd-4cdc-9cdd-,Goal 137,952.25,Electronics,ongoing,2025-06-17 16:37:46
+d1c65d3b-513d-43c5-9ebd-,Goal 138,1103.0,Vacation,completed,2025-06-18 16:37:46
+2d29b377-0a05-4ef0-b552-,Goal 139,1253.75,Education,save,2025-06-19 16:37:46
+57c3a31e-f194-4a44-81bb-,Goal 140,1404.5,Emergency Fund,ongoing,2025-06-20 16:37:46
+5199fe82-96d3-4ede-aa2d-,Goal 141,500.0,Electronics,completed,2025-06-21 16:37:46
+4b103f56-4eca-4b9f-bd3a-,Goal 142,650.75,Vacation,save,2025-06-22 16:37:46
+b12142a2-2f01-4889-9a12-,Goal 143,801.5,Education,ongoing,2025-06-23 16:37:46
+d4be0b3f-c05a-417f-881b-,Goal 144,952.25,Emergency Fund,completed,2025-06-24 16:37:46
+7c22947a-902e-44c2-b3a7-,Goal 145,1103.0,Electronics,save,2025-06-25 16:37:46
+764fb0e0-815f-49ff-94c0-,Goal 146,1253.75,Vacation,ongoing,2025-06-26 16:37:46
+0510301e-1414-457e-8b1f-,Goal 147,1404.5,Education,completed,2025-06-27 16:37:46
+d5896e6a-c98f-426a-a9e6-,Goal 148,500.0,Emergency Fund,save,2025-06-28 16:37:46
+e8ae8e9e-f2f5-4219-bcc0-,Goal 149,650.75,Electronics,ongoing,2025-06-29 16:37:46
+0b5563ea-f368-48eb-88c8-,Goal 150,801.5,Vacation,completed,2025-06-30 16:37:46
+29441467-b8a4-464e-92b7-,Goal 151,952.25,Education,save,2025-07-01 16:37:46
+7caed9b9-a24b-435c-aaa5-,Goal 152,1103.0,Emergency Fund,ongoing,2025-07-02 16:37:46
+ef1d3dea-6080-4077-a216-,Goal 153,1253.75,Electronics,completed,2025-07-03 16:37:46
+99f49ba2-b6fc-43cf-936e-,Goal 154,1404.5,Vacation,save,2025-07-04 16:37:46
+fa7c99b9-bc56-4114-a697-,Goal 155,500.0,Education,ongoing,2025-07-05 16:37:46
+ec639eba-aa51-4b26-b322-,Goal 156,650.75,Emergency Fund,completed,2025-07-06 16:37:46
+8a440ef4-6c89-4e0f-82d1-,Goal 157,801.5,Electronics,save,2025-07-07 16:37:46
+26602b58-900d-489a-82ef-,Goal 158,952.25,Vacation,ongoing,2025-07-08 16:37:46
+56faca39-63e0-48b1-97ec-,Goal 159,1103.0,Education,completed,2025-07-09 16:37:46
+d801efb6-9297-49e7-9c1c-,Goal 160,1253.75,Emergency Fund,save,2025-07-10 16:37:46
+8159dc65-da88-49c2-af18-,Goal 161,1404.5,Electronics,ongoing,2025-07-11 16:37:46
+a0b5ffae-ddc4-45ae-828b-,Goal 162,500.0,Vacation,completed,2025-07-12 16:37:46
+78329279-aab1-470f-9b14-,Goal 163,650.75,Education,save,2025-07-13 16:37:46
+715fa63d-5ec3-486e-8992-,Goal 164,801.5,Emergency Fund,ongoing,2025-07-14 16:37:46
+238012a2-b73f-4d59-a735-,Goal 165,952.25,Electronics,completed,2025-07-15 16:37:46
+66257414-01db-4940-9967-,Goal 166,1103.0,Vacation,save,2025-07-16 16:37:46
+ef1d21cf-dffb-4c01-aa3b-,Goal 167,1253.75,Education,ongoing,2025-07-17 16:37:46
+a048beb0-a0f4-46f9-a927-,Goal 168,1404.5,Emergency Fund,completed,2025-07-18 16:37:46
+749a1f54-9db1-46d0-bef9-,Goal 169,500.0,Electronics,save,2025-07-19 16:37:46
+b31baa53-1ca8-4559-b96c-,Goal 170,650.75,Vacation,ongoing,2025-07-20 16:37:46
+86cb0a7f-74a3-4f57-88f5-,Goal 171,801.5,Education,completed,2025-07-21 16:37:46
+758a83f7-bee0-42c0-9bc0-,Goal 172,952.25,Emergency Fund,save,2025-07-22 16:37:46
+312417bd-704a-4257-865e-,Goal 173,1103.0,Electronics,ongoing,2025-07-23 16:37:46
+d6b9dfca-fd44-4bfd-b7a5-,Goal 174,1253.75,Vacation,completed,2025-07-24 16:37:46
+768621b1-a6e9-40d8-86db-,Goal 175,1404.5,Education,save,2025-07-25 16:37:46
+18a2547d-7bf1-456e-b25a-,Goal 176,500.0,Emergency Fund,ongoing,2025-07-26 16:37:46
+a59a17da-62d5-4d72-8492-,Goal 177,650.75,Electronics,completed,2025-07-27 16:37:46
+5d3eaf0e-b494-4178-9389-,Goal 178,801.5,Vacation,save,2025-07-28 16:37:46
+5440de41-0d24-4f8d-9707-,Goal 179,952.25,Education,ongoing,2025-07-29 16:37:46
+d4f1ff4e-ede9-4cc9-9097-,Goal 180,1103.0,Emergency Fund,completed,2025-07-30 16:37:46
+faab47fd-cfc7-4834-af02-,Goal 181,1253.75,Electronics,save,2025-07-31 16:37:46
+10efe26e-09e2-49c6-a93f-,Goal 182,1404.5,Vacation,ongoing,2025-08-01 16:37:46
+e60bd3cb-c7c4-40a7-96d7-,Goal 183,500.0,Education,completed,2025-08-02 16:37:46
+74b52064-343c-43aa-ae1d-,Goal 184,650.75,Emergency Fund,save,2025-08-03 16:37:46
+ea32213d-5536-4930-beb4-,Goal 185,801.5,Electronics,ongoing,2025-08-04 16:37:46
+93909644-eaf5-4ab4-b039-,Goal 186,952.25,Vacation,completed,2025-08-05 16:37:46
+d37a5491-71bb-485b-8d87-,Goal 187,1103.0,Education,save,2025-08-06 16:37:46
+3509836b-d0ef-46c9-b521-,Goal 188,1253.75,Emergency Fund,ongoing,2025-08-07 16:37:46
+e72ea449-42c8-4d49-8956-,Goal 189,1404.5,Electronics,completed,2025-08-08 16:37:46
+a750250b-c442-46a6-89f0-,Goal 190,500.0,Vacation,save,2025-08-09 16:37:46
+c8b4f385-c169-49a5-ba3a-,Goal 191,650.75,Education,ongoing,2025-08-10 16:37:46
+3c76a66e-442e-4d97-bde6-,Goal 192,801.5,Emergency Fund,completed,2025-08-11 16:37:46
+b6c84fa1-3cc3-4cb0-8e89-,Goal 193,952.25,Electronics,save,2025-08-12 16:37:46
+1c7b544a-8485-4cd9-aec4-,Goal 194,1103.0,Vacation,ongoing,2025-08-13 16:37:46
+262ee0f8-3e34-45a6-9492-,Goal 195,1253.75,Education,completed,2025-08-14 16:37:46
+7005b4c6-d2de-44ea-ae3f-,Goal 196,1404.5,Emergency Fund,save,2025-08-15 16:37:46
+f12bc801-01ad-42b6-96d2-,Goal 197,500.0,Electronics,ongoing,2025-08-16 16:37:46
+2ec40f45-ec8c-4d69-8009-,Goal 198,650.75,Vacation,completed,2025-08-17 16:37:46
+072cdecc-8ccd-48e7-a098-,Goal 199,801.5,Education,save,2025-08-18 16:37:46
+47f934b9-f0dc-49d6-a803-,Goal 200,952.25,Emergency Fund,ongoing,2025-08-19 16:37:46
+6c863c58-d4c0-4847-b1c5-,Goal 201,1103.0,Electronics,completed,2025-08-20 16:37:46
+3f46c962-900f-45d5-9dd1-,Goal 202,1253.75,Vacation,save,2025-08-21 16:37:46
+067fca34-bd2b-4130-af3a-,Goal 203,1404.5,Education,ongoing,2025-08-22 16:37:46
+3cb4648d-6596-4f2c-b6a4-,Goal 204,500.0,Emergency Fund,completed,2025-08-23 16:37:46
+f52bd890-4d41-4e06-ab45-,Goal 205,650.75,Electronics,save,2025-08-24 16:37:46
+7aada652-6ced-49f9-952d-,Goal 206,801.5,Vacation,ongoing,2025-08-25 16:37:46
+859c142b-68cf-4e04-9d1e-,Goal 207,952.25,Education,completed,2025-08-26 16:37:46
+8cae8702-e84a-4eff-91cf-,Goal 208,1103.0,Emergency Fund,save,2025-08-27 16:37:46
+182353a2-7a84-4c1d-a07d-,Goal 209,1253.75,Electronics,ongoing,2025-08-28 16:37:46
+705cf3fc-6734-4a2c-8d09-,Goal 210,1404.5,Vacation,completed,2025-08-29 16:37:46
+52a1400e-867b-4566-be9a-,Goal 211,500.0,Education,save,2025-08-30 16:37:46
+c0588bd8-f48c-4851-a404-,Goal 212,650.75,Emergency Fund,ongoing,2025-08-31 16:37:46
+86c47893-437b-40b7-90ca-,Goal 213,801.5,Electronics,completed,2025-09-01 16:37:46
+d486bc30-2ad4-4775-b3fd-,Goal 214,952.25,Vacation,save,2025-09-02 16:37:46
+0e4df74f-87e5-4644-97d1-,Goal 215,1103.0,Education,ongoing,2025-09-03 16:37:46
+226037ea-9ebe-472c-9638-,Goal 216,1253.75,Emergency Fund,completed,2025-09-04 16:37:46
+50459b2c-d48c-4bfd-a697-,Goal 217,1404.5,Electronics,save,2025-09-05 16:37:46
+44607f43-e3d6-4bd5-96b7-,Goal 218,500.0,Vacation,ongoing,2025-09-06 16:37:46
+35265ad2-afce-43b7-a490-,Goal 219,650.75,Education,completed,2025-09-07 16:37:46
+027e0b10-6afb-4586-864c-,Goal 220,801.5,Emergency Fund,save,2025-09-08 16:37:46
+624a2978-97ec-4a66-9e9f-,Goal 221,952.25,Electronics,ongoing,2025-09-09 16:37:46
+f9bc6e23-1a44-48ad-9829-,Goal 222,1103.0,Vacation,completed,2025-09-10 16:37:46
+ba5b65ed-7f23-492c-85af-,Goal 223,1253.75,Education,save,2025-09-11 16:37:46
+9411fa56-c6b5-4763-9f83-,Goal 224,1404.5,Emergency Fund,ongoing,2025-09-12 16:37:46
+65b398df-a9c8-40dc-8d89-,Goal 225,500.0,Electronics,completed,2025-09-13 16:37:46
+b719e111-a17e-4af8-8053-,Goal 226,650.75,Vacation,save,2025-09-14 16:37:46
+c1b40a16-2534-43ff-83c7-,Goal 227,801.5,Education,ongoing,2025-09-15 16:37:46
+58174ca3-f2a3-4339-8c12-,Goal 228,952.25,Emergency Fund,completed,2025-09-16 16:37:46
+b38d3a0f-3fea-47b4-982c-,Goal 229,1103.0,Electronics,save,2025-09-17 16:37:46
+52ae3b86-08cf-4a31-a69a-,Goal 230,1253.75,Vacation,ongoing,2025-09-18 16:37:46
+e2274d50-ae6f-4e1c-acd6-,Goal 231,1404.5,Education,completed,2025-09-19 16:37:46
+7e46338e-4fc2-4309-b6aa-,Goal 232,500.0,Emergency Fund,save,2025-09-20 16:37:46
+d90ee44d-065b-46c1-83f1-,Goal 233,650.75,Electronics,ongoing,2025-09-21 16:37:46
+50e49b28-d323-4c50-ab6c-,Goal 234,801.5,Vacation,completed,2025-09-22 16:37:46
+b77ca4b0-8b25-4822-8606-,Goal 235,952.25,Education,save,2025-09-23 16:37:46
+9d4a2d88-92b0-467d-8212-,Goal 236,1103.0,Emergency Fund,ongoing,2025-09-24 16:37:46
+7a86c348-86d3-49a5-8c21-,Goal 237,1253.75,Electronics,completed,2025-09-25 16:37:46
+90334d16-7cfe-454e-9635-,Goal 238,1404.5,Vacation,save,2025-09-26 16:37:46
+37b04887-2115-4884-964d-,Goal 239,500.0,Education,ongoing,2025-09-27 16:37:46
+38cbb1e7-6218-4ec4-bf89-,Goal 240,650.75,Emergency Fund,completed,2025-09-28 16:37:46
+b2bb36a9-8340-4d99-9559-,Goal 241,801.5,Electronics,save,2025-09-29 16:37:46
+6bf4eb8a-576b-4fd7-9267-,Goal 242,952.25,Vacation,ongoing,2025-09-30 16:37:46
+3c0025cd-1abe-404a-91d5-,Goal 243,1103.0,Education,completed,2025-10-01 16:37:46
+3fa5f348-1429-41c5-a4a3-,Goal 244,1253.75,Emergency Fund,save,2025-10-02 16:37:46
+ffd68fc4-2bac-413c-a1f5-,Goal 245,1404.5,Electronics,ongoing,2025-10-03 16:37:46
+e297c1f2-d500-4bc4-ab6b-,Goal 246,500.0,Vacation,completed,2025-10-04 16:37:46
+521cf6dd-1f92-4feb-8f29-,Goal 247,650.75,Education,save,2025-10-05 16:37:46
+d96aa1bc-06bf-4fa6-a860-,Goal 248,801.5,Emergency Fund,ongoing,2025-10-06 16:37:46
+e4df97b8-0208-48e3-9133-,Goal 249,952.25,Electronics,completed,2025-10-07 16:37:46
+0f975c86-32a8-4072-a877-,Goal 250,1103.0,Vacation,save,2025-10-08 16:37:46
+8fedc464-31ad-4ec7-8c5a-,Goal 251,1253.75,Education,ongoing,2025-10-09 16:37:46
+f0c33c4e-19fe-4361-8c94-,Goal 252,1404.5,Emergency Fund,completed,2025-10-10 16:37:46
+f537437d-6659-4a42-9f06-,Goal 253,500.0,Electronics,save,2025-10-11 16:37:46
+044a3645-cf42-4398-aa34-,Goal 254,650.75,Vacation,ongoing,2025-10-12 16:37:46
+62f33bd9-92ea-43bd-b1f1-,Goal 255,801.5,Education,completed,2025-10-13 16:37:46
+c74740f6-9635-40f8-b47d-,Goal 256,952.25,Emergency Fund,save,2025-10-14 16:37:46
+6f886614-696a-4937-9997-,Goal 257,1103.0,Electronics,ongoing,2025-10-15 16:37:46
+3ec66d92-cf3d-40c9-9356-,Goal 258,1253.75,Vacation,completed,2025-10-16 16:37:46
+1bb302af-6ef2-4725-a516-,Goal 259,1404.5,Education,save,2025-10-17 16:37:46
+494c5b78-8f12-4e53-aec5-,Goal 260,500.0,Emergency Fund,ongoing,2025-10-18 16:37:46
+0de64aaa-9fcc-4187-8348-,Goal 261,650.75,Electronics,completed,2025-10-19 16:37:46
+0e8e7d91-de88-4e9d-a45e-,Goal 262,801.5,Vacation,save,2025-10-20 16:37:46
+3802ee00-1f25-4717-8bf1-,Goal 263,952.25,Education,ongoing,2025-10-21 16:37:46
+510c9861-9b54-4324-860f-,Goal 264,1103.0,Emergency Fund,completed,2025-10-22 16:37:46
+0288b8be-a3ea-498c-ac05-,Goal 265,1253.75,Electronics,save,2025-10-23 16:37:46
+f20ff0d0-74fe-4ba3-a942-,Goal 266,1404.5,Vacation,ongoing,2025-10-24 16:37:46
+0e1f1eba-cfeb-4835-94ef-,Goal 267,500.0,Education,completed,2025-10-25 16:37:46
+6b396793-a7d5-4041-989d-,Goal 268,650.75,Emergency Fund,save,2025-10-26 16:37:46
+a59b84e5-7678-4dbb-94bc-,Goal 269,801.5,Electronics,ongoing,2025-10-27 16:37:46
+f606c82f-8f29-473a-9b43-,Goal 270,952.25,Vacation,completed,2025-10-28 16:37:46
+fa0a8747-e6ea-4fc3-aab8-,Goal 271,1103.0,Education,save,2025-10-29 16:37:46
+9543fcdb-e889-4fe0-b53b-,Goal 272,1253.75,Emergency Fund,ongoing,2025-10-30 16:37:46
+4c039ba5-5b6c-48ca-bc54-,Goal 273,1404.5,Electronics,completed,2025-10-31 16:37:46
+670aebd7-0041-432c-ac41-,Goal 274,500.0,Vacation,save,2025-11-01 16:37:46
+9c7a9446-e785-4a3d-8b71-,Goal 275,650.75,Education,ongoing,2025-11-02 16:37:46
+a5df882e-c642-4573-93c2-,Goal 276,801.5,Emergency Fund,completed,2025-11-03 16:37:46
+489e3679-bb3d-40cd-a584-,Goal 277,952.25,Electronics,save,2025-11-04 16:37:46
+fff40333-e83b-4f57-b248-,Goal 278,1103.0,Vacation,ongoing,2025-11-05 16:37:46
+cea5dbd0-96de-48ba-899d-,Goal 279,1253.75,Education,completed,2025-11-06 16:37:46
+47ef10d7-9a97-46ae-aa51-,Goal 280,1404.5,Emergency Fund,save,2025-11-07 16:37:46
+5c5d8c43-cad7-437e-a68e-,Goal 281,500.0,Electronics,ongoing,2025-11-08 16:37:46
+5c763b8a-42c8-414d-8ab6-,Goal 282,650.75,Vacation,completed,2025-11-09 16:37:46
+68e8f2c9-b6ec-44a5-893f-,Goal 283,801.5,Education,save,2025-11-10 16:37:46
+97393e4f-d6f3-4f2b-a5e8-,Goal 284,952.25,Emergency Fund,ongoing,2025-11-11 16:37:46
+7f7d09f0-6ac2-49c2-85d5-,Goal 285,1103.0,Electronics,completed,2025-11-12 16:37:46
+86acc717-7ba7-4d38-a781-,Goal 286,1253.75,Vacation,save,2025-11-13 16:37:46
+dd223768-45e1-46d0-b388-,Goal 287,1404.5,Education,ongoing,2025-11-14 16:37:46
+6ec2a482-975c-42cc-b60e-,Goal 288,500.0,Emergency Fund,completed,2025-11-15 16:37:46
+0d10c283-962d-48f3-90f9-,Goal 289,650.75,Electronics,save,2025-11-16 16:37:46
+cd6c1aec-e84c-4c0e-b788-,Goal 290,801.5,Vacation,ongoing,2025-11-17 16:37:46
+2c3dc41f-23b5-4503-8589-,Goal 291,952.25,Education,completed,2025-11-18 16:37:46
+b6b98d2b-f52b-42bd-8a99-,Goal 292,1103.0,Emergency Fund,save,2025-11-19 16:37:46
+d276bb31-9572-4aa1-8204-,Goal 293,1253.75,Electronics,ongoing,2025-11-20 16:37:46
+350f2588-4c4f-413b-b2d3-,Goal 294,1404.5,Vacation,completed,2025-11-21 16:37:46
+832c1874-0c20-4de4-a43e-,Goal 295,500.0,Education,save,2025-11-22 16:37:46
+ca26bf9a-7724-4e3d-aa94-,Goal 296,650.75,Emergency Fund,ongoing,2025-11-23 16:37:46
+6477283b-cf63-483b-b7ba-,Goal 297,801.5,Electronics,completed,2025-11-24 16:37:46
+7e77ecbd-917b-4079-8ea4-,Goal 298,952.25,Vacation,save,2025-11-25 16:37:46
+3b2328b9-1915-40a1-bdad-,Goal 299,1103.0,Education,ongoing,2025-11-26 16:37:46
+dd57fe75-4d6d-414e-87d6-,Goal 300,1253.75,Emergency Fund,completed,2025-11-27 16:37:46
+32abd4a3-098e-4bda-b85e-,Goal 301,1404.5,Electronics,save,2025-11-28 16:37:46
+3ddd1833-420b-497e-977c-,Goal 302,500.0,Vacation,ongoing,2025-11-29 16:37:46
+44971ca3-d5d5-47ba-a015-,Goal 303,650.75,Education,completed,2025-11-30 16:37:46
+a71333ca-f3a7-45eb-bc04-,Goal 304,801.5,Emergency Fund,save,2025-12-01 16:37:46
+49432b9e-eb99-4658-8678-,Goal 305,952.25,Electronics,ongoing,2025-12-02 16:37:46
+e4dff301-aabd-4224-a69c-,Goal 306,1103.0,Vacation,completed,2025-12-03 16:37:46
+7ac2e6ae-debd-40a0-89f9-,Goal 307,1253.75,Education,save,2025-12-04 16:37:46
+257f3c55-31bd-48b8-8a3f-,Goal 308,1404.5,Emergency Fund,ongoing,2025-12-05 16:37:46
+cab37155-1aeb-4651-b75f-,Goal 309,500.0,Electronics,completed,2025-12-06 16:37:46
+3ec2e09f-69e5-461e-851e-,Goal 310,650.75,Vacation,save,2025-12-07 16:37:46
+9c4d8d59-0051-408c-bc26-,Goal 311,801.5,Education,ongoing,2025-12-08 16:37:46
+30a9965b-d7a3-43b0-87a3-,Goal 312,952.25,Emergency Fund,completed,2025-12-09 16:37:46
+03c72883-098f-412f-9938-,Goal 313,1103.0,Electronics,save,2025-12-10 16:37:46
+bd541d2b-496e-4183-b607-,Goal 314,1253.75,Vacation,ongoing,2025-12-11 16:37:46
+60799771-021f-4d6a-8b08-,Goal 315,1404.5,Education,completed,2025-12-12 16:37:46
+2e3671bb-0cf9-424f-9fd7-,Goal 316,500.0,Emergency Fund,save,2025-12-13 16:37:46
+847542d1-f959-4cb6-8fff-,Goal 317,650.75,Electronics,ongoing,2025-12-14 16:37:46
+91bb6476-dc7b-42b0-b336-,Goal 318,801.5,Vacation,completed,2025-12-15 16:37:46
+60cdcc9d-d835-493f-b34d-,Goal 319,952.25,Education,save,2025-12-16 16:37:46
+8acd2249-a4e1-42ce-9248-,Goal 320,1103.0,Emergency Fund,ongoing,2025-12-17 16:37:46
+84cf45e0-d014-44cd-b0fa-,Goal 321,1253.75,Electronics,completed,2025-12-18 16:37:46
+64d463eb-7134-4c42-ae7c-,Goal 322,1404.5,Vacation,save,2025-12-19 16:37:46
+2d4511b4-f2e3-446a-b96b-,Goal 323,500.0,Education,ongoing,2025-12-20 16:37:46
+aa60d051-d0aa-47ab-9cbd-,Goal 324,650.75,Emergency Fund,completed,2025-12-21 16:37:46
+d961521c-cadc-48cc-bd8a-,Goal 325,801.5,Electronics,save,2025-12-22 16:37:46
+81000556-c346-4f5b-b29b-,Goal 326,952.25,Vacation,ongoing,2025-12-23 16:37:46
+e5f9e59f-1735-4438-912e-,Goal 327,1103.0,Education,completed,2025-12-24 16:37:46
+4b163e80-6bea-441e-bf31-,Goal 328,1253.75,Emergency Fund,save,2025-12-25 16:37:46
+338420fe-b180-4a2b-8ce6-,Goal 329,1404.5,Electronics,ongoing,2025-12-26 16:37:46
+e9f28464-ffbd-4d92-a000-,Goal 330,500.0,Vacation,completed,2025-12-27 16:37:46
+5e69288f-0ea0-4c9e-a530-,Goal 331,650.75,Education,save,2025-12-28 16:37:46
+a550a6b8-db5b-45c9-8669-,Goal 332,801.5,Emergency Fund,ongoing,2025-12-29 16:37:46
+1ed349b1-1786-4b9e-91a8-,Goal 333,952.25,Electronics,completed,2025-12-30 16:37:46
+d8f2cf08-9059-4037-8063-,Goal 334,1103.0,Vacation,save,2025-12-31 16:37:46
+d4667a5a-c135-4e87-ae3d-,Goal 335,1253.75,Education,ongoing,2026-01-01 16:37:46
+c7e0aa78-8d3b-4729-bea1-,Goal 336,1404.5,Emergency Fund,completed,2026-01-02 16:37:46
+adafdd3c-80d4-47bc-bba1-,Goal 337,500.0,Electronics,save,2026-01-03 16:37:46
+bcf68177-b19f-4648-8880-,Goal 338,650.75,Vacation,ongoing,2026-01-04 16:37:46
+3d28b951-6f7a-4a31-aa15-,Goal 339,801.5,Education,completed,2026-01-05 16:37:46
+d7fa2d64-ece7-480e-91d4-,Goal 340,952.25,Emergency Fund,save,2026-01-06 16:37:46
+f8f0d3e8-fa5e-4e25-9cf4-,Goal 341,1103.0,Electronics,ongoing,2026-01-07 16:37:46
+41cdb93e-a1ae-44d3-a1f5-,Goal 342,1253.75,Vacation,completed,2026-01-08 16:37:46
+de4cd13e-8b8e-4f64-9af4-,Goal 343,1404.5,Education,save,2026-01-09 16:37:46
+aa72ff78-f733-4fa3-8037-,Goal 344,500.0,Emergency Fund,ongoing,2026-01-10 16:37:46
+0d28ce3d-5fa0-47d3-ac4d-,Goal 345,650.75,Electronics,completed,2026-01-11 16:37:46
+1cd36f9e-57d2-452d-9d4b-,Goal 346,801.5,Vacation,save,2026-01-12 16:37:46
+e40441fa-f5a4-4201-bb03-,Goal 347,952.25,Education,ongoing,2026-01-13 16:37:46
+c876b84a-3af0-4f0b-80e5-,Goal 348,1103.0,Emergency Fund,completed,2026-01-14 16:37:46
+ee6fd9f6-f63c-4c87-95d8-,Goal 349,1253.75,Electronics,save,2026-01-15 16:37:46
+a823e9cd-d4ff-468f-9d14-,Goal 350,1404.5,Vacation,ongoing,2026-01-16 16:37:46
+491dea39-acbe-4768-bb78-,Goal 351,500.0,Education,completed,2026-01-17 16:37:46
+76395c41-0ecb-4e70-af97-,Goal 352,650.75,Emergency Fund,save,2026-01-18 16:37:46
+2de2557a-6e09-4205-953b-,Goal 353,801.5,Electronics,ongoing,2026-01-19 16:37:46
+f23be759-5a1a-417d-9af3-,Goal 354,952.25,Vacation,completed,2026-01-20 16:37:46
+4b762214-d25f-43d4-9b83-,Goal 355,1103.0,Education,save,2026-01-21 16:37:46
+a35429ad-b6cd-44d2-a3bb-,Goal 356,1253.75,Emergency Fund,ongoing,2026-01-22 16:37:46
+5e8bb660-75dd-4290-aa00-,Goal 357,1404.5,Electronics,completed,2026-01-23 16:37:46
+b53c1a05-c0b5-42b2-8316-,Goal 358,500.0,Vacation,save,2026-01-24 16:37:46
+e6644d5c-d666-4f26-8b3c-,Goal 359,650.75,Education,ongoing,2026-01-25 16:37:46
+f3d085c4-98c2-4b24-a456-,Goal 360,801.5,Emergency Fund,completed,2026-01-26 16:37:46
+c5922f08-a586-4e40-928c-,Goal 361,952.25,Electronics,save,2026-01-27 16:37:46
+b1c5426a-0cfc-47b4-8df9-,Goal 362,1103.0,Vacation,ongoing,2026-01-28 16:37:46
+0a5c0bd7-9c0e-4a8c-8206-,Goal 363,1253.75,Education,completed,2026-01-29 16:37:46
+8185caa2-ebb5-4461-80fe-,Goal 364,1404.5,Emergency Fund,save,2026-01-30 16:37:46
+d14499fe-2ae7-4b47-b0ad-,Goal 365,500.0,Electronics,ongoing,2026-01-31 16:37:46
+30db6952-198b-4998-bdf6-,Goal 366,650.75,Vacation,completed,2026-02-01 16:37:46
+53253d7a-4d2c-41ea-87ea-,Goal 367,801.5,Education,save,2026-02-02 16:37:46
+af0d1bf9-2612-458c-bdbd-,Goal 368,952.25,Emergency Fund,ongoing,2026-02-03 16:37:46
+2225da66-3f8d-4642-899a-,Goal 369,1103.0,Electronics,completed,2026-02-04 16:37:46
+d87b1c18-8a0b-49c3-b98f-,Goal 370,1253.75,Vacation,save,2026-02-05 16:37:46
+59c27034-ff45-48f0-bbbf-,Goal 371,1404.5,Education,ongoing,2026-02-06 16:37:46
+29de50ec-2679-4232-bc9c-,Goal 372,500.0,Emergency Fund,completed,2026-02-07 16:37:46
+2231175a-b863-47d2-8d04-,Goal 373,650.75,Electronics,save,2026-02-08 16:37:46
+f8eb2362-82a3-4d18-be06-,Goal 374,801.5,Vacation,ongoing,2026-02-09 16:37:46
+2e3f430c-c00a-4fe6-b89e-,Goal 375,952.25,Education,completed,2026-02-10 16:37:46
+12faf153-ac33-4296-8cd0-,Goal 376,1103.0,Emergency Fund,save,2026-02-11 16:37:46
+d750bc49-7389-43ff-a5bf-,Goal 377,1253.75,Electronics,ongoing,2026-02-12 16:37:46
+93f94bdd-7ecb-4b38-8a29-,Goal 378,1404.5,Vacation,completed,2026-02-13 16:37:46
+a60f6ba5-6618-43ad-abc7-,Goal 379,500.0,Education,save,2026-02-14 16:37:46
+9197af61-9889-44f8-93f3-,Goal 380,650.75,Emergency Fund,ongoing,2026-02-15 16:37:46
+07ef6779-c160-4a0e-a798-,Goal 381,801.5,Electronics,completed,2026-02-16 16:37:46
+72707d27-c61d-4408-814b-,Goal 382,952.25,Vacation,save,2026-02-17 16:37:46
+7f5d8a1d-9a6b-44ed-bead-,Goal 383,1103.0,Education,ongoing,2026-02-18 16:37:46
+22c5caa9-20d1-4a18-a0f6-,Goal 384,1253.75,Emergency Fund,completed,2026-02-19 16:37:46
+32ed3391-b817-4376-ac4a-,Goal 385,1404.5,Electronics,save,2026-02-20 16:37:46
+e9f48984-34a8-4b48-93d2-,Goal 386,500.0,Vacation,ongoing,2026-02-21 16:37:46
+25a89796-0173-47e7-9365-,Goal 387,650.75,Education,completed,2026-02-22 16:37:46
+eb8ee76e-ac1b-464a-956d-,Goal 388,801.5,Emergency Fund,save,2026-02-23 16:37:46
+36089d7e-8380-45aa-9b40-,Goal 389,952.25,Electronics,ongoing,2026-02-24 16:37:46
+1ea7b52b-e1ba-4808-905f-,Goal 390,1103.0,Vacation,completed,2026-02-25 16:37:46
+2452d47c-7397-4490-a367-,Goal 391,1253.75,Education,save,2026-02-26 16:37:46
+5cc0a081-1f33-41b2-9f87-,Goal 392,1404.5,Emergency Fund,ongoing,2026-02-27 16:37:46
+eaec8b92-b1d5-4f9e-9788-,Goal 393,500.0,Electronics,completed,2026-02-28 16:37:46
+9b96822e-2fe5-4c2b-a6d0-,Goal 394,650.75,Vacation,save,2026-03-01 16:37:46
+2998fa32-d190-435d-bfd6-,Goal 395,801.5,Education,ongoing,2026-03-02 16:37:46
+9d3643e8-774c-4c66-905d-,Goal 396,952.25,Emergency Fund,completed,2026-03-03 16:37:46
+4763135b-14f9-4ab5-adae-,Goal 397,1103.0,Electronics,save,2026-03-04 16:37:46
+c501994a-f2d1-4458-883e-,Goal 398,1253.75,Vacation,ongoing,2026-03-05 16:37:46
+b52a2165-5fd7-46f7-b971-,Goal 399,1404.5,Education,completed,2026-03-06 16:37:46
+a1c58c54-f99f-43f0-af3b-,Goal 400,500.0,Emergency Fund,save,2026-03-07 16:37:46
+c9c2ff98-460d-44cc-b2e7-,Goal 401,650.75,Electronics,ongoing,2026-03-08 16:37:46
+d83a7731-2a38-4f71-9205-,Goal 402,801.5,Vacation,completed,2026-03-09 16:37:46
+b1535702-2186-4788-817d-,Goal 403,952.25,Education,save,2026-03-10 16:37:46
+3c42cfec-eb31-40e1-a889-,Goal 404,1103.0,Emergency Fund,ongoing,2026-03-11 16:37:46
+92bd9398-49d8-4e26-9d85-,Goal 405,1253.75,Electronics,completed,2026-03-12 16:37:46
+92947676-f1d5-4fcd-8992-,Goal 406,1404.5,Vacation,save,2026-03-13 16:37:46
+a13084d5-b272-41b3-bf21-,Goal 407,500.0,Education,ongoing,2026-03-14 16:37:46
+c105cb4b-1137-4b48-ade4-,Goal 408,650.75,Emergency Fund,completed,2026-03-15 16:37:46
+ffea5ce9-650a-4d62-8646-,Goal 409,801.5,Electronics,save,2026-03-16 16:37:46
+d0afd89f-07b4-4b3e-a4ad-,Goal 410,952.25,Vacation,ongoing,2026-03-17 16:37:46
+fabffe0d-9678-4bb5-ab65-,Goal 411,1103.0,Education,completed,2026-03-18 16:37:46
+9f9650cc-175f-44c3-aa04-,Goal 412,1253.75,Emergency Fund,save,2026-03-19 16:37:46
+65c87fde-a189-4e7e-b9c5-,Goal 413,1404.5,Electronics,ongoing,2026-03-20 16:37:46
+6e78cc3c-bd7d-4625-9f69-,Goal 414,500.0,Vacation,completed,2026-03-21 16:37:46
+2ccd9b1d-4fe7-4e91-91b5-,Goal 415,650.75,Education,save,2026-03-22 16:37:46
+b6ede50f-9b75-4253-b4ed-,Goal 416,801.5,Emergency Fund,ongoing,2026-03-23 16:37:46
+3911d561-ef93-417b-8138-,Goal 417,952.25,Electronics,completed,2026-03-24 16:37:46
+cb889c42-9e10-4800-a997-,Goal 418,1103.0,Vacation,save,2026-03-25 16:37:46
+b4ac3c2c-a57b-4404-8c68-,Goal 419,1253.75,Education,ongoing,2026-03-26 16:37:46
+267cea42-2d20-43b5-bde7-,Goal 420,1404.5,Emergency Fund,completed,2026-03-27 16:37:46
+48da8855-f157-4490-83b9-,Goal 421,500.0,Electronics,save,2026-03-28 16:37:46
+f7aa5262-e308-4422-98cc-,Goal 422,650.75,Vacation,ongoing,2026-03-29 16:37:46
+9322c519-ed68-45fc-a3f4-,Goal 423,801.5,Education,completed,2026-03-30 16:37:46
+58782490-1551-41ba-ae90-,Goal 424,952.25,Emergency Fund,save,2026-03-31 16:37:46
+4f542913-7940-44e1-bbc6-,Goal 425,1103.0,Electronics,ongoing,2026-04-01 16:37:46
+8e86cbf7-df23-4b61-a18e-,Goal 426,1253.75,Vacation,completed,2026-04-02 16:37:46
+5a29fd23-f4ba-44af-a3c0-,Goal 427,1404.5,Education,save,2026-04-03 16:37:46
+88ebe462-2551-4194-b624-,Goal 428,500.0,Emergency Fund,ongoing,2026-04-04 16:37:46
+ec992431-8ce4-4c9f-9623-,Goal 429,650.75,Electronics,completed,2026-04-05 16:37:46
+6bf4bacd-25dd-402b-a03b-,Goal 430,801.5,Vacation,save,2026-04-06 16:37:46
+740288ec-69ff-4fd0-b8a3-,Goal 431,952.25,Education,ongoing,2026-04-07 16:37:46
+6d2b66c3-9f06-4da9-abcf-,Goal 432,1103.0,Emergency Fund,completed,2026-04-08 16:37:46
+632501be-e363-4286-a81d-,Goal 433,1253.75,Electronics,save,2026-04-09 16:37:46
+4caa9acf-2d28-4073-8165-,Goal 434,1404.5,Vacation,ongoing,2026-04-10 16:37:46
+33379b1f-3126-43e2-8bff-,Goal 435,500.0,Education,completed,2026-04-11 16:37:46
+ab8b47e6-3a5c-4109-be5c-,Goal 436,650.75,Emergency Fund,save,2026-04-12 16:37:46
+400cf88e-cdb1-4365-815b-,Goal 437,801.5,Electronics,ongoing,2026-04-13 16:37:46
+628bcc1d-1482-4b95-b21f-,Goal 438,952.25,Vacation,completed,2026-04-14 16:37:46
+11869b79-139d-4d15-846a-,Goal 439,1103.0,Education,save,2026-04-15 16:37:46
+0a64b466-d6ba-4848-82c0-,Goal 440,1253.75,Emergency Fund,ongoing,2026-04-16 16:37:46
+55627392-d09e-4354-87ac-,Goal 441,1404.5,Electronics,completed,2026-04-17 16:37:46
+674cac0f-0780-4e8a-b243-,Goal 442,500.0,Vacation,save,2026-04-18 16:37:46
+895e901b-adbe-4227-8b3a-,Goal 443,650.75,Education,ongoing,2026-04-19 16:37:46
+3b1f6630-5ebc-4a88-9e39-,Goal 444,801.5,Emergency Fund,completed,2026-04-20 16:37:46
+12e10166-ddf3-4174-97d3-,Goal 445,952.25,Electronics,save,2026-04-21 16:37:46
+806ddbd9-8056-4f68-97d7-,Goal 446,1103.0,Vacation,ongoing,2026-04-22 16:37:46
+29166b21-acdd-48bc-a9d6-,Goal 447,1253.75,Education,completed,2026-04-23 16:37:46
+8db3805c-0df9-487f-bed2-,Goal 448,1404.5,Emergency Fund,save,2026-04-24 16:37:46
+95ee4c30-f07f-4ebf-ae58-,Goal 449,500.0,Electronics,ongoing,2026-04-25 16:37:46
+57b19ec3-7d80-4201-9b2e-,Goal 450,650.75,Vacation,completed,2026-04-26 16:37:46
+eba0750f-8c66-4818-942b-,Goal 451,801.5,Education,save,2026-04-27 16:37:46
+cc448c14-04c8-403d-8733-,Goal 452,952.25,Emergency Fund,ongoing,2026-04-28 16:37:46
+9d834101-842b-4192-a724-,Goal 453,1103.0,Electronics,completed,2026-04-29 16:37:46
+4f10a83a-9cf2-41af-9a0a-,Goal 454,1253.75,Vacation,save,2026-04-30 16:37:46
+46b7f700-24bd-4cb7-aa4c-,Goal 455,1404.5,Education,ongoing,2026-05-01 16:37:46
+aabf8890-975e-40e7-9b7c-,Goal 456,500.0,Emergency Fund,completed,2026-05-02 16:37:46
+72437f43-d008-4ec3-86de-,Goal 457,650.75,Electronics,save,2026-05-03 16:37:46
+17f4e31c-0fc4-4300-9b70-,Goal 458,801.5,Vacation,ongoing,2026-05-04 16:37:46
+a9d12cf6-0e97-4600-b92d-,Goal 459,952.25,Education,completed,2026-05-05 16:37:46
+86f6ad13-856d-41aa-82f3-,Goal 460,1103.0,Emergency Fund,save,2026-05-06 16:37:46
+9689dc9f-a751-4654-9293-,Goal 461,1253.75,Electronics,ongoing,2026-05-07 16:37:46
+b7a25434-9c21-4586-a9fe-,Goal 462,1404.5,Vacation,completed,2026-05-08 16:37:46
+52928e57-2bb7-4aff-bb49-,Goal 463,500.0,Education,save,2026-05-09 16:37:46
+9dcf02d1-e6e7-451d-96d4-,Goal 464,650.75,Emergency Fund,ongoing,2026-05-10 16:37:46
+3d25411f-a5b8-469e-82c3-,Goal 465,801.5,Electronics,completed,2026-05-11 16:37:46
+701aefe9-43d1-43d5-a824-,Goal 466,952.25,Vacation,save,2026-05-12 16:37:46
+ffebe2a9-f84b-43cc-a666-,Goal 467,1103.0,Education,ongoing,2026-05-13 16:37:46
+0797372e-a65c-45eb-b1ea-,Goal 468,1253.75,Emergency Fund,completed,2026-05-14 16:37:46
+9470621a-deb6-4f4e-9192-,Goal 469,1404.5,Electronics,save,2026-05-15 16:37:46
+554d5c1a-305a-4f38-9eaf-,Goal 470,500.0,Vacation,ongoing,2026-05-16 16:37:46
+08c0fc22-10bc-4884-bb59-,Goal 471,650.75,Education,completed,2026-05-17 16:37:46
+543f62da-d20e-4cb8-90b8-,Goal 472,801.5,Emergency Fund,save,2026-05-18 16:37:46
+d3891ca7-13a0-4249-ba62-,Goal 473,952.25,Electronics,ongoing,2026-05-19 16:37:46
+511565cc-84a1-445a-a5df-,Goal 474,1103.0,Vacation,completed,2026-05-20 16:37:46
+75d0ba6b-67eb-43bf-b583-,Goal 475,1253.75,Education,save,2026-05-21 16:37:46
+198b482d-5993-4703-9360-,Goal 476,1404.5,Emergency Fund,ongoing,2026-05-22 16:37:46
+bb1e1e55-88a3-4ba0-ada9-,Goal 477,500.0,Electronics,completed,2026-05-23 16:37:46
+44103ea0-739a-4ec3-be60-,Goal 478,650.75,Vacation,save,2026-05-24 16:37:46
+8fc6e790-91f2-41f8-ac00-,Goal 479,801.5,Education,ongoing,2026-05-25 16:37:46
+6d316d45-beb5-4d1c-8ca1-,Goal 480,952.25,Emergency Fund,completed,2026-05-26 16:37:46
+e8d41bb2-4605-4343-b081-,Goal 481,1103.0,Electronics,save,2026-05-27 16:37:46
+ec31de4b-e980-4528-b527-,Goal 482,1253.75,Vacation,ongoing,2026-05-28 16:37:46
+296b90e0-8589-4284-90b0-,Goal 483,1404.5,Education,completed,2026-05-29 16:37:46
+bc4a8a04-28e3-483c-9102-,Goal 484,500.0,Emergency Fund,save,2026-05-30 16:37:46
+83a95bb9-2c8c-45f1-bcb8-,Goal 485,650.75,Electronics,ongoing,2026-05-31 16:37:46
+2f38a17c-dc35-4a8e-8c09-,Goal 486,801.5,Vacation,completed,2026-06-01 16:37:46
+6a5adb74-6d1b-4024-bd07-,Goal 487,952.25,Education,save,2026-06-02 16:37:46
+fd84a506-1347-40f9-b786-,Goal 488,1103.0,Emergency Fund,ongoing,2026-06-03 16:37:46
+89d1b663-95cd-42dd-bff7-,Goal 489,1253.75,Electronics,completed,2026-06-04 16:37:46
+88dca5fb-375b-4a6e-8f86-,Goal 490,1404.5,Vacation,save,2026-06-05 16:37:46
+e7fe4fa3-3ab3-4728-b8c5-,Goal 491,500.0,Education,ongoing,2026-06-06 16:37:46
+42f2431c-00b3-470b-9dff-,Goal 492,650.75,Emergency Fund,completed,2026-06-07 16:37:46
+14414437-429f-4053-b0d0-,Goal 493,801.5,Electronics,save,2026-06-08 16:37:46
+563417cc-42a8-43f3-a98f-,Goal 494,952.25,Vacation,ongoing,2026-06-09 16:37:46
+ae949941-edbc-4c17-ae97-,Goal 495,1103.0,Education,completed,2026-06-10 16:37:46
+de05d993-0714-43d7-b64f-,Goal 496,1253.75,Emergency Fund,save,2026-06-11 16:37:46
+63014d4e-101d-4713-b4d5-,Goal 497,1404.5,Electronics,ongoing,2026-06-12 16:37:46
+ca1c29eb-8bbd-4e28-a791-,Goal 498,500.0,Vacation,completed,2026-06-13 16:37:46
+bb787518-c7b8-4429-8bb2-,Goal 499,650.75,Education,save,2026-06-14 16:37:46
+404242db-f0aa-4ba5-9a80-,Goal 500,801.5,Emergency Fund,ongoing,2026-06-15 16:37:46
