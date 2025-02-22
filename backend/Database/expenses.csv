@@ -1,501 +1,501 @@
 id,description,amount,category,date
-ecebb982-4b47-4679-be48-,Movie,20.0,Entertainment,2025-02-01 16:37:46
-e44ef9f1-edfd-4f20-b40d-,Shopping,25.5,Groceries,2025-02-02 16:37:46
-b524c1c5-16a7-4d47-b46e-,Bus Fare,31.0,Transport,2025-02-03 16:37:46
-f76baf80-f1dc-476f-a149-,Dinner,36.5,Dining,2025-02-04 16:37:46
-4b6105fe-3d21-4e53-ac4f-,Movie,42.0,Entertainment,2025-02-05 16:37:46
-bf58dd15-7da5-467e-a249-,Shopping,47.5,Groceries,2025-02-06 16:37:46
-255bb529-d909-498d-ab0c-,Bus Fare,53.0,Transport,2025-02-07 16:37:46
-b2c2e950-5b9c-484a-976a-,Dinner,58.5,Dining,2025-02-08 16:37:46
-53c19752-602b-4a9d-bbe6-,Movie,64.0,Entertainment,2025-02-09 16:37:46
-54994bce-de7a-4d32-9bce-,Shopping,69.5,Groceries,2025-02-10 16:37:46
-94879baa-4686-4ee4-9bbf-,Bus Fare,20.0,Transport,2025-02-11 16:37:46
-322c7daf-43a6-4259-9012-,Dinner,25.5,Dining,2025-02-12 16:37:46
-24f6372f-251d-4c1f-b861-,Movie,31.0,Entertainment,2025-02-13 16:37:46
-e9625b63-ffae-4f0b-a3f7-,Shopping,36.5,Groceries,2025-02-14 16:37:46
-6d543b2e-57eb-4a7f-9569-,Bus Fare,42.0,Transport,2025-02-15 16:37:46
-7ca0c114-1f6a-41b7-8e9e-,Dinner,47.5,Dining,2025-02-16 16:37:46
-17c2a26b-7429-4a54-966c-,Movie,53.0,Entertainment,2025-02-17 16:37:46
-4298ab65-b02c-4158-ada9-,Shopping,58.5,Groceries,2025-02-18 16:37:46
-72d020fb-ac0b-4670-b019-,Bus Fare,64.0,Transport,2025-02-19 16:37:46
-ef89ba64-7774-4a5f-a7fd-,Dinner,69.5,Dining,2025-02-20 16:37:46
-39708989-0c34-43f2-8eec-,Movie,20.0,Entertainment,2025-02-21 16:37:46
-832a4573-7766-4473-8f33-,Shopping,25.5,Groceries,2025-02-22 16:37:46
-14f3d1ce-9ab8-41d1-b273-,Bus Fare,31.0,Transport,2025-02-23 16:37:46
-1c7b292e-4ca5-4e93-97bb-,Dinner,36.5,Dining,2025-02-24 16:37:46
-39293b7d-0bf6-4823-bfae-,Movie,42.0,Entertainment,2025-02-25 16:37:46
-66daef25-39df-44ae-b51e-,Shopping,47.5,Groceries,2025-02-26 16:37:46
-5c9c3867-ed16-44a3-84bc-,Bus Fare,53.0,Transport,2025-02-27 16:37:46
-352dbb15-dc8f-4d1b-a586-,Dinner,58.5,Dining,2025-02-28 16:37:46
-65767cbb-b1f6-4be4-b123-,Movie,64.0,Entertainment,2025-03-01 16:37:46
-1af31ad2-7cc0-4f29-9ffa-,Shopping,69.5,Groceries,2025-03-02 16:37:46
-a1717a53-64c3-44c1-9ed5-,Bus Fare,20.0,Transport,2025-03-03 16:37:46
-1a59dd98-f08a-4238-a076-,Dinner,25.5,Dining,2025-03-04 16:37:46
-013e0cdb-845a-4497-bcb0-,Movie,31.0,Entertainment,2025-03-05 16:37:46
-62db03f1-b056-4081-9f50-,Shopping,36.5,Groceries,2025-03-06 16:37:46
-f59bbf08-8073-4eda-9d75-,Bus Fare,42.0,Transport,2025-03-07 16:37:46
-3da5e188-64de-4e5d-a6dc-,Dinner,47.5,Dining,2025-03-08 16:37:46
-9ad418d2-272d-40a3-b0ab-,Movie,53.0,Entertainment,2025-03-09 16:37:46
-1d1fc106-167e-499c-9bd9-,Shopping,58.5,Groceries,2025-03-10 16:37:46
-d34c35cb-ded2-4fa4-a8f5-,Bus Fare,64.0,Transport,2025-03-11 16:37:46
-fabb6590-daa9-4675-b38d-,Dinner,69.5,Dining,2025-03-12 16:37:46
-38285a37-e2ba-4609-9153-,Movie,20.0,Entertainment,2025-03-13 16:37:46
-a6d68d41-4298-42dd-ae84-,Shopping,25.5,Groceries,2025-03-14 16:37:46
-04958b54-89b0-46ac-acd8-,Bus Fare,31.0,Transport,2025-03-15 16:37:46
-d0653c1b-de0b-4c41-b732-,Dinner,36.5,Dining,2025-03-16 16:37:46
-520372da-cc57-4ff8-b26a-,Movie,42.0,Entertainment,2025-03-17 16:37:46
-4242495a-a515-466a-9c36-,Shopping,47.5,Groceries,2025-03-18 16:37:46
-7b8156f6-9aeb-416e-a42f-,Bus Fare,53.0,Transport,2025-03-19 16:37:46
-58aafd81-345d-4be2-94ef-,Dinner,58.5,Dining,2025-03-20 16:37:46
-028f6384-f07a-4f9b-a9d2-,Movie,64.0,Entertainment,2025-03-21 16:37:46
-3f909b56-eb54-48f3-a832-,Shopping,69.5,Groceries,2025-03-22 16:37:46
-71a9e827-b797-4209-a77e-,Bus Fare,20.0,Transport,2025-03-23 16:37:46
-fc78e1ac-aed9-4fce-8c33-,Dinner,25.5,Dining,2025-03-24 16:37:46
-470f1f2e-aed4-4fe4-b079-,Movie,31.0,Entertainment,2025-03-25 16:37:46
-204eab70-442e-426a-9fff-,Shopping,36.5,Groceries,2025-03-26 16:37:46
-cc7f3641-ccd7-4e35-be76-,Bus Fare,42.0,Transport,2025-03-27 16:37:46
-9e314728-b4b3-448c-843d-,Dinner,47.5,Dining,2025-03-28 16:37:46
-9847a8bf-f5bd-4906-b0d6-,Movie,53.0,Entertainment,2025-03-29 16:37:46
-fe340b84-ce6d-49ee-abe6-,Shopping,58.5,Groceries,2025-03-30 16:37:46
-c7cc9296-9ff0-43c8-829b-,Bus Fare,64.0,Transport,2025-03-31 16:37:46
-b887b636-b7e5-4339-b9f4-,Dinner,69.5,Dining,2025-04-01 16:37:46
-78525739-fb43-47b0-be3a-,Movie,20.0,Entertainment,2025-04-02 16:37:46
-76619e73-bba8-40b5-ad31-,Shopping,25.5,Groceries,2025-04-03 16:37:46
-f47f68f4-d3ea-4918-85a2-,Bus Fare,31.0,Transport,2025-04-04 16:37:46
-36c5b170-fe97-4b5b-9add-,Dinner,36.5,Dining,2025-04-05 16:37:46
-85afed93-f55d-40a5-a685-,Movie,42.0,Entertainment,2025-04-06 16:37:46
-1a97606a-5d41-4d0e-9d7a-,Shopping,47.5,Groceries,2025-04-07 16:37:46
-db3cb66f-3c2d-40bf-b5c3-,Bus Fare,53.0,Transport,2025-04-08 16:37:46
-e205827f-181a-42a5-8219-,Dinner,58.5,Dining,2025-04-09 16:37:46
-7a70baf7-ab36-45ef-b3d6-,Movie,64.0,Entertainment,2025-04-10 16:37:46
-102796d0-838d-4f19-9a49-,Shopping,69.5,Groceries,2025-04-11 16:37:46
-30af4f67-2804-46f1-9ef2-,Bus Fare,20.0,Transport,2025-04-12 16:37:46
-5e335f82-3628-4ac5-9e63-,Dinner,25.5,Dining,2025-04-13 16:37:46
-b7764c97-ddf6-47a2-add4-,Movie,31.0,Entertainment,2025-04-14 16:37:46
-714520eb-93b6-4e9d-92ee-,Shopping,36.5,Groceries,2025-04-15 16:37:46
-6d5ce351-b92c-4750-870f-,Bus Fare,42.0,Transport,2025-04-16 16:37:46
-ec9eaae8-f6cb-4f7b-82ac-,Dinner,47.5,Dining,2025-04-17 16:37:46
-90dc4e92-a815-495e-aabd-,Movie,53.0,Entertainment,2025-04-18 16:37:46
-5065de72-fa6f-452c-babe-,Shopping,58.5,Groceries,2025-04-19 16:37:46
-88d4ed11-5463-4c4b-ab05-,Bus Fare,64.0,Transport,2025-04-20 16:37:46
-2f1c0ad8-4955-4df4-88db-,Dinner,69.5,Dining,2025-04-21 16:37:46
-66fbd089-0629-4296-8eec-,Movie,20.0,Entertainment,2025-04-22 16:37:46
-ec47b199-6a66-450c-9af2-,Shopping,25.5,Groceries,2025-04-23 16:37:46
-06958140-26a2-48a9-b6e4-,Bus Fare,31.0,Transport,2025-04-24 16:37:46
-85e547ba-528c-4aa5-9bc7-,Dinner,36.5,Dining,2025-04-25 16:37:46
-bee58337-d971-40f6-9dc4-,Movie,42.0,Entertainment,2025-04-26 16:37:46
-90337f9f-36c0-444b-bc64-,Shopping,47.5,Groceries,2025-04-27 16:37:46
-948dc4b1-774c-4da9-855e-,Bus Fare,53.0,Transport,2025-04-28 16:37:46
-96f21c51-cfad-4771-a152-,Dinner,58.5,Dining,2025-04-29 16:37:46
-92442d37-cb6b-425b-b683-,Movie,64.0,Entertainment,2025-04-30 16:37:46
-74a3380e-3801-4534-b180-,Shopping,69.5,Groceries,2025-05-01 16:37:46
-fac0bf84-a4e2-4389-8c1e-,Bus Fare,20.0,Transport,2025-05-02 16:37:46
-47c5a008-b8a7-4fea-98aa-,Dinner,25.5,Dining,2025-05-03 16:37:46
-6cfc5b30-cca8-4fd3-a922-,Movie,31.0,Entertainment,2025-05-04 16:37:46
-281278bd-3c8b-44f3-9625-,Shopping,36.5,Groceries,2025-05-05 16:37:46
-bae443d2-22bd-4a67-bcae-,Bus Fare,42.0,Transport,2025-05-06 16:37:46
-808fe750-1ac7-4105-8b8f-,Dinner,47.5,Dining,2025-05-07 16:37:46
-9ecca73f-e47f-4439-9e06-,Movie,53.0,Entertainment,2025-05-08 16:37:46
-c4840614-f7fd-4cec-9e52-,Shopping,58.5,Groceries,2025-05-09 16:37:46
-949745b0-8f43-4a8a-9961-,Bus Fare,64.0,Transport,2025-05-10 16:37:46
-14a3d8c1-7db5-40a0-bf69-,Dinner,69.5,Dining,2025-05-11 16:37:46
-ab22698f-f154-486f-a1c1-,Movie,20.0,Entertainment,2025-05-12 16:37:46
-da7337de-1a94-433b-9186-,Shopping,25.5,Groceries,2025-05-13 16:37:46
-5c4647cb-b0b9-4c60-9129-,Bus Fare,31.0,Transport,2025-05-14 16:37:46
-59611837-1108-4f74-979a-,Dinner,36.5,Dining,2025-05-15 16:37:46
-06f3faa2-8a2a-4d01-9eff-,Movie,42.0,Entertainment,2025-05-16 16:37:46
-46a4543f-3794-490a-8268-,Shopping,47.5,Groceries,2025-05-17 16:37:46
-b86feffe-6ab0-47e6-8160-,Bus Fare,53.0,Transport,2025-05-18 16:37:46
-471035d5-1b0b-494e-89b7-,Dinner,58.5,Dining,2025-05-19 16:37:46
-9e2c33fb-c40f-49e8-a795-,Movie,64.0,Entertainment,2025-05-20 16:37:46
-56dfbf81-cf2b-4d0c-8fae-,Shopping,69.5,Groceries,2025-05-21 16:37:46
-e546c50e-9a93-456e-a44a-,Bus Fare,20.0,Transport,2025-05-22 16:37:46
-5a845e38-33b3-47ed-b69c-,Dinner,25.5,Dining,2025-05-23 16:37:46
-d9a7f6ae-9b9b-4d08-8d0c-,Movie,31.0,Entertainment,2025-05-24 16:37:46
-c958b852-ece4-442a-9a8e-,Shopping,36.5,Groceries,2025-05-25 16:37:46
-0b03c049-8fd2-403d-8cd8-,Bus Fare,42.0,Transport,2025-05-26 16:37:46
-88b66f9b-dedf-42f7-bd2b-,Dinner,47.5,Dining,2025-05-27 16:37:46
-1911427c-c512-469b-baa1-,Movie,53.0,Entertainment,2025-05-28 16:37:46
-028671a4-3fc4-4b5f-97b6-,Shopping,58.5,Groceries,2025-05-29 16:37:46
-16a3d43c-56f9-4b59-904c-,Bus Fare,64.0,Transport,2025-05-30 16:37:46
-e97c5d68-ac36-4109-b4dc-,Dinner,69.5,Dining,2025-05-31 16:37:46
-39c9eb0f-aa0a-4d7c-91dd-,Movie,20.0,Entertainment,2025-06-01 16:37:46
-4475a7c7-9046-4b53-b018-,Shopping,25.5,Groceries,2025-06-02 16:37:46
-b414a1a2-7be3-47ac-8594-,Bus Fare,31.0,Transport,2025-06-03 16:37:46
-8e9072fe-e193-40bc-8a7f-,Dinner,36.5,Dining,2025-06-04 16:37:46
-35bfd56b-e34f-455b-a0fe-,Movie,42.0,Entertainment,2025-06-05 16:37:46
-762af6dc-8357-4164-b012-,Shopping,47.5,Groceries,2025-06-06 16:37:46
-2217303d-ea44-45e5-96d4-,Bus Fare,53.0,Transport,2025-06-07 16:37:46
-db8237d9-33cc-49ac-a275-,Dinner,58.5,Dining,2025-06-08 16:37:46
-e074ee05-6358-431b-aae6-,Movie,64.0,Entertainment,2025-06-09 16:37:46
-9d3fcd06-f657-454f-8ede-,Shopping,69.5,Groceries,2025-06-10 16:37:46
-9652df34-ed3b-41b4-ab73-,Bus Fare,20.0,Transport,2025-06-11 16:37:46
-3b6f0ab2-ce48-421b-8f0b-,Dinner,25.5,Dining,2025-06-12 16:37:46
-23f7b1eb-224d-4ea6-b295-,Movie,31.0,Entertainment,2025-06-13 16:37:46
-7aa46847-1445-40ab-83a9-,Shopping,36.5,Groceries,2025-06-14 16:37:46
-e88fcc5a-1afe-4f37-8547-,Bus Fare,42.0,Transport,2025-06-15 16:37:46
-d58c8c54-e302-41ec-93cb-,Dinner,47.5,Dining,2025-06-16 16:37:46
-6251b854-a62a-4a74-8b76-,Movie,53.0,Entertainment,2025-06-17 16:37:46
-2fdc669f-fd28-4843-b94b-,Shopping,58.5,Groceries,2025-06-18 16:37:46
-d511d9fd-ab39-4706-9b8a-,Bus Fare,64.0,Transport,2025-06-19 16:37:46
-17af99c7-06f6-4597-8fd7-,Dinner,69.5,Dining,2025-06-20 16:37:46
-be0d47ba-c2a4-43c7-9d34-,Movie,20.0,Entertainment,2025-06-21 16:37:46
-f45d6f16-d20a-4d16-9707-,Shopping,25.5,Groceries,2025-06-22 16:37:46
-0c7e3304-5fe7-427b-ab29-,Bus Fare,31.0,Transport,2025-06-23 16:37:46
-5a3b03fb-4039-41cb-9fe1-,Dinner,36.5,Dining,2025-06-24 16:37:46
-1f1c8f97-e01e-46bc-bdb1-,Movie,42.0,Entertainment,2025-06-25 16:37:46
-cda59204-e59b-4180-9ab7-,Shopping,47.5,Groceries,2025-06-26 16:37:46
-1c972236-1c3f-4c75-ab48-,Bus Fare,53.0,Transport,2025-06-27 16:37:46
-949c8756-9d06-4749-b1eb-,Dinner,58.5,Dining,2025-06-28 16:37:46
-5ff94f2b-3fa4-4820-96b1-,Movie,64.0,Entertainment,2025-06-29 16:37:46
-cfd7cc32-70bf-4a99-8d87-,Shopping,69.5,Groceries,2025-06-30 16:37:46
-a1f5d3db-0aeb-49bc-858c-,Bus Fare,20.0,Transport,2025-07-01 16:37:46
-c9f16c6b-a679-4a6f-b33a-,Dinner,25.5,Dining,2025-07-02 16:37:46
-55a02635-0f89-4703-ada1-,Movie,31.0,Entertainment,2025-07-03 16:37:46
-254903f2-116e-4beb-93bd-,Shopping,36.5,Groceries,2025-07-04 16:37:46
-08d5da0f-d5c7-4563-ad44-,Bus Fare,42.0,Transport,2025-07-05 16:37:46
-4ffdc51b-7f2f-4884-80c1-,Dinner,47.5,Dining,2025-07-06 16:37:46
-20fe6134-1bbe-48c2-8a5a-,Movie,53.0,Entertainment,2025-07-07 16:37:46
-1b400dc8-f611-49ab-b410-,Shopping,58.5,Groceries,2025-07-08 16:37:46
-a4896e6f-17b5-4bfd-b914-,Bus Fare,64.0,Transport,2025-07-09 16:37:46
-8cd10c89-0d17-4567-9d47-,Dinner,69.5,Dining,2025-07-10 16:37:46
-dffd588d-4653-45cf-a8e8-,Movie,20.0,Entertainment,2025-07-11 16:37:46
-1ead97ef-4c9b-4a33-858b-,Shopping,25.5,Groceries,2025-07-12 16:37:46
-a919ee9b-897c-45cc-8f63-,Bus Fare,31.0,Transport,2025-07-13 16:37:46
-bfb50f76-09c5-4384-b065-,Dinner,36.5,Dining,2025-07-14 16:37:46
-ed2e8550-1f5a-4dd2-a61b-,Movie,42.0,Entertainment,2025-07-15 16:37:46
-c8e8eff6-c75f-435d-83d9-,Shopping,47.5,Groceries,2025-07-16 16:37:46
-1c0c7318-6929-435d-b247-,Bus Fare,53.0,Transport,2025-07-17 16:37:46
-faee1dc4-35ef-4e8f-805e-,Dinner,58.5,Dining,2025-07-18 16:37:46
-9f3e6b41-677f-4199-b583-,Movie,64.0,Entertainment,2025-07-19 16:37:46
-880234f7-2830-4760-9733-,Shopping,69.5,Groceries,2025-07-20 16:37:46
-9ce2768b-5694-4dfa-adf8-,Bus Fare,20.0,Transport,2025-07-21 16:37:46
-6884937b-47cf-40f7-b168-,Dinner,25.5,Dining,2025-07-22 16:37:46
-d12080b3-cae9-406b-b46b-,Movie,31.0,Entertainment,2025-07-23 16:37:46
-382c152b-77f2-46d1-bd94-,Shopping,36.5,Groceries,2025-07-24 16:37:46
-b94342b8-e151-4c4a-b28b-,Bus Fare,42.0,Transport,2025-07-25 16:37:46
-30de31b5-6911-4d0d-bdd8-,Dinner,47.5,Dining,2025-07-26 16:37:46
-bdc61868-cf52-4d6e-acbd-,Movie,53.0,Entertainment,2025-07-27 16:37:46
-9890313d-d408-44b9-b4c5-,Shopping,58.5,Groceries,2025-07-28 16:37:46
-cc9b085d-1091-4589-b328-,Bus Fare,64.0,Transport,2025-07-29 16:37:46
-578669e2-7bdc-4322-9314-,Dinner,69.5,Dining,2025-07-30 16:37:46
-2f1a1d79-85c8-4787-a9e4-,Movie,20.0,Entertainment,2025-07-31 16:37:46
-2f84310d-9bad-4c1e-ad50-,Shopping,25.5,Groceries,2025-08-01 16:37:46
-bc04f64c-74de-4059-89f7-,Bus Fare,31.0,Transport,2025-08-02 16:37:46
-0ea25d4b-e54e-4fe6-bfd8-,Dinner,36.5,Dining,2025-08-03 16:37:46
-c164fbd5-02c9-46d0-9f0b-,Movie,42.0,Entertainment,2025-08-04 16:37:46
-85b93483-bdbc-4f44-bc92-,Shopping,47.5,Groceries,2025-08-05 16:37:46
-5c20a5a4-5f66-4895-a925-,Bus Fare,53.0,Transport,2025-08-06 16:37:46
-eb54501d-ea29-4118-9de7-,Dinner,58.5,Dining,2025-08-07 16:37:46
-db270b25-8cfa-4d50-bbf1-,Movie,64.0,Entertainment,2025-08-08 16:37:46
-7ca57ff4-66eb-4589-a405-,Shopping,69.5,Groceries,2025-08-09 16:37:46
-0de17446-8fed-4822-9c68-,Bus Fare,20.0,Transport,2025-08-10 16:37:46
-eff095a2-5d63-4524-96dd-,Dinner,25.5,Dining,2025-08-11 16:37:46
-2ff22cc3-b78e-4b03-ba4d-,Movie,31.0,Entertainment,2025-08-12 16:37:46
-a76f2591-3747-46ef-852d-,Shopping,36.5,Groceries,2025-08-13 16:37:46
-9a7be24a-9140-40e5-9f9b-,Bus Fare,42.0,Transport,2025-08-14 16:37:46
-1b86b947-b33d-4ac2-96b3-,Dinner,47.5,Dining,2025-08-15 16:37:46
-05ddd066-5a11-4d9e-a24d-,Movie,53.0,Entertainment,2025-08-16 16:37:46
-0cb3a99c-6d56-44a2-bceb-,Shopping,58.5,Groceries,2025-08-17 16:37:46
-d9651dd8-c7d2-4096-95c3-,Bus Fare,64.0,Transport,2025-08-18 16:37:46
-1c73e367-7159-4cda-acbc-,Dinner,69.5,Dining,2025-08-19 16:37:46
-e5436a4b-a912-451f-84d1-,Movie,20.0,Entertainment,2025-08-20 16:37:46
-e7a4378c-529a-4f7e-a61f-,Shopping,25.5,Groceries,2025-08-21 16:37:46
-70bd6bd6-e81a-46f1-8bae-,Bus Fare,31.0,Transport,2025-08-22 16:37:46
-af878662-e395-4d1a-a657-,Dinner,36.5,Dining,2025-08-23 16:37:46
-75824866-186c-4d8a-a358-,Movie,42.0,Entertainment,2025-08-24 16:37:46
-928ad2a0-4e4f-4fa2-9fb5-,Shopping,47.5,Groceries,2025-08-25 16:37:46
-b97308f2-5e7d-40ff-8d5a-,Bus Fare,53.0,Transport,2025-08-26 16:37:46
-34aadcca-281f-40f3-a766-,Dinner,58.5,Dining,2025-08-27 16:37:46
-2c617e8f-2f15-40b6-aac3-,Movie,64.0,Entertainment,2025-08-28 16:37:46
-ab6f8ee4-5896-4907-8428-,Shopping,69.5,Groceries,2025-08-29 16:37:46
-8104f39a-494e-476b-acf5-,Bus Fare,20.0,Transport,2025-08-30 16:37:46
-082d51b0-7d67-480a-a617-,Dinner,25.5,Dining,2025-08-31 16:37:46
-74b8e678-5b77-4a52-b001-,Movie,31.0,Entertainment,2025-09-01 16:37:46
-cbab75a3-36f6-4b27-bc61-,Shopping,36.5,Groceries,2025-09-02 16:37:46
-ea5a4799-97c2-4201-94ab-,Bus Fare,42.0,Transport,2025-09-03 16:37:46
-0d381efd-dcfb-498e-96c0-,Dinner,47.5,Dining,2025-09-04 16:37:46
-f1aa52c2-8f28-4761-ad7e-,Movie,53.0,Entertainment,2025-09-05 16:37:46
-eab93431-9984-4860-8de0-,Shopping,58.5,Groceries,2025-09-06 16:37:46
-5ec0e06b-726e-4f19-bb14-,Bus Fare,64.0,Transport,2025-09-07 16:37:46
-24cf30d5-37bd-4fab-bf91-,Dinner,69.5,Dining,2025-09-08 16:37:46
-0428de8b-6c84-4443-941b-,Movie,20.0,Entertainment,2025-09-09 16:37:46
-85a47298-492b-4903-8afa-,Shopping,25.5,Groceries,2025-09-10 16:37:46
-72dc91ba-9a7d-430e-8fe3-,Bus Fare,31.0,Transport,2025-09-11 16:37:46
-372fd971-7116-487e-a16f-,Dinner,36.5,Dining,2025-09-12 16:37:46
-f0daed61-1c63-4aad-bf5c-,Movie,42.0,Entertainment,2025-09-13 16:37:46
-f2a9fbcc-b8df-4a2c-8832-,Shopping,47.5,Groceries,2025-09-14 16:37:46
-62430459-a6fd-4df3-92db-,Bus Fare,53.0,Transport,2025-09-15 16:37:46
-36119c1a-8f04-48e6-a736-,Dinner,58.5,Dining,2025-09-16 16:37:46
-89687878-acb5-4370-b224-,Movie,64.0,Entertainment,2025-09-17 16:37:46
-33530481-c8b3-4d1f-8ed1-,Shopping,69.5,Groceries,2025-09-18 16:37:46
-c7057a43-4186-4c88-bb93-,Bus Fare,20.0,Transport,2025-09-19 16:37:46
-0b0c025b-3cca-48cf-8dea-,Dinner,25.5,Dining,2025-09-20 16:37:46
-8ce58034-022a-4ae1-a468-,Movie,31.0,Entertainment,2025-09-21 16:37:46
-f1c658e8-2513-427a-ade3-,Shopping,36.5,Groceries,2025-09-22 16:37:46
-723a3594-eb73-43e8-aa62-,Bus Fare,42.0,Transport,2025-09-23 16:37:46
-f0cbd2ed-adf4-490d-b92b-,Dinner,47.5,Dining,2025-09-24 16:37:46
-414f1e00-7f5a-436e-b295-,Movie,53.0,Entertainment,2025-09-25 16:37:46
-514a822e-cfab-4774-915c-,Shopping,58.5,Groceries,2025-09-26 16:37:46
-839b02c6-611f-4c05-981b-,Bus Fare,64.0,Transport,2025-09-27 16:37:46
-5a662561-24dc-48b8-8624-,Dinner,69.5,Dining,2025-09-28 16:37:46
-06aa5ff0-25e4-4ea1-87b8-,Movie,20.0,Entertainment,2025-09-29 16:37:46
-eab66e9c-f251-49d7-8336-,Shopping,25.5,Groceries,2025-09-30 16:37:46
-17ec98ef-b094-4158-9ad7-,Bus Fare,31.0,Transport,2025-10-01 16:37:46
-a905cbf2-3601-4433-89eb-,Dinner,36.5,Dining,2025-10-02 16:37:46
-a70ce1c8-d104-4f6a-b17f-,Movie,42.0,Entertainment,2025-10-03 16:37:46
-022efcf9-9ce3-448c-898a-,Shopping,47.5,Groceries,2025-10-04 16:37:46
-5e488b02-c039-45a4-bbbb-,Bus Fare,53.0,Transport,2025-10-05 16:37:46
-7871eb22-112f-4a0e-821f-,Dinner,58.5,Dining,2025-10-06 16:37:46
-59fdcca6-815c-438c-a1c6-,Movie,64.0,Entertainment,2025-10-07 16:37:46
-393c0efb-f1c6-48ed-86b2-,Shopping,69.5,Groceries,2025-10-08 16:37:46
-27d2c73d-1c0a-4209-8545-,Bus Fare,20.0,Transport,2025-10-09 16:37:46
-5d9abf5f-4aa5-4d01-ad74-,Dinner,25.5,Dining,2025-10-10 16:37:46
-aa97e14a-83ed-4932-8391-,Movie,31.0,Entertainment,2025-10-11 16:37:46
-656e85fb-f037-4dd9-bd1a-,Shopping,36.5,Groceries,2025-10-12 16:37:46
-fd580342-d40b-4030-b9ca-,Bus Fare,42.0,Transport,2025-10-13 16:37:46
-9ab80a10-ab0d-4954-b4db-,Dinner,47.5,Dining,2025-10-14 16:37:46
-014b4ed4-b031-424f-9f99-,Movie,53.0,Entertainment,2025-10-15 16:37:46
-42cd3601-343d-4e83-ab79-,Shopping,58.5,Groceries,2025-10-16 16:37:46
-62fbb2ec-53e1-46bd-ad4e-,Bus Fare,64.0,Transport,2025-10-17 16:37:46
-5782728a-aede-462d-8069-,Dinner,69.5,Dining,2025-10-18 16:37:46
-3d95636a-7bc6-4618-9bf8-,Movie,20.0,Entertainment,2025-10-19 16:37:46
-82281cd9-17a7-46a2-894f-,Shopping,25.5,Groceries,2025-10-20 16:37:46
-b0484ba6-a232-465d-9635-,Bus Fare,31.0,Transport,2025-10-21 16:37:46
-3b7fc5bd-bf47-40a3-a3ab-,Dinner,36.5,Dining,2025-10-22 16:37:46
-e3b40921-ea61-424d-81aa-,Movie,42.0,Entertainment,2025-10-23 16:37:46
-2fe152a3-2eb2-424b-a81d-,Shopping,47.5,Groceries,2025-10-24 16:37:46
-cad9c895-c19d-4d35-9b53-,Bus Fare,53.0,Transport,2025-10-25 16:37:46
-c233b08a-3fa8-4d70-a139-,Dinner,58.5,Dining,2025-10-26 16:37:46
-f772e519-ee33-4e6b-8b64-,Movie,64.0,Entertainment,2025-10-27 16:37:46
-851e79f6-2f4b-4d81-886f-,Shopping,69.5,Groceries,2025-10-28 16:37:46
-268012bf-8639-44d0-8b08-,Bus Fare,20.0,Transport,2025-10-29 16:37:46
-e07f13aa-4096-48fc-b1dd-,Dinner,25.5,Dining,2025-10-30 16:37:46
-9979bff7-fae9-4f72-a3ee-,Movie,31.0,Entertainment,2025-10-31 16:37:46
-6de8ff67-79cd-46a0-a00a-,Shopping,36.5,Groceries,2025-11-01 16:37:46
-a34a51b7-d6dc-4c18-a657-,Bus Fare,42.0,Transport,2025-11-02 16:37:46
-384e88fb-5d5e-4c6e-b83f-,Dinner,47.5,Dining,2025-11-03 16:37:46
-39ee9422-9c24-4ab3-a45c-,Movie,53.0,Entertainment,2025-11-04 16:37:46
-c74f786a-7ab7-4dc8-8ed9-,Shopping,58.5,Groceries,2025-11-05 16:37:46
-7fa11d9c-8087-4db3-bfd6-,Bus Fare,64.0,Transport,2025-11-06 16:37:46
-e5cc1c2a-f855-424c-906b-,Dinner,69.5,Dining,2025-11-07 16:37:46
-8d84c780-e818-4d6d-9c94-,Movie,20.0,Entertainment,2025-11-08 16:37:46
-c2588b58-0703-4e90-a5b8-,Shopping,25.5,Groceries,2025-11-09 16:37:46
-533e5663-2e00-44b7-99f8-,Bus Fare,31.0,Transport,2025-11-10 16:37:46
-6c593165-4d1b-41a6-bf0f-,Dinner,36.5,Dining,2025-11-11 16:37:46
-8b97ed8f-041a-4c75-b6e4-,Movie,42.0,Entertainment,2025-11-12 16:37:46
-22705d9c-66b3-4475-b0ad-,Shopping,47.5,Groceries,2025-11-13 16:37:46
-d8aa2e18-7441-4fcb-9fee-,Bus Fare,53.0,Transport,2025-11-14 16:37:46
-88fa618e-3238-4547-8c81-,Dinner,58.5,Dining,2025-11-15 16:37:46
-086a41c0-e54a-48c7-9a73-,Movie,64.0,Entertainment,2025-11-16 16:37:46
-06140dbe-bfc7-4afd-980b-,Shopping,69.5,Groceries,2025-11-17 16:37:46
-3dac4fcd-0bb9-4adc-a85a-,Bus Fare,20.0,Transport,2025-11-18 16:37:46
-5943c055-d34f-4587-a738-,Dinner,25.5,Dining,2025-11-19 16:37:46
-570d2409-35c2-4f17-a889-,Movie,31.0,Entertainment,2025-11-20 16:37:46
-4cddfab8-f8f6-47fc-8de2-,Shopping,36.5,Groceries,2025-11-21 16:37:46
-cea1cb91-c817-4e72-874e-,Bus Fare,42.0,Transport,2025-11-22 16:37:46
-7ffaac31-c878-4f01-921f-,Dinner,47.5,Dining,2025-11-23 16:37:46
-30e26fc5-69bc-4a09-a0de-,Movie,53.0,Entertainment,2025-11-24 16:37:46
-5644e5e3-1238-4522-80dd-,Shopping,58.5,Groceries,2025-11-25 16:37:46
-04d3858f-5a4f-40f7-a40e-,Bus Fare,64.0,Transport,2025-11-26 16:37:46
-ee1d1cc6-891e-42e7-946c-,Dinner,69.5,Dining,2025-11-27 16:37:46
-1587519c-53f7-449d-b431-,Movie,20.0,Entertainment,2025-11-28 16:37:46
-03ca8877-c856-4fdd-862e-,Shopping,25.5,Groceries,2025-11-29 16:37:46
-87aea31b-f0e1-4c85-853a-,Bus Fare,31.0,Transport,2025-11-30 16:37:46
-eab4cdea-4005-490c-a67f-,Dinner,36.5,Dining,2025-12-01 16:37:46
-217d306c-324f-46d0-87b6-,Movie,42.0,Entertainment,2025-12-02 16:37:46
-3114449e-baee-46cc-a0db-,Shopping,47.5,Groceries,2025-12-03 16:37:46
-73ad7512-7aad-4c8d-ab7a-,Bus Fare,53.0,Transport,2025-12-04 16:37:46
-111f084a-8354-4041-a95f-,Dinner,58.5,Dining,2025-12-05 16:37:46
-8de5e7a7-bf7c-4fc1-b317-,Movie,64.0,Entertainment,2025-12-06 16:37:46
-cbdd511c-9794-4c8e-9613-,Shopping,69.5,Groceries,2025-12-07 16:37:46
-ecc43608-17f7-4fa3-97f4-,Bus Fare,20.0,Transport,2025-12-08 16:37:46
-49efa27d-4b39-4ccf-9c6b-,Dinner,25.5,Dining,2025-12-09 16:37:46
-d89e782e-0a9b-44ab-8a28-,Movie,31.0,Entertainment,2025-12-10 16:37:46
-35291ce3-604b-45ff-8b49-,Shopping,36.5,Groceries,2025-12-11 16:37:46
-31c946fe-7db5-48cf-87b5-,Bus Fare,42.0,Transport,2025-12-12 16:37:46
-77cdc638-1719-4c28-b782-,Dinner,47.5,Dining,2025-12-13 16:37:46
-4b71b7dc-0a6a-4b98-a7f7-,Movie,53.0,Entertainment,2025-12-14 16:37:46
-5efc3774-58af-4e3e-a163-,Shopping,58.5,Groceries,2025-12-15 16:37:46
-ea23463b-6407-4630-b6fa-,Bus Fare,64.0,Transport,2025-12-16 16:37:46
-792336c0-8db0-4c9d-8a49-,Dinner,69.5,Dining,2025-12-17 16:37:46
-87f3027c-1936-4d30-a24f-,Movie,20.0,Entertainment,2025-12-18 16:37:46
-04ea0fb2-afa7-4119-82af-,Shopping,25.5,Groceries,2025-12-19 16:37:46
-841c9b7d-57e6-47e3-b0de-,Bus Fare,31.0,Transport,2025-12-20 16:37:46
-1896e5c6-1ce6-44c1-a0fb-,Dinner,36.5,Dining,2025-12-21 16:37:46
-6c7f0859-3109-4d13-8bb1-,Movie,42.0,Entertainment,2025-12-22 16:37:46
-987d20ea-ed60-4872-bb9e-,Shopping,47.5,Groceries,2025-12-23 16:37:46
-957907c0-cae1-4175-960c-,Bus Fare,53.0,Transport,2025-12-24 16:37:46
-0a551e5c-958f-41a6-8b53-,Dinner,58.5,Dining,2025-12-25 16:37:46
-cd943cde-49d2-4155-b28b-,Movie,64.0,Entertainment,2025-12-26 16:37:46
-977448e8-8c72-4e87-b4e9-,Shopping,69.5,Groceries,2025-12-27 16:37:46
-f6407fb2-7444-4deb-bbd4-,Bus Fare,20.0,Transport,2025-12-28 16:37:46
-cee59bfd-76ca-48cd-b361-,Dinner,25.5,Dining,2025-12-29 16:37:46
-7e085b0a-67d9-4510-84f5-,Movie,31.0,Entertainment,2025-12-30 16:37:46
-2a7434d2-e941-4783-b8b5-,Shopping,36.5,Groceries,2025-12-31 16:37:46
-252c445d-a761-4ee8-87a6-,Bus Fare,42.0,Transport,2026-01-01 16:37:46
-b4c6e799-cca6-49ce-be5f-,Dinner,47.5,Dining,2026-01-02 16:37:46
-92d5bf28-7421-4679-80ad-,Movie,53.0,Entertainment,2026-01-03 16:37:46
-2713ed6b-6a5d-4c04-a90c-,Shopping,58.5,Groceries,2026-01-04 16:37:46
-bf0caeee-521d-4517-998d-,Bus Fare,64.0,Transport,2026-01-05 16:37:46
-09e619d3-8565-4a84-b319-,Dinner,69.5,Dining,2026-01-06 16:37:46
-3968b6cd-2736-47e2-9f33-,Movie,20.0,Entertainment,2026-01-07 16:37:46
-24a882d1-1d2e-4a39-b94e-,Shopping,25.5,Groceries,2026-01-08 16:37:46
-1b6acdbd-83e2-42db-9bea-,Bus Fare,31.0,Transport,2026-01-09 16:37:46
-be38e109-f874-4487-bbd6-,Dinner,36.5,Dining,2026-01-10 16:37:46
-191e5630-a588-4186-a35a-,Movie,42.0,Entertainment,2026-01-11 16:37:46
-ca34e1f5-e6e2-4924-ae59-,Shopping,47.5,Groceries,2026-01-12 16:37:46
-88ed4fc9-ebe0-487c-b304-,Bus Fare,53.0,Transport,2026-01-13 16:37:46
-3f9d1e35-336b-47fb-b37b-,Dinner,58.5,Dining,2026-01-14 16:37:46
-0bce2222-fe64-4c18-a6b6-,Movie,64.0,Entertainment,2026-01-15 16:37:46
-9a2709c5-620b-43d5-b94f-,Shopping,69.5,Groceries,2026-01-16 16:37:46
-50b1dd8a-d435-4b60-bc69-,Bus Fare,20.0,Transport,2026-01-17 16:37:46
-6016081e-1db1-408e-9cd8-,Dinner,25.5,Dining,2026-01-18 16:37:46
-c9277713-99dd-4cd6-a8a6-,Movie,31.0,Entertainment,2026-01-19 16:37:46
-bb81564b-7500-432a-8ae4-,Shopping,36.5,Groceries,2026-01-20 16:37:46
-ac98cb02-08fd-4c27-8a72-,Bus Fare,42.0,Transport,2026-01-21 16:37:46
-18b9e42e-63cf-4929-9245-,Dinner,47.5,Dining,2026-01-22 16:37:46
-ff817895-ee45-496d-b735-,Movie,53.0,Entertainment,2026-01-23 16:37:46
-b9704a7b-50f3-4522-9311-,Shopping,58.5,Groceries,2026-01-24 16:37:46
-ae4489e5-891b-46ab-ba71-,Bus Fare,64.0,Transport,2026-01-25 16:37:46
-92955a40-967a-4fc3-b896-,Dinner,69.5,Dining,2026-01-26 16:37:46
-1fe7bd14-e413-4575-ad52-,Movie,20.0,Entertainment,2026-01-27 16:37:46
-3075ee79-3c29-4c31-977d-,Shopping,25.5,Groceries,2026-01-28 16:37:46
-e694d66a-ca86-41b7-a548-,Bus Fare,31.0,Transport,2026-01-29 16:37:46
-5c973d3e-4a50-48e1-850b-,Dinner,36.5,Dining,2026-01-30 16:37:46
-a10f62f3-0665-4718-a3b7-,Movie,42.0,Entertainment,2026-01-31 16:37:46
-13127b72-3132-4772-87aa-,Shopping,47.5,Groceries,2026-02-01 16:37:46
-df35a5f8-8fb0-483b-ada1-,Bus Fare,53.0,Transport,2026-02-02 16:37:46
-49bf6036-28ce-4134-9631-,Dinner,58.5,Dining,2026-02-03 16:37:46
-dcbbfae1-4852-4007-967a-,Movie,64.0,Entertainment,2026-02-04 16:37:46
-93d1fcef-11f8-43be-9d36-,Shopping,69.5,Groceries,2026-02-05 16:37:46
-fdbd26a3-517c-4506-aa3a-,Bus Fare,20.0,Transport,2026-02-06 16:37:46
-38c73f0a-f6db-42ff-8eff-,Dinner,25.5,Dining,2026-02-07 16:37:46
-a850c633-5baf-483e-840c-,Movie,31.0,Entertainment,2026-02-08 16:37:46
-1d6243ca-e401-470d-8db0-,Shopping,36.5,Groceries,2026-02-09 16:37:46
-c0328a5e-ee99-403a-86ac-,Bus Fare,42.0,Transport,2026-02-10 16:37:46
-7cc853f6-cb74-4cd2-905a-,Dinner,47.5,Dining,2026-02-11 16:37:46
-60518f96-7e9f-46a5-b8b7-,Movie,53.0,Entertainment,2026-02-12 16:37:46
-25efd012-06a1-4473-91af-,Shopping,58.5,Groceries,2026-02-13 16:37:46
-e4a01e02-2ddb-4b1a-9277-,Bus Fare,64.0,Transport,2026-02-14 16:37:46
-ddd618d7-8b89-40a6-8072-,Dinner,69.5,Dining,2026-02-15 16:37:46
-82f496e1-11fa-49d8-a086-,Movie,20.0,Entertainment,2026-02-16 16:37:46
-7024b364-3301-4b65-913c-,Shopping,25.5,Groceries,2026-02-17 16:37:46
-94095cf6-8bd7-402f-96e4-,Bus Fare,31.0,Transport,2026-02-18 16:37:46
-767bc323-7b70-4c51-b72a-,Dinner,36.5,Dining,2026-02-19 16:37:46
-781648d0-5091-44d6-ae5b-,Movie,42.0,Entertainment,2026-02-20 16:37:46
-283d5d95-d07a-4dfe-8b8a-,Shopping,47.5,Groceries,2026-02-21 16:37:46
-0ca67b01-077e-45ae-a17c-,Bus Fare,53.0,Transport,2026-02-22 16:37:46
-d16a5c59-9bcb-4768-ac77-,Dinner,58.5,Dining,2026-02-23 16:37:46
-0bc090b3-669d-4cf8-a3b1-,Movie,64.0,Entertainment,2026-02-24 16:37:46
-67040ade-f823-4b5b-8603-,Shopping,69.5,Groceries,2026-02-25 16:37:46
-369ccd20-7e2c-448e-82f9-,Bus Fare,20.0,Transport,2026-02-26 16:37:46
-b2f1d456-d41d-4ee8-800c-,Dinner,25.5,Dining,2026-02-27 16:37:46
-f97b8bd9-40c9-4211-9842-,Movie,31.0,Entertainment,2026-02-28 16:37:46
-51a6762b-2d99-4fcd-afcb-,Shopping,36.5,Groceries,2026-03-01 16:37:46
-94276470-a906-4ce7-81ce-,Bus Fare,42.0,Transport,2026-03-02 16:37:46
-580e8dd2-175a-42fe-9bff-,Dinner,47.5,Dining,2026-03-03 16:37:46
-5bb3d7a5-7d10-4269-b0ad-,Movie,53.0,Entertainment,2026-03-04 16:37:46
-08c63ce9-30c2-461e-8432-,Shopping,58.5,Groceries,2026-03-05 16:37:46
-cc8c82ef-7cbe-4e1a-9d60-,Bus Fare,64.0,Transport,2026-03-06 16:37:46
-d8b327a2-ebbb-4b01-93fb-,Dinner,69.5,Dining,2026-03-07 16:37:46
-07626bfc-a2a8-4c77-87ca-,Movie,20.0,Entertainment,2026-03-08 16:37:46
-9b4cd1ea-281b-4857-b7e3-,Shopping,25.5,Groceries,2026-03-09 16:37:46
-f0cd0950-cfc2-4e5a-8cf4-,Bus Fare,31.0,Transport,2026-03-10 16:37:46
-9ee94634-47e0-4eef-a8f0-,Dinner,36.5,Dining,2026-03-11 16:37:46
-aa8d57cf-b48c-4fb4-888b-,Movie,42.0,Entertainment,2026-03-12 16:37:46
-35e468a8-cd77-4832-9e44-,Shopping,47.5,Groceries,2026-03-13 16:37:46
-44eef06b-c359-419d-b2c8-,Bus Fare,53.0,Transport,2026-03-14 16:37:46
-c99263ce-f597-4328-8318-,Dinner,58.5,Dining,2026-03-15 16:37:46
-dd1d85f2-106b-4a64-9d44-,Movie,64.0,Entertainment,2026-03-16 16:37:46
-31868937-2adf-4f32-bb34-,Shopping,69.5,Groceries,2026-03-17 16:37:46
-54cc36ed-252b-4748-a29e-,Bus Fare,20.0,Transport,2026-03-18 16:37:46
-1868b505-0905-43c6-87a7-,Dinner,25.5,Dining,2026-03-19 16:37:46
-fef13894-1659-4e7b-b0b8-,Movie,31.0,Entertainment,2026-03-20 16:37:46
-28e555c8-8f7b-4aab-b7ad-,Shopping,36.5,Groceries,2026-03-21 16:37:46
-1df23c32-c2d5-45f5-b044-,Bus Fare,42.0,Transport,2026-03-22 16:37:46
-144c7e54-6c4a-47ab-bc51-,Dinner,47.5,Dining,2026-03-23 16:37:46
-72256d6d-d830-454c-bce4-,Movie,53.0,Entertainment,2026-03-24 16:37:46
-f817ff6a-07de-45c7-bad4-,Shopping,58.5,Groceries,2026-03-25 16:37:46
-5e5359a1-cd9e-440a-8c06-,Bus Fare,64.0,Transport,2026-03-26 16:37:46
-19eba274-b5a1-4279-9233-,Dinner,69.5,Dining,2026-03-27 16:37:46
-1f0cd98c-b511-4a8f-8e35-,Movie,20.0,Entertainment,2026-03-28 16:37:46
-0be85576-aea4-4eeb-af85-,Shopping,25.5,Groceries,2026-03-29 16:37:46
-e63165f5-98e4-44a9-bb95-,Bus Fare,31.0,Transport,2026-03-30 16:37:46
-40758e06-e13f-4cb4-9e00-,Dinner,36.5,Dining,2026-03-31 16:37:46
-7a2ebd37-adb3-49c7-88a3-,Movie,42.0,Entertainment,2026-04-01 16:37:46
-b8a35db5-fef6-4310-bdcd-,Shopping,47.5,Groceries,2026-04-02 16:37:46
-4639ac5d-f248-4f1d-9dcc-,Bus Fare,53.0,Transport,2026-04-03 16:37:46
-ed34e708-6fba-484d-a1f7-,Dinner,58.5,Dining,2026-04-04 16:37:46
-4ff769f2-625b-453f-bba5-,Movie,64.0,Entertainment,2026-04-05 16:37:46
-2a4e953b-0baa-4acf-956c-,Shopping,69.5,Groceries,2026-04-06 16:37:46
-fefff7e9-48e2-4035-829c-,Bus Fare,20.0,Transport,2026-04-07 16:37:46
-46d8eed0-c77e-4d6a-8eb9-,Dinner,25.5,Dining,2026-04-08 16:37:46
-bdff673d-a908-4889-9fe4-,Movie,31.0,Entertainment,2026-04-09 16:37:46
-4de2ce05-3bbd-43cf-825c-,Shopping,36.5,Groceries,2026-04-10 16:37:46
-da4acdf0-525a-4755-8f91-,Bus Fare,42.0,Transport,2026-04-11 16:37:46
-26d68459-db5f-4363-bde7-,Dinner,47.5,Dining,2026-04-12 16:37:46
-f9d09585-3688-4e2a-ad25-,Movie,53.0,Entertainment,2026-04-13 16:37:46
-df7a651a-f25b-4db3-8fbc-,Shopping,58.5,Groceries,2026-04-14 16:37:46
-1958a64f-2281-4608-9747-,Bus Fare,64.0,Transport,2026-04-15 16:37:46
-f76a552a-459a-428d-80bc-,Dinner,69.5,Dining,2026-04-16 16:37:46
-59643920-39f9-485b-ac0f-,Movie,20.0,Entertainment,2026-04-17 16:37:46
-ccf9b4a3-3af7-487c-a925-,Shopping,25.5,Groceries,2026-04-18 16:37:46
-38e7bd16-a061-46d6-8db5-,Bus Fare,31.0,Transport,2026-04-19 16:37:46
-1f7b3ab4-6684-4f8e-82c7-,Dinner,36.5,Dining,2026-04-20 16:37:46
-aab1ae48-be9d-448f-8049-,Movie,42.0,Entertainment,2026-04-21 16:37:46
-1f733fdd-24c8-45bb-aa0b-,Shopping,47.5,Groceries,2026-04-22 16:37:46
-51ccb2a5-1ef6-491e-a5e5-,Bus Fare,53.0,Transport,2026-04-23 16:37:46
-0d989ec0-4a62-4b0a-94ff-,Dinner,58.5,Dining,2026-04-24 16:37:46
-575da6a3-1452-4efd-83cd-,Movie,64.0,Entertainment,2026-04-25 16:37:46
-4ecd0d37-3ffe-4156-ab4f-,Shopping,69.5,Groceries,2026-04-26 16:37:46
-653e8f65-793f-4b93-97d1-,Bus Fare,20.0,Transport,2026-04-27 16:37:46
-a398cccf-04aa-4272-9d96-,Dinner,25.5,Dining,2026-04-28 16:37:46
-156bd9bd-bd9d-407b-92c5-,Movie,31.0,Entertainment,2026-04-29 16:37:46
-3a19726e-3f6b-4b1b-b756-,Shopping,36.5,Groceries,2026-04-30 16:37:46
-2b7f3696-ea1b-46fd-8565-,Bus Fare,42.0,Transport,2026-05-01 16:37:46
-3de07abf-bd53-46fd-96f2-,Dinner,47.5,Dining,2026-05-02 16:37:46
-2ccfe305-14f8-490f-9e96-,Movie,53.0,Entertainment,2026-05-03 16:37:46
-84a2913d-f416-417c-9fc4-,Shopping,58.5,Groceries,2026-05-04 16:37:46
-291ea6ec-619c-420d-bfdb-,Bus Fare,64.0,Transport,2026-05-05 16:37:46
-97492a5d-0cc8-4df7-ad0d-,Dinner,69.5,Dining,2026-05-06 16:37:46
-26564c58-5708-4185-968c-,Movie,20.0,Entertainment,2026-05-07 16:37:46
-6e4cdf99-6caf-49ec-823e-,Shopping,25.5,Groceries,2026-05-08 16:37:46
-527ad897-95bb-4071-93cd-,Bus Fare,31.0,Transport,2026-05-09 16:37:46
-fb46e5bd-e0bc-4488-b845-,Dinner,36.5,Dining,2026-05-10 16:37:46
-f7fa7732-9296-4ef6-9f16-,Movie,42.0,Entertainment,2026-05-11 16:37:46
-c3c28286-6c6a-44f5-8795-,Shopping,47.5,Groceries,2026-05-12 16:37:46
-0ae2bb5a-a64b-410c-b561-,Bus Fare,53.0,Transport,2026-05-13 16:37:46
-2896871e-9dd8-4a17-8153-,Dinner,58.5,Dining,2026-05-14 16:37:46
-19127e27-b501-483b-a35a-,Movie,64.0,Entertainment,2026-05-15 16:37:46
-adeabdf9-3e1e-408a-956b-,Shopping,69.5,Groceries,2026-05-16 16:37:46
-e237f2d3-6a38-46c2-a92c-,Bus Fare,20.0,Transport,2026-05-17 16:37:46
-029deb48-d232-42bc-a0f5-,Dinner,25.5,Dining,2026-05-18 16:37:46
-88987384-5c6a-4136-ba5d-,Movie,31.0,Entertainment,2026-05-19 16:37:46
-16900abf-c7b1-4bef-8f03-,Shopping,36.5,Groceries,2026-05-20 16:37:46
-716243b7-46f7-4419-aef6-,Bus Fare,42.0,Transport,2026-05-21 16:37:46
-db84d5e2-f433-4783-aed6-,Dinner,47.5,Dining,2026-05-22 16:37:46
-84d8df4d-14bc-412d-b709-,Movie,53.0,Entertainment,2026-05-23 16:37:46
-3dfa24e5-4f71-4586-a857-,Shopping,58.5,Groceries,2026-05-24 16:37:46
-435309e1-ee4e-4ad0-ad33-,Bus Fare,64.0,Transport,2026-05-25 16:37:46
-74e8c178-93f1-44f1-88fc-,Dinner,69.5,Dining,2026-05-26 16:37:46
-ba06c419-366a-4f20-b33b-,Movie,20.0,Entertainment,2026-05-27 16:37:46
-94e3cc1d-305e-4a94-91f1-,Shopping,25.5,Groceries,2026-05-28 16:37:46
-ae1241e3-3261-4217-a29a-,Bus Fare,31.0,Transport,2026-05-29 16:37:46
-c9df209e-fe9c-4285-8346-,Dinner,36.5,Dining,2026-05-30 16:37:46
-c70b0729-fdbb-4dd4-90bc-,Movie,42.0,Entertainment,2026-05-31 16:37:46
-d284095e-1426-4228-b082-,Shopping,47.5,Groceries,2026-06-01 16:37:46
-b5c36bb3-8d68-454c-a90a-,Bus Fare,53.0,Transport,2026-06-02 16:37:46
-831c0441-b781-4791-bb2b-,Dinner,58.5,Dining,2026-06-03 16:37:46
-19615ef9-ad60-4e32-93eb-,Movie,64.0,Entertainment,2026-06-04 16:37:46
-6dae3e08-2c79-4763-8ac4-,Shopping,69.5,Groceries,2026-06-05 16:37:46
-bbf9a4bc-b497-4f22-8b73-,Bus Fare,20.0,Transport,2026-06-06 16:37:46
-4ebdd067-d7d3-4a14-97e2-,Dinner,25.5,Dining,2026-06-07 16:37:46
-3e0adde0-c279-4649-9a41-,Movie,31.0,Entertainment,2026-06-08 16:37:46
-375893f2-df8d-48b3-8d48-,Shopping,36.5,Groceries,2026-06-09 16:37:46
-f3aabb62-7be0-4ca1-aeae-,Bus Fare,42.0,Transport,2026-06-10 16:37:46
-5bd3be81-9a7e-4c9b-983f-,Dinner,47.5,Dining,2026-06-11 16:37:46
-c39edc69-5caf-4216-8d5f-,Movie,53.0,Entertainment,2026-06-12 16:37:46
-6d6fe2c2-3439-49e0-bbd2-,Shopping,58.5,Groceries,2026-06-13 16:37:46
-ee218a5c-fbd8-4881-bef5-,Bus Fare,64.0,Transport,2026-06-14 16:37:46
-121c8f4c-1552-4138-89ec-,Dinner,69.5,Dining,2026-06-15 16:37:46
+0f5a961d-7044-402e-ad73-,Movie,20.0,Entertainment,2025-02-01 16:37:46
+6a651c6c-181f-4543-b53e-,Shopping,25.5,Groceries,2025-02-02 16:37:46
+2779aee4-51c6-4e8c-96de-,Bus Fare,31.0,Transport,2025-02-03 16:37:46
+4ee0b19b-0fc3-4412-b332-,Dinner,36.5,Dining,2025-02-04 16:37:46
+dba14f2b-3a62-4e73-8459-,Movie,42.0,Entertainment,2025-02-05 16:37:46
+7ad354a8-8cb5-40c8-acb7-,Shopping,47.5,Groceries,2025-02-06 16:37:46
+90379e2b-6662-4de7-90cf-,Bus Fare,53.0,Transport,2025-02-07 16:37:46
+4feb6a0b-fae1-43e0-92af-,Dinner,58.5,Dining,2025-02-08 16:37:46
+43bf9775-fde7-43f5-b6a7-,Movie,64.0,Entertainment,2025-02-09 16:37:46
+e6c9aa72-8d75-4e48-9f40-,Shopping,69.5,Groceries,2025-02-10 16:37:46
+f64d2fdf-c959-465d-b760-,Bus Fare,20.0,Transport,2025-02-11 16:37:46
+d15bc79d-9aef-4f0d-b1f1-,Dinner,25.5,Dining,2025-02-12 16:37:46
+e18c24e9-05e5-4f34-a37c-,Movie,31.0,Entertainment,2025-02-13 16:37:46
+37ef8b63-87d9-46e3-b7a0-,Shopping,36.5,Groceries,2025-02-14 16:37:46
+176b63db-4be4-4b50-9530-,Bus Fare,42.0,Transport,2025-02-15 16:37:46
+7ecd5a40-0399-4736-b16f-,Dinner,47.5,Dining,2025-02-16 16:37:46
+03bd67f4-478a-4f39-a77d-,Movie,53.0,Entertainment,2025-02-17 16:37:46
+fbd3be20-a52b-4434-9272-,Shopping,58.5,Groceries,2025-02-18 16:37:46
+39e43ea6-55c4-4f88-a9a8-,Bus Fare,64.0,Transport,2025-02-19 16:37:46
+8b4392b2-7699-496b-b9c7-,Dinner,69.5,Dining,2025-02-20 16:37:46
+30521e59-8134-4e43-bec1-,Movie,20.0,Entertainment,2025-02-21 16:37:46
+b76ba26d-7e39-4b66-bd93-,Shopping,25.5,Groceries,2025-02-22 16:37:46
+227da1b1-c8d4-4dc6-b68a-,Bus Fare,31.0,Transport,2025-02-23 16:37:46
+2046561b-0f26-4340-b93f-,Dinner,36.5,Dining,2025-02-24 16:37:46
+9b8342f2-f6ba-4ab4-a829-,Movie,42.0,Entertainment,2025-02-25 16:37:46
+c0a74ba7-69d7-47b8-aa20-,Shopping,47.5,Groceries,2025-02-26 16:37:46
+863f8015-56c7-446a-bf11-,Bus Fare,53.0,Transport,2025-02-27 16:37:46
+211a9751-a117-49e8-8255-,Dinner,58.5,Dining,2025-02-28 16:37:46
+223f9ab5-08c6-4590-8998-,Movie,64.0,Entertainment,2025-03-01 16:37:46
+b178871e-2368-42d6-8376-,Shopping,69.5,Groceries,2025-03-02 16:37:46
+31c8f11c-47b0-4eb7-bc41-,Bus Fare,20.0,Transport,2025-03-03 16:37:46
+b8df4149-041f-4d0a-bc1d-,Dinner,25.5,Dining,2025-03-04 16:37:46
+dc002160-815f-48b2-a278-,Movie,31.0,Entertainment,2025-03-05 16:37:46
+f3cb8e99-6a40-436e-8dbd-,Shopping,36.5,Groceries,2025-03-06 16:37:46
+c203a144-afa2-4baf-a383-,Bus Fare,42.0,Transport,2025-03-07 16:37:46
+271d8b8b-b32e-4bc7-bb86-,Dinner,47.5,Dining,2025-03-08 16:37:46
+5f7dae02-67d1-478b-9137-,Movie,53.0,Entertainment,2025-03-09 16:37:46
+f822cf86-b4c4-44e3-8b46-,Shopping,58.5,Groceries,2025-03-10 16:37:46
+0bbe2c70-455e-4038-826c-,Bus Fare,64.0,Transport,2025-03-11 16:37:46
+c20f582f-37e3-426c-8a09-,Dinner,69.5,Dining,2025-03-12 16:37:46
+a2f03d76-5fe8-499e-9327-,Movie,20.0,Entertainment,2025-03-13 16:37:46
+6a2cb8e6-6097-4894-bff1-,Shopping,25.5,Groceries,2025-03-14 16:37:46
+3b936897-165b-4673-8fd1-,Bus Fare,31.0,Transport,2025-03-15 16:37:46
+b02b77ed-cb4e-45d6-9f91-,Dinner,36.5,Dining,2025-03-16 16:37:46
+2f158d9b-969d-4bbd-903a-,Movie,42.0,Entertainment,2025-03-17 16:37:46
+3c2d1208-12cc-4eab-b10e-,Shopping,47.5,Groceries,2025-03-18 16:37:46
+40a5697d-ddae-42b4-adc4-,Bus Fare,53.0,Transport,2025-03-19 16:37:46
+45764cae-1772-4ab7-bc70-,Dinner,58.5,Dining,2025-03-20 16:37:46
+1b855ba7-798c-482c-b6cb-,Movie,64.0,Entertainment,2025-03-21 16:37:46
+d52e5c68-628f-4bcb-a64d-,Shopping,69.5,Groceries,2025-03-22 16:37:46
+18c3bdd7-348d-42e0-8ec9-,Bus Fare,20.0,Transport,2025-03-23 16:37:46
+bece59e4-2782-4654-9a93-,Dinner,25.5,Dining,2025-03-24 16:37:46
+07244a40-e12d-488a-a92a-,Movie,31.0,Entertainment,2025-03-25 16:37:46
+86115610-93d0-4aae-b4a4-,Shopping,36.5,Groceries,2025-03-26 16:37:46
+3c2f76b9-9df2-4fbd-af46-,Bus Fare,42.0,Transport,2025-03-27 16:37:46
+425ca932-c972-4a27-8db5-,Dinner,47.5,Dining,2025-03-28 16:37:46
+9082c692-b0b2-4013-a4c4-,Movie,53.0,Entertainment,2025-03-29 16:37:46
+e34d9f75-3e76-4af3-82cd-,Shopping,58.5,Groceries,2025-03-30 16:37:46
+33ab51ba-0f14-4fbe-8efd-,Bus Fare,64.0,Transport,2025-03-31 16:37:46
+b137a870-4212-4b31-94e1-,Dinner,69.5,Dining,2025-04-01 16:37:46
+464c72c1-aaa5-4283-83a8-,Movie,20.0,Entertainment,2025-04-02 16:37:46
+e8a3705b-8b4d-4514-afe5-,Shopping,25.5,Groceries,2025-04-03 16:37:46
+fa43b90c-41bb-4584-8fcb-,Bus Fare,31.0,Transport,2025-04-04 16:37:46
+bb190c52-8c81-49cc-b326-,Dinner,36.5,Dining,2025-04-05 16:37:46
+98bc0f99-146b-4ec6-85d8-,Movie,42.0,Entertainment,2025-04-06 16:37:46
+12338fdb-17c0-4205-b96a-,Shopping,47.5,Groceries,2025-04-07 16:37:46
+a2d0a27c-0ccb-4c18-a142-,Bus Fare,53.0,Transport,2025-04-08 16:37:46
+442ee810-6b6e-47e1-9cd7-,Dinner,58.5,Dining,2025-04-09 16:37:46
+04d06b4c-7d4c-4575-91cb-,Movie,64.0,Entertainment,2025-04-10 16:37:46
+a886aa91-557e-443d-a0ba-,Shopping,69.5,Groceries,2025-04-11 16:37:46
+86657f2a-f8de-4109-a27b-,Bus Fare,20.0,Transport,2025-04-12 16:37:46
+73be1b38-e898-4812-8774-,Dinner,25.5,Dining,2025-04-13 16:37:46
+f31d5cdf-4e11-47a5-847f-,Movie,31.0,Entertainment,2025-04-14 16:37:46
+4b77a454-2c70-464f-bb93-,Shopping,36.5,Groceries,2025-04-15 16:37:46
+41c010bc-810f-493f-99cd-,Bus Fare,42.0,Transport,2025-04-16 16:37:46
+ec2c3dc2-8210-4652-b181-,Dinner,47.5,Dining,2025-04-17 16:37:46
+1c13bafb-40c6-41a1-9690-,Movie,53.0,Entertainment,2025-04-18 16:37:46
+8895e9cf-9276-4a6d-b629-,Shopping,58.5,Groceries,2025-04-19 16:37:46
+41729d15-d255-4357-ab03-,Bus Fare,64.0,Transport,2025-04-20 16:37:46
+20b504ec-af5e-4136-93f8-,Dinner,69.5,Dining,2025-04-21 16:37:46
+5c73a643-2d4a-4b3a-8705-,Movie,20.0,Entertainment,2025-04-22 16:37:46
+75d37ecf-378a-4a65-86ff-,Shopping,25.5,Groceries,2025-04-23 16:37:46
+c71507fb-766f-46f7-b034-,Bus Fare,31.0,Transport,2025-04-24 16:37:46
+9dc85969-342d-4514-bd85-,Dinner,36.5,Dining,2025-04-25 16:37:46
+4fbf350f-c7b7-4695-910e-,Movie,42.0,Entertainment,2025-04-26 16:37:46
+000ea127-c955-4665-b4c1-,Shopping,47.5,Groceries,2025-04-27 16:37:46
+0122fdd6-883b-4f0d-ae3c-,Bus Fare,53.0,Transport,2025-04-28 16:37:46
+8e2f14e6-bd71-4382-9f2b-,Dinner,58.5,Dining,2025-04-29 16:37:46
+e29c6cdc-18cc-4e6d-ada6-,Movie,64.0,Entertainment,2025-04-30 16:37:46
+999b1f32-1c41-4642-ac7c-,Shopping,69.5,Groceries,2025-05-01 16:37:46
+edc3eb09-64c4-4100-ac73-,Bus Fare,20.0,Transport,2025-05-02 16:37:46
+66c2c20a-f345-4f24-a44f-,Dinner,25.5,Dining,2025-05-03 16:37:46
+82d9dece-ee43-4693-bbaf-,Movie,31.0,Entertainment,2025-05-04 16:37:46
+092ca3d4-7e72-4038-813a-,Shopping,36.5,Groceries,2025-05-05 16:37:46
+650569c2-d523-4331-8efe-,Bus Fare,42.0,Transport,2025-05-06 16:37:46
+0d5e510b-e7fc-41a0-8e91-,Dinner,47.5,Dining,2025-05-07 16:37:46
+e8550fcb-fdd0-4ce5-84b4-,Movie,53.0,Entertainment,2025-05-08 16:37:46
+5cd80320-52d6-4a65-bad8-,Shopping,58.5,Groceries,2025-05-09 16:37:46
+a4d482f7-5c63-4d3b-816b-,Bus Fare,64.0,Transport,2025-05-10 16:37:46
+71b0d7e4-7fae-4498-b78e-,Dinner,69.5,Dining,2025-05-11 16:37:46
+ce8b7171-43fa-4cd0-bbce-,Movie,20.0,Entertainment,2025-05-12 16:37:46
+edb4bcf3-1f8e-4c34-ad67-,Shopping,25.5,Groceries,2025-05-13 16:37:46
+91efc4ee-01b0-4366-95ef-,Bus Fare,31.0,Transport,2025-05-14 16:37:46
+3cb52c4e-71cb-47c5-b93e-,Dinner,36.5,Dining,2025-05-15 16:37:46
+241fff0c-044a-4eaf-821b-,Movie,42.0,Entertainment,2025-05-16 16:37:46
+291c122a-397b-4d87-9b10-,Shopping,47.5,Groceries,2025-05-17 16:37:46
+6c032341-64a0-4f66-ad4d-,Bus Fare,53.0,Transport,2025-05-18 16:37:46
+30571196-7cb6-473f-b5d7-,Dinner,58.5,Dining,2025-05-19 16:37:46
+70b043d2-26e0-4012-a3c9-,Movie,64.0,Entertainment,2025-05-20 16:37:46
+6427e5c7-9b3c-4d01-ac97-,Shopping,69.5,Groceries,2025-05-21 16:37:46
+e5071d9e-6d97-46f8-b3fa-,Bus Fare,20.0,Transport,2025-05-22 16:37:46
+e9b312ad-1d2f-4dc0-b6c7-,Dinner,25.5,Dining,2025-05-23 16:37:46
+040d16ad-ec36-4a1a-b80e-,Movie,31.0,Entertainment,2025-05-24 16:37:46
+0d1e2813-b023-477c-8321-,Shopping,36.5,Groceries,2025-05-25 16:37:46
+7e612b87-7217-4584-b909-,Bus Fare,42.0,Transport,2025-05-26 16:37:46
+9dd9f4d6-31a6-440a-9d40-,Dinner,47.5,Dining,2025-05-27 16:37:46
+07a5d2cb-b5e2-4533-af22-,Movie,53.0,Entertainment,2025-05-28 16:37:46
+c142f201-c41c-4002-b519-,Shopping,58.5,Groceries,2025-05-29 16:37:46
+2042d8e9-9294-4ba7-b737-,Bus Fare,64.0,Transport,2025-05-30 16:37:46
+50aff083-3f7a-4c0b-a6f0-,Dinner,69.5,Dining,2025-05-31 16:37:46
+9e67688a-87d0-4749-833f-,Movie,20.0,Entertainment,2025-06-01 16:37:46
+6606f9d8-8e9a-4d70-baf8-,Shopping,25.5,Groceries,2025-06-02 16:37:46
+3715a0af-2bda-4fae-b560-,Bus Fare,31.0,Transport,2025-06-03 16:37:46
+1c65a329-6f0f-4dba-b85b-,Dinner,36.5,Dining,2025-06-04 16:37:46
+582aad06-94ed-4161-86d6-,Movie,42.0,Entertainment,2025-06-05 16:37:46
+37d479d2-5989-4b1c-b804-,Shopping,47.5,Groceries,2025-06-06 16:37:46
+4ef399d3-092f-4907-b551-,Bus Fare,53.0,Transport,2025-06-07 16:37:46
+3c883be3-b33b-410b-8b5d-,Dinner,58.5,Dining,2025-06-08 16:37:46
+a9c10485-040f-4d03-ac66-,Movie,64.0,Entertainment,2025-06-09 16:37:46
+b413ea92-d838-4d78-b489-,Shopping,69.5,Groceries,2025-06-10 16:37:46
+c9c07b2d-1bf3-4ae1-9ce1-,Bus Fare,20.0,Transport,2025-06-11 16:37:46
+98630d68-8724-4349-af02-,Dinner,25.5,Dining,2025-06-12 16:37:46
+db5d1e22-35d0-4e6d-8b76-,Movie,31.0,Entertainment,2025-06-13 16:37:46
+4716a016-4ddf-46ca-9fb2-,Shopping,36.5,Groceries,2025-06-14 16:37:46
+fdee8ab1-3c40-4232-84a8-,Bus Fare,42.0,Transport,2025-06-15 16:37:46
+d29991ef-420c-4b40-bf3f-,Dinner,47.5,Dining,2025-06-16 16:37:46
+46ceacec-3a8a-40f1-af76-,Movie,53.0,Entertainment,2025-06-17 16:37:46
+baa7309f-ab46-4311-bc35-,Shopping,58.5,Groceries,2025-06-18 16:37:46
+035f291e-ab0c-427b-b83f-,Bus Fare,64.0,Transport,2025-06-19 16:37:46
+3a278b18-e224-49a0-980b-,Dinner,69.5,Dining,2025-06-20 16:37:46
+431e148f-d825-4efd-9ec7-,Movie,20.0,Entertainment,2025-06-21 16:37:46
+5248f22b-f487-4c8c-bf0c-,Shopping,25.5,Groceries,2025-06-22 16:37:46
+b431e696-25af-41e1-9c69-,Bus Fare,31.0,Transport,2025-06-23 16:37:46
+32d4743e-b118-4c3f-9dfc-,Dinner,36.5,Dining,2025-06-24 16:37:46
+42c9077b-2e98-467f-9f84-,Movie,42.0,Entertainment,2025-06-25 16:37:46
+9115fe6c-fa01-4c73-b333-,Shopping,47.5,Groceries,2025-06-26 16:37:46
+7cdf65ee-c801-40a0-bf14-,Bus Fare,53.0,Transport,2025-06-27 16:37:46
+3101aa33-1031-41fa-892a-,Dinner,58.5,Dining,2025-06-28 16:37:46
+4e2356a6-0f80-4699-9100-,Movie,64.0,Entertainment,2025-06-29 16:37:46
+9438e4d1-6e1a-48c0-bc94-,Shopping,69.5,Groceries,2025-06-30 16:37:46
+01a4368b-c7f1-4a8b-8134-,Bus Fare,20.0,Transport,2025-07-01 16:37:46
+597d11c6-470e-4343-bdfa-,Dinner,25.5,Dining,2025-07-02 16:37:46
+3701321d-81bd-43fe-b69a-,Movie,31.0,Entertainment,2025-07-03 16:37:46
+f4af1162-0041-4bd0-8991-,Shopping,36.5,Groceries,2025-07-04 16:37:46
+59967650-c35f-43d9-a7f7-,Bus Fare,42.0,Transport,2025-07-05 16:37:46
+b2650f43-c6b4-41d1-b500-,Dinner,47.5,Dining,2025-07-06 16:37:46
+f4c3cf69-5105-41a3-814a-,Movie,53.0,Entertainment,2025-07-07 16:37:46
+e11cf659-90c8-45a3-9629-,Shopping,58.5,Groceries,2025-07-08 16:37:46
+1f0573d9-e18d-4111-afb5-,Bus Fare,64.0,Transport,2025-07-09 16:37:46
+f150162b-210d-4f71-a257-,Dinner,69.5,Dining,2025-07-10 16:37:46
+b92cafc9-dca6-42d4-b0a0-,Movie,20.0,Entertainment,2025-07-11 16:37:46
+8d910d9e-4de5-494a-ba9e-,Shopping,25.5,Groceries,2025-07-12 16:37:46
+151e2e16-0f2e-48b4-b543-,Bus Fare,31.0,Transport,2025-07-13 16:37:46
+47c3b282-55c2-45b5-9f57-,Dinner,36.5,Dining,2025-07-14 16:37:46
+37dc9173-4604-428e-86cf-,Movie,42.0,Entertainment,2025-07-15 16:37:46
+5da23da9-9b7a-4ae6-8479-,Shopping,47.5,Groceries,2025-07-16 16:37:46
+dfa25325-021c-4b1f-8cc4-,Bus Fare,53.0,Transport,2025-07-17 16:37:46
+b25d5aa5-7575-4c2e-afa4-,Dinner,58.5,Dining,2025-07-18 16:37:46
+4f2affe7-4817-467d-97b0-,Movie,64.0,Entertainment,2025-07-19 16:37:46
+112f4eb9-2142-44e6-bcb4-,Shopping,69.5,Groceries,2025-07-20 16:37:46
+a92d0808-bcca-40f4-b525-,Bus Fare,20.0,Transport,2025-07-21 16:37:46
+12ebb5c8-105a-404b-955b-,Dinner,25.5,Dining,2025-07-22 16:37:46
+e4059f47-e3f7-4ef3-a404-,Movie,31.0,Entertainment,2025-07-23 16:37:46
+09313083-30af-431c-8a54-,Shopping,36.5,Groceries,2025-07-24 16:37:46
+141f9e99-2c05-41e3-b7cc-,Bus Fare,42.0,Transport,2025-07-25 16:37:46
+bed5db6a-2d57-4645-8389-,Dinner,47.5,Dining,2025-07-26 16:37:46
+457a4dd9-4c18-4605-b40f-,Movie,53.0,Entertainment,2025-07-27 16:37:46
+fb8a5112-b62e-43e3-8440-,Shopping,58.5,Groceries,2025-07-28 16:37:46
+d02f3232-63d0-46b5-8bee-,Bus Fare,64.0,Transport,2025-07-29 16:37:46
+48ff7527-8684-4d0a-9c50-,Dinner,69.5,Dining,2025-07-30 16:37:46
+547705ef-5855-4316-8edc-,Movie,20.0,Entertainment,2025-07-31 16:37:46
+85d01a7c-8d8b-427f-8ec2-,Shopping,25.5,Groceries,2025-08-01 16:37:46
+fcf7f725-3314-4f0a-b00f-,Bus Fare,31.0,Transport,2025-08-02 16:37:46
+09971f49-4df4-4630-8f2d-,Dinner,36.5,Dining,2025-08-03 16:37:46
+b9cf3494-087e-48dc-8a6a-,Movie,42.0,Entertainment,2025-08-04 16:37:46
+45a6b894-ffbd-4b73-b3a3-,Shopping,47.5,Groceries,2025-08-05 16:37:46
+812537a5-4d36-4ad9-b8c9-,Bus Fare,53.0,Transport,2025-08-06 16:37:46
+760a4566-b784-4665-a176-,Dinner,58.5,Dining,2025-08-07 16:37:46
+af4bc2ab-2ceb-4445-b444-,Movie,64.0,Entertainment,2025-08-08 16:37:46
+1b19569c-18fc-451a-83e0-,Shopping,69.5,Groceries,2025-08-09 16:37:46
+0871835f-585b-4868-8d3f-,Bus Fare,20.0,Transport,2025-08-10 16:37:46
+665e6ff8-6732-491e-8750-,Dinner,25.5,Dining,2025-08-11 16:37:46
+485bba33-31d6-4e29-ba4b-,Movie,31.0,Entertainment,2025-08-12 16:37:46
+a10d0bb3-9bd8-46d5-a23a-,Shopping,36.5,Groceries,2025-08-13 16:37:46
+9f5abf95-12dc-4db2-95ba-,Bus Fare,42.0,Transport,2025-08-14 16:37:46
+e9f3a285-017a-42af-9442-,Dinner,47.5,Dining,2025-08-15 16:37:46
+3606b4c2-9722-4d59-a2b9-,Movie,53.0,Entertainment,2025-08-16 16:37:46
+52d036a6-a276-4dee-b03b-,Shopping,58.5,Groceries,2025-08-17 16:37:46
+3ba71c05-052e-4606-b3c0-,Bus Fare,64.0,Transport,2025-08-18 16:37:46
+ee446c9f-bd28-47ef-a34e-,Dinner,69.5,Dining,2025-08-19 16:37:46
+48fe4e26-1267-44a6-a9a7-,Movie,20.0,Entertainment,2025-08-20 16:37:46
+894ccbb3-f3d6-4d99-a19e-,Shopping,25.5,Groceries,2025-08-21 16:37:46
+256d652c-123d-4b3e-bd64-,Bus Fare,31.0,Transport,2025-08-22 16:37:46
+e646b4e7-487e-4716-a056-,Dinner,36.5,Dining,2025-08-23 16:37:46
+99faad31-21aa-4bba-b9cd-,Movie,42.0,Entertainment,2025-08-24 16:37:46
+2bb4b965-3d4c-4f9c-85f7-,Shopping,47.5,Groceries,2025-08-25 16:37:46
+7dac1004-a7e5-4c4d-832c-,Bus Fare,53.0,Transport,2025-08-26 16:37:46
+b37fca4c-ffb2-4cd1-822e-,Dinner,58.5,Dining,2025-08-27 16:37:46
+fa99960d-908f-415a-8a41-,Movie,64.0,Entertainment,2025-08-28 16:37:46
+57110441-3b82-42a1-ab15-,Shopping,69.5,Groceries,2025-08-29 16:37:46
+bc75f769-5cb4-4774-88f8-,Bus Fare,20.0,Transport,2025-08-30 16:37:46
+cf85eec9-9918-4e64-87b7-,Dinner,25.5,Dining,2025-08-31 16:37:46
+97396a30-67e6-4028-93a9-,Movie,31.0,Entertainment,2025-09-01 16:37:46
+10453ea6-9f65-4f42-bc6f-,Shopping,36.5,Groceries,2025-09-02 16:37:46
+5f43019e-d88b-44d0-ac22-,Bus Fare,42.0,Transport,2025-09-03 16:37:46
+f6ad6e1d-879f-406d-b3dd-,Dinner,47.5,Dining,2025-09-04 16:37:46
+46ebd614-1e35-41c7-99b4-,Movie,53.0,Entertainment,2025-09-05 16:37:46
+7d35f68d-998d-4d32-b5cf-,Shopping,58.5,Groceries,2025-09-06 16:37:46
+b75ce877-7b14-48f6-b3f1-,Bus Fare,64.0,Transport,2025-09-07 16:37:46
+ef998247-f7de-4e42-9da4-,Dinner,69.5,Dining,2025-09-08 16:37:46
+f1133d92-8987-47ec-9741-,Movie,20.0,Entertainment,2025-09-09 16:37:46
+9944bdd0-e7d7-4d3e-8714-,Shopping,25.5,Groceries,2025-09-10 16:37:46
+96cdd720-8989-430c-9071-,Bus Fare,31.0,Transport,2025-09-11 16:37:46
+b87137c2-8a42-4d7a-9dbb-,Dinner,36.5,Dining,2025-09-12 16:37:46
+bc5d5690-a60d-4f66-b8a3-,Movie,42.0,Entertainment,2025-09-13 16:37:46
+51eb6d68-7b97-4263-bcfd-,Shopping,47.5,Groceries,2025-09-14 16:37:46
+7365922b-dc8f-483e-9258-,Bus Fare,53.0,Transport,2025-09-15 16:37:46
+ffdd74e6-af32-4b8f-b346-,Dinner,58.5,Dining,2025-09-16 16:37:46
+3f5dd5fe-372a-40d1-84dc-,Movie,64.0,Entertainment,2025-09-17 16:37:46
+c9134e54-10f1-470e-ab72-,Shopping,69.5,Groceries,2025-09-18 16:37:46
+29b9bf16-bd25-47ed-9cb0-,Bus Fare,20.0,Transport,2025-09-19 16:37:46
+480a8305-9d2f-499d-9ae0-,Dinner,25.5,Dining,2025-09-20 16:37:46
+fd936e55-1291-4d3c-bf10-,Movie,31.0,Entertainment,2025-09-21 16:37:46
+15fffa94-701e-4698-a462-,Shopping,36.5,Groceries,2025-09-22 16:37:46
+cb8d2ccf-3feb-4702-8984-,Bus Fare,42.0,Transport,2025-09-23 16:37:46
+5b19a687-fd6e-4fbb-9d29-,Dinner,47.5,Dining,2025-09-24 16:37:46
+0a494f87-6169-496f-9d1f-,Movie,53.0,Entertainment,2025-09-25 16:37:46
+065c7574-62f4-46b3-8158-,Shopping,58.5,Groceries,2025-09-26 16:37:46
+4ec9a815-37d5-42f8-a64b-,Bus Fare,64.0,Transport,2025-09-27 16:37:46
+1103ae85-14d8-441a-b183-,Dinner,69.5,Dining,2025-09-28 16:37:46
+2904888b-73fc-4137-ad63-,Movie,20.0,Entertainment,2025-09-29 16:37:46
+1da4f879-407e-4ac3-9fa9-,Shopping,25.5,Groceries,2025-09-30 16:37:46
+c957c57e-4440-4a65-a463-,Bus Fare,31.0,Transport,2025-10-01 16:37:46
+bbedc6cc-00ce-417f-b45b-,Dinner,36.5,Dining,2025-10-02 16:37:46
+1f0e3a70-86ec-4f23-9542-,Movie,42.0,Entertainment,2025-10-03 16:37:46
+9cda8a68-3063-407c-93f6-,Shopping,47.5,Groceries,2025-10-04 16:37:46
+ab262df9-b267-4744-9763-,Bus Fare,53.0,Transport,2025-10-05 16:37:46
+59d7fd95-9835-44c8-9267-,Dinner,58.5,Dining,2025-10-06 16:37:46
+7fb0b8bb-a3be-40fd-9ac2-,Movie,64.0,Entertainment,2025-10-07 16:37:46
+c6c08343-1af8-4c75-9375-,Shopping,69.5,Groceries,2025-10-08 16:37:46
+197727cc-fdc3-4543-bed1-,Bus Fare,20.0,Transport,2025-10-09 16:37:46
+e216b6a9-3d84-49ae-827c-,Dinner,25.5,Dining,2025-10-10 16:37:46
+c156b792-6a0a-4ae7-a07c-,Movie,31.0,Entertainment,2025-10-11 16:37:46
+4306ec7f-a25e-4f82-b64f-,Shopping,36.5,Groceries,2025-10-12 16:37:46
+7ef3d0a9-6667-40cd-a3da-,Bus Fare,42.0,Transport,2025-10-13 16:37:46
+7736d4fc-44d9-4fb3-8242-,Dinner,47.5,Dining,2025-10-14 16:37:46
+efeb7967-8fcd-4f09-8710-,Movie,53.0,Entertainment,2025-10-15 16:37:46
+68b73b93-181a-4d99-84e3-,Shopping,58.5,Groceries,2025-10-16 16:37:46
+0c8ad6b4-1075-40e0-9b76-,Bus Fare,64.0,Transport,2025-10-17 16:37:46
+24ae211d-96a0-473d-82b8-,Dinner,69.5,Dining,2025-10-18 16:37:46
+8f4a4e5e-4e1f-4a01-a6a8-,Movie,20.0,Entertainment,2025-10-19 16:37:46
+3b474f7a-b322-44c8-a0a5-,Shopping,25.5,Groceries,2025-10-20 16:37:46
+9379fa94-5782-494b-ab64-,Bus Fare,31.0,Transport,2025-10-21 16:37:46
+d054980d-3d9f-4257-b996-,Dinner,36.5,Dining,2025-10-22 16:37:46
+e12ee0a8-54ca-4252-b05e-,Movie,42.0,Entertainment,2025-10-23 16:37:46
+4ce1c988-75e6-46dc-9deb-,Shopping,47.5,Groceries,2025-10-24 16:37:46
+bce21a51-356b-4cc7-bde9-,Bus Fare,53.0,Transport,2025-10-25 16:37:46
+39127790-455f-48e5-8d90-,Dinner,58.5,Dining,2025-10-26 16:37:46
+b0583020-7f52-49a7-ab98-,Movie,64.0,Entertainment,2025-10-27 16:37:46
+e46bd53c-4323-4db1-9913-,Shopping,69.5,Groceries,2025-10-28 16:37:46
+43b589df-cfe1-4a5d-93de-,Bus Fare,20.0,Transport,2025-10-29 16:37:46
+1060d63a-32b7-44eb-a6eb-,Dinner,25.5,Dining,2025-10-30 16:37:46
+e42fef87-f5ca-4105-9a40-,Movie,31.0,Entertainment,2025-10-31 16:37:46
+2259f969-09a6-4235-a67e-,Shopping,36.5,Groceries,2025-11-01 16:37:46
+c871e245-77c9-4f98-a163-,Bus Fare,42.0,Transport,2025-11-02 16:37:46
+c2869948-44b8-48af-b769-,Dinner,47.5,Dining,2025-11-03 16:37:46
+3e0030cf-c4fe-479f-911d-,Movie,53.0,Entertainment,2025-11-04 16:37:46
+dde266e4-7009-4227-b4ac-,Shopping,58.5,Groceries,2025-11-05 16:37:46
+c9ad7962-2ac1-4df9-b736-,Bus Fare,64.0,Transport,2025-11-06 16:37:46
+9dc6683a-5b10-4d2a-8228-,Dinner,69.5,Dining,2025-11-07 16:37:46
+a4fe45a0-162a-4c94-84a1-,Movie,20.0,Entertainment,2025-11-08 16:37:46
+6f172c6b-a1e9-4a28-836b-,Shopping,25.5,Groceries,2025-11-09 16:37:46
+1e0b33ea-e930-4983-a1cb-,Bus Fare,31.0,Transport,2025-11-10 16:37:46
+356395cc-d08e-4984-8e87-,Dinner,36.5,Dining,2025-11-11 16:37:46
+907f23f0-f653-40c1-ba4f-,Movie,42.0,Entertainment,2025-11-12 16:37:46
+4395c42e-3bd1-4615-a7c4-,Shopping,47.5,Groceries,2025-11-13 16:37:46
+1a674fab-033d-494c-94e4-,Bus Fare,53.0,Transport,2025-11-14 16:37:46
+abaa623f-2886-4a3e-a372-,Dinner,58.5,Dining,2025-11-15 16:37:46
+cb685833-442c-4c19-82b4-,Movie,64.0,Entertainment,2025-11-16 16:37:46
+2827128e-f045-42b3-887a-,Shopping,69.5,Groceries,2025-11-17 16:37:46
+677ca17b-4d23-4a3c-ac16-,Bus Fare,20.0,Transport,2025-11-18 16:37:46
+768029eb-a710-4c9b-a864-,Dinner,25.5,Dining,2025-11-19 16:37:46
+94bb6f4f-bf20-4a8a-8fea-,Movie,31.0,Entertainment,2025-11-20 16:37:46
+a9ab2bab-c29f-47e2-9a85-,Shopping,36.5,Groceries,2025-11-21 16:37:46
+94eea656-95d9-4bf8-8baa-,Bus Fare,42.0,Transport,2025-11-22 16:37:46
+ef9dc8e7-b091-405d-9a6a-,Dinner,47.5,Dining,2025-11-23 16:37:46
+b9873f57-dff7-4436-bd95-,Movie,53.0,Entertainment,2025-11-24 16:37:46
+7c5e1fad-02c1-4a6d-9227-,Shopping,58.5,Groceries,2025-11-25 16:37:46
+dfd260df-d6f2-4818-b4d2-,Bus Fare,64.0,Transport,2025-11-26 16:37:46
+8683aeed-a4a8-4de7-9722-,Dinner,69.5,Dining,2025-11-27 16:37:46
+cfaa4861-ffba-4a10-b3c3-,Movie,20.0,Entertainment,2025-11-28 16:37:46
+c1ffe866-9092-4162-b0c8-,Shopping,25.5,Groceries,2025-11-29 16:37:46
+3a3db076-b3e0-4e50-8b56-,Bus Fare,31.0,Transport,2025-11-30 16:37:46
+aeb9cd77-0c42-45d7-b563-,Dinner,36.5,Dining,2025-12-01 16:37:46
+08e5e0a4-6fea-42a6-8770-,Movie,42.0,Entertainment,2025-12-02 16:37:46
+dfb6e99b-97f8-4a63-9d2b-,Shopping,47.5,Groceries,2025-12-03 16:37:46
+6f593780-1d94-4816-93ef-,Bus Fare,53.0,Transport,2025-12-04 16:37:46
+b44be819-120c-4bdd-9363-,Dinner,58.5,Dining,2025-12-05 16:37:46
+3299726a-d356-43a2-a584-,Movie,64.0,Entertainment,2025-12-06 16:37:46
+d65e069f-8520-4d44-a5d3-,Shopping,69.5,Groceries,2025-12-07 16:37:46
+f964c872-0a15-48e2-b6f6-,Bus Fare,20.0,Transport,2025-12-08 16:37:46
+b89f2dfa-ed26-4425-8898-,Dinner,25.5,Dining,2025-12-09 16:37:46
+885d7e9f-66a0-43d8-b6e0-,Movie,31.0,Entertainment,2025-12-10 16:37:46
+2af3d1db-3b2a-4cb8-91aa-,Shopping,36.5,Groceries,2025-12-11 16:37:46
+0325c647-c66c-4859-bc28-,Bus Fare,42.0,Transport,2025-12-12 16:37:46
+037b3722-03b3-4883-a7f5-,Dinner,47.5,Dining,2025-12-13 16:37:46
+a513e5be-6918-4087-88d2-,Movie,53.0,Entertainment,2025-12-14 16:37:46
+586ab5c0-acf9-464b-ad49-,Shopping,58.5,Groceries,2025-12-15 16:37:46
+7f0fc49d-b782-460e-8e15-,Bus Fare,64.0,Transport,2025-12-16 16:37:46
+df4b9c22-2b86-4ab0-80b7-,Dinner,69.5,Dining,2025-12-17 16:37:46
+c9214bce-b349-491a-b3ec-,Movie,20.0,Entertainment,2025-12-18 16:37:46
+1cc30769-1784-4e22-a510-,Shopping,25.5,Groceries,2025-12-19 16:37:46
+814f754b-09e9-40be-8b73-,Bus Fare,31.0,Transport,2025-12-20 16:37:46
+1c704687-9646-4ea1-ad5e-,Dinner,36.5,Dining,2025-12-21 16:37:46
+5eb7ad62-8954-4509-b14a-,Movie,42.0,Entertainment,2025-12-22 16:37:46
+54ec4d0f-d5a2-4d64-85f3-,Shopping,47.5,Groceries,2025-12-23 16:37:46
+d221f85d-76c5-4aeb-937b-,Bus Fare,53.0,Transport,2025-12-24 16:37:46
+26a7e799-c2b5-44be-a767-,Dinner,58.5,Dining,2025-12-25 16:37:46
+879c1374-2394-46b8-9faf-,Movie,64.0,Entertainment,2025-12-26 16:37:46
+b95e56f9-0644-48b3-bc8c-,Shopping,69.5,Groceries,2025-12-27 16:37:46
+b824986e-ae50-4ae2-a680-,Bus Fare,20.0,Transport,2025-12-28 16:37:46
+c82a3477-d8ee-415b-8de7-,Dinner,25.5,Dining,2025-12-29 16:37:46
+f69f6c86-eaf4-409a-9cfd-,Movie,31.0,Entertainment,2025-12-30 16:37:46
+8d0cdc28-b383-407d-bd34-,Shopping,36.5,Groceries,2025-12-31 16:37:46
+fe172ad8-191b-4c22-a96c-,Bus Fare,42.0,Transport,2026-01-01 16:37:46
+9fdb9294-b2e7-433d-b101-,Dinner,47.5,Dining,2026-01-02 16:37:46
+b966ea20-1dce-4ed0-a0c7-,Movie,53.0,Entertainment,2026-01-03 16:37:46
+edd6a83f-890f-41c3-9968-,Shopping,58.5,Groceries,2026-01-04 16:37:46
+2723bca2-59e2-45e8-ac35-,Bus Fare,64.0,Transport,2026-01-05 16:37:46
+fef8724a-8fe4-4bc6-8d95-,Dinner,69.5,Dining,2026-01-06 16:37:46
+1db1a46c-145b-46d0-acaf-,Movie,20.0,Entertainment,2026-01-07 16:37:46
+91101840-49c4-48c8-b21a-,Shopping,25.5,Groceries,2026-01-08 16:37:46
+6b83532b-da6f-4636-8894-,Bus Fare,31.0,Transport,2026-01-09 16:37:46
+d4947440-6708-41f5-8357-,Dinner,36.5,Dining,2026-01-10 16:37:46
+08a078b1-1dec-473f-979e-,Movie,42.0,Entertainment,2026-01-11 16:37:46
+ae6d0e7a-43d8-43ef-a2ff-,Shopping,47.5,Groceries,2026-01-12 16:37:46
+a83eeee5-7cb0-4749-aef0-,Bus Fare,53.0,Transport,2026-01-13 16:37:46
+deaf59d9-b7ce-4fb6-993a-,Dinner,58.5,Dining,2026-01-14 16:37:46
+dabb5493-9327-4a5f-904e-,Movie,64.0,Entertainment,2026-01-15 16:37:46
+e12991ce-a32c-4fec-9109-,Shopping,69.5,Groceries,2026-01-16 16:37:46
+84485709-42a5-42a8-adfb-,Bus Fare,20.0,Transport,2026-01-17 16:37:46
+b1ca7712-8d39-43ef-8943-,Dinner,25.5,Dining,2026-01-18 16:37:46
+f6a819dd-216b-4221-804b-,Movie,31.0,Entertainment,2026-01-19 16:37:46
+3a12ce10-168b-45be-93b7-,Shopping,36.5,Groceries,2026-01-20 16:37:46
+14e12fbe-2188-4203-8e3b-,Bus Fare,42.0,Transport,2026-01-21 16:37:46
+230a6881-d4b5-40dc-8266-,Dinner,47.5,Dining,2026-01-22 16:37:46
+27b44529-c650-41d9-abad-,Movie,53.0,Entertainment,2026-01-23 16:37:46
+7b12b400-25e7-423b-a0a7-,Shopping,58.5,Groceries,2026-01-24 16:37:46
+6647c5ba-5452-48ef-b8c0-,Bus Fare,64.0,Transport,2026-01-25 16:37:46
+1d2af1d8-06b8-4dd0-ae44-,Dinner,69.5,Dining,2026-01-26 16:37:46
+994e33ea-fc8d-4201-bb6d-,Movie,20.0,Entertainment,2026-01-27 16:37:46
+07525cf3-4acd-4ab8-bdc7-,Shopping,25.5,Groceries,2026-01-28 16:37:46
+5f9cc2c8-6853-4bc8-a114-,Bus Fare,31.0,Transport,2026-01-29 16:37:46
+4ed21d5e-f013-4d96-837a-,Dinner,36.5,Dining,2026-01-30 16:37:46
+b482cae8-1441-4af4-a0a8-,Movie,42.0,Entertainment,2026-01-31 16:37:46
+cd8e9033-77bf-437c-b0af-,Shopping,47.5,Groceries,2026-02-01 16:37:46
+77d04098-d292-4244-b4e6-,Bus Fare,53.0,Transport,2026-02-02 16:37:46
+bc45e13a-65ac-4c97-9b99-,Dinner,58.5,Dining,2026-02-03 16:37:46
+b22a4803-f28a-4e87-96c3-,Movie,64.0,Entertainment,2026-02-04 16:37:46
+dcd41452-8888-4f16-9c6e-,Shopping,69.5,Groceries,2026-02-05 16:37:46
+e7db5e8a-ad70-44e9-b48d-,Bus Fare,20.0,Transport,2026-02-06 16:37:46
+251ab8ce-b6d8-4ef3-9a4e-,Dinner,25.5,Dining,2026-02-07 16:37:46
+6e374ff2-a93e-4aeb-a0e2-,Movie,31.0,Entertainment,2026-02-08 16:37:46
+34a40079-17f7-4587-b132-,Shopping,36.5,Groceries,2026-02-09 16:37:46
+06b0570d-4da8-4451-aa03-,Bus Fare,42.0,Transport,2026-02-10 16:37:46
+5b514ac4-91a5-462e-a88f-,Dinner,47.5,Dining,2026-02-11 16:37:46
+707575e2-a007-4149-b70a-,Movie,53.0,Entertainment,2026-02-12 16:37:46
+07ff6b83-46f3-461d-aa96-,Shopping,58.5,Groceries,2026-02-13 16:37:46
+7cdb586d-51fb-48ed-ab03-,Bus Fare,64.0,Transport,2026-02-14 16:37:46
+15102ad5-15f2-4cab-bf4a-,Dinner,69.5,Dining,2026-02-15 16:37:46
+1ed5bdba-20db-4761-bc79-,Movie,20.0,Entertainment,2026-02-16 16:37:46
+29df8376-c358-4e40-8768-,Shopping,25.5,Groceries,2026-02-17 16:37:46
+2d99b6af-27fa-41d2-9686-,Bus Fare,31.0,Transport,2026-02-18 16:37:46
+bc566120-ed89-4e92-9332-,Dinner,36.5,Dining,2026-02-19 16:37:46
+463be8a9-8998-47b2-882a-,Movie,42.0,Entertainment,2026-02-20 16:37:46
+b8f71c25-d403-40de-83d4-,Shopping,47.5,Groceries,2026-02-21 16:37:46
+c13f92fa-d2d9-4fc3-a7c0-,Bus Fare,53.0,Transport,2026-02-22 16:37:46
+89783d87-22bd-4163-ba15-,Dinner,58.5,Dining,2026-02-23 16:37:46
+a1c7ae46-4b22-4ccd-a7e6-,Movie,64.0,Entertainment,2026-02-24 16:37:46
+b48077b3-8991-4d45-9dd6-,Shopping,69.5,Groceries,2026-02-25 16:37:46
+1c47ef64-84d7-428b-9bc4-,Bus Fare,20.0,Transport,2026-02-26 16:37:46
+98e9334b-6286-4534-8ed0-,Dinner,25.5,Dining,2026-02-27 16:37:46
+85c16059-fa99-4ecd-be1e-,Movie,31.0,Entertainment,2026-02-28 16:37:46
+4a6ea123-64e8-4985-82a4-,Shopping,36.5,Groceries,2026-03-01 16:37:46
+28a5803f-d2d4-497a-98ff-,Bus Fare,42.0,Transport,2026-03-02 16:37:46
+590b6b07-c424-4d12-8ea6-,Dinner,47.5,Dining,2026-03-03 16:37:46
+6bb10e7c-90c4-4c56-b4e2-,Movie,53.0,Entertainment,2026-03-04 16:37:46
+4f451526-eb5b-4f50-8783-,Shopping,58.5,Groceries,2026-03-05 16:37:46
+7b3edd97-7bb9-4947-ac13-,Bus Fare,64.0,Transport,2026-03-06 16:37:46
+f1e17ae7-e82d-4a9d-978c-,Dinner,69.5,Dining,2026-03-07 16:37:46
+297d40e5-3153-487a-a952-,Movie,20.0,Entertainment,2026-03-08 16:37:46
+334bfbd4-9ac5-4cd3-b08f-,Shopping,25.5,Groceries,2026-03-09 16:37:46
+9bd37dbf-73dd-43e9-a0cb-,Bus Fare,31.0,Transport,2026-03-10 16:37:46
+5c96858c-b568-40ff-aea1-,Dinner,36.5,Dining,2026-03-11 16:37:46
+5cc99159-ea0d-446a-bd81-,Movie,42.0,Entertainment,2026-03-12 16:37:46
+3ebb7c35-740c-42ac-b945-,Shopping,47.5,Groceries,2026-03-13 16:37:46
+5decd7a2-57e4-43e9-8eb9-,Bus Fare,53.0,Transport,2026-03-14 16:37:46
+e925412d-ac02-4afd-893d-,Dinner,58.5,Dining,2026-03-15 16:37:46
+33ac175c-95c1-4b50-8687-,Movie,64.0,Entertainment,2026-03-16 16:37:46
+69477b22-7b22-4a43-8ccc-,Shopping,69.5,Groceries,2026-03-17 16:37:46
+221c6171-b59a-4f37-830a-,Bus Fare,20.0,Transport,2026-03-18 16:37:46
+362cfba5-603c-4d49-a7e6-,Dinner,25.5,Dining,2026-03-19 16:37:46
+28dc030a-7a58-45a6-8555-,Movie,31.0,Entertainment,2026-03-20 16:37:46
+70bb352f-bec0-4648-bf2a-,Shopping,36.5,Groceries,2026-03-21 16:37:46
+4ac207ce-cfdb-45b9-9287-,Bus Fare,42.0,Transport,2026-03-22 16:37:46
+e53ac76c-1aba-4d60-92bf-,Dinner,47.5,Dining,2026-03-23 16:37:46
+6b0e61fc-fac2-4dd4-a1c0-,Movie,53.0,Entertainment,2026-03-24 16:37:46
+b78a9925-d994-4a07-b87c-,Shopping,58.5,Groceries,2026-03-25 16:37:46
+34d5b1fb-63c4-4508-8c28-,Bus Fare,64.0,Transport,2026-03-26 16:37:46
+022210ab-bba9-472b-b6e8-,Dinner,69.5,Dining,2026-03-27 16:37:46
+17e10e66-81b4-4e53-8075-,Movie,20.0,Entertainment,2026-03-28 16:37:46
+f441c7f1-20f7-42c5-b80c-,Shopping,25.5,Groceries,2026-03-29 16:37:46
+ff055d3a-9da5-448d-bfa7-,Bus Fare,31.0,Transport,2026-03-30 16:37:46
+b10041c9-9781-4e80-9a7e-,Dinner,36.5,Dining,2026-03-31 16:37:46
+63c62306-8cbe-4e55-9dae-,Movie,42.0,Entertainment,2026-04-01 16:37:46
+c29000c7-64e6-497f-8951-,Shopping,47.5,Groceries,2026-04-02 16:37:46
+8cc86311-4b59-4526-bbea-,Bus Fare,53.0,Transport,2026-04-03 16:37:46
+b5b3b1ee-4bdc-4fac-a18b-,Dinner,58.5,Dining,2026-04-04 16:37:46
+ea9ca57c-6a30-4648-a883-,Movie,64.0,Entertainment,2026-04-05 16:37:46
+82b5eda2-dd07-4d84-a21c-,Shopping,69.5,Groceries,2026-04-06 16:37:46
+eec6ba11-5ca2-46e8-a508-,Bus Fare,20.0,Transport,2026-04-07 16:37:46
+faf8611e-0044-4adf-a757-,Dinner,25.5,Dining,2026-04-08 16:37:46
+808442de-a2fb-4b47-b86a-,Movie,31.0,Entertainment,2026-04-09 16:37:46
+8f34041c-c358-4853-bd3d-,Shopping,36.5,Groceries,2026-04-10 16:37:46
+9da13635-866b-4d6f-a334-,Bus Fare,42.0,Transport,2026-04-11 16:37:46
+e8870e03-6545-43c4-a695-,Dinner,47.5,Dining,2026-04-12 16:37:46
+a84a58f3-8fc1-478d-9e4e-,Movie,53.0,Entertainment,2026-04-13 16:37:46
+cd2f6d46-7405-4715-9319-,Shopping,58.5,Groceries,2026-04-14 16:37:46
+7b9477fd-5059-44c5-a17e-,Bus Fare,64.0,Transport,2026-04-15 16:37:46
+7c788403-ea81-493e-93db-,Dinner,69.5,Dining,2026-04-16 16:37:46
+90e4045a-0e33-440b-891c-,Movie,20.0,Entertainment,2026-04-17 16:37:46
+5136af56-abdf-4886-8181-,Shopping,25.5,Groceries,2026-04-18 16:37:46
+df9e521d-57d0-4985-8e46-,Bus Fare,31.0,Transport,2026-04-19 16:37:46
+6729b45c-b256-45bc-ac06-,Dinner,36.5,Dining,2026-04-20 16:37:46
+9e78f7a4-91c3-4101-b616-,Movie,42.0,Entertainment,2026-04-21 16:37:46
+af0e6aed-6b13-42ae-beb9-,Shopping,47.5,Groceries,2026-04-22 16:37:46
+0846daa4-9222-4449-a153-,Bus Fare,53.0,Transport,2026-04-23 16:37:46
+97dc35f3-f9b1-4c33-b57f-,Dinner,58.5,Dining,2026-04-24 16:37:46
+5c7950b2-3788-415e-97f7-,Movie,64.0,Entertainment,2026-04-25 16:37:46
+0b07d1fb-8a6e-4cb1-9e21-,Shopping,69.5,Groceries,2026-04-26 16:37:46
+daa971fd-a246-4c91-b3f5-,Bus Fare,20.0,Transport,2026-04-27 16:37:46
+e81dff18-ab75-400a-b614-,Dinner,25.5,Dining,2026-04-28 16:37:46
+54bed670-78ca-4e24-a7b4-,Movie,31.0,Entertainment,2026-04-29 16:37:46
+81987bb1-3576-4a3e-b22f-,Shopping,36.5,Groceries,2026-04-30 16:37:46
+6d3e53cc-f5b2-432c-9235-,Bus Fare,42.0,Transport,2026-05-01 16:37:46
+ce6960e8-172c-40bc-9e63-,Dinner,47.5,Dining,2026-05-02 16:37:46
+765e02ff-7b39-4157-b9f2-,Movie,53.0,Entertainment,2026-05-03 16:37:46
+bebd3c49-732d-4391-b68b-,Shopping,58.5,Groceries,2026-05-04 16:37:46
+c5ca005f-e36e-4cf1-8621-,Bus Fare,64.0,Transport,2026-05-05 16:37:46
+17480657-03ff-4ec7-bdfa-,Dinner,69.5,Dining,2026-05-06 16:37:46
+007e1f96-b788-4ada-b35b-,Movie,20.0,Entertainment,2026-05-07 16:37:46
+07534683-d0e4-4a07-b948-,Shopping,25.5,Groceries,2026-05-08 16:37:46
+8a74edd6-05db-4c32-aa5c-,Bus Fare,31.0,Transport,2026-05-09 16:37:46
+fcdab6de-90b8-484d-a3f9-,Dinner,36.5,Dining,2026-05-10 16:37:46
+9e0e4c2e-28f6-46fc-8fa9-,Movie,42.0,Entertainment,2026-05-11 16:37:46
+16818cd3-328b-4afc-8e80-,Shopping,47.5,Groceries,2026-05-12 16:37:46
+21552589-eeee-4589-89af-,Bus Fare,53.0,Transport,2026-05-13 16:37:46
+16c639de-40a8-47b9-bab4-,Dinner,58.5,Dining,2026-05-14 16:37:46
+d2c926a7-4637-4608-a825-,Movie,64.0,Entertainment,2026-05-15 16:37:46
+03f5bb52-9d06-49d7-a528-,Shopping,69.5,Groceries,2026-05-16 16:37:46
+7c8b8a3a-1d59-42e2-a893-,Bus Fare,20.0,Transport,2026-05-17 16:37:46
+af9f9768-b139-4b5e-ad4b-,Dinner,25.5,Dining,2026-05-18 16:37:46
+52745d7d-05b2-4165-8a03-,Movie,31.0,Entertainment,2026-05-19 16:37:46
+e8cb07fb-0269-4187-830b-,Shopping,36.5,Groceries,2026-05-20 16:37:46
+42c7da41-f8ce-4d01-a85f-,Bus Fare,42.0,Transport,2026-05-21 16:37:46
+5aa57f55-087a-4fd6-bffb-,Dinner,47.5,Dining,2026-05-22 16:37:46
+05d09602-5366-4dfd-a783-,Movie,53.0,Entertainment,2026-05-23 16:37:46
+9bfc5482-815e-4dcd-9f99-,Shopping,58.5,Groceries,2026-05-24 16:37:46
+64428801-62b6-4955-a542-,Bus Fare,64.0,Transport,2026-05-25 16:37:46
+87c1961c-d301-44e9-a1fe-,Dinner,69.5,Dining,2026-05-26 16:37:46
+ed06e632-c522-4dea-9d92-,Movie,20.0,Entertainment,2026-05-27 16:37:46
+ef676524-1bfb-45da-a386-,Shopping,25.5,Groceries,2026-05-28 16:37:46
+ed89f294-d1e2-45d7-9147-,Bus Fare,31.0,Transport,2026-05-29 16:37:46
+446b0d87-606c-4121-aaa5-,Dinner,36.5,Dining,2026-05-30 16:37:46
+6a3c7447-e06f-429d-9f65-,Movie,42.0,Entertainment,2026-05-31 16:37:46
+ab57b5ca-ee61-4878-91ca-,Shopping,47.5,Groceries,2026-06-01 16:37:46
+43029deb-0d45-4862-95aa-,Bus Fare,53.0,Transport,2026-06-02 16:37:46
+96b790cb-ffff-4832-984a-,Dinner,58.5,Dining,2026-06-03 16:37:46
+8c71e0a8-be06-41e2-8c51-,Movie,64.0,Entertainment,2026-06-04 16:37:46
+fd8e5e8f-feaf-455b-82fc-,Shopping,69.5,Groceries,2026-06-05 16:37:46
+eabf1417-ebca-4d88-8ed7-,Bus Fare,20.0,Transport,2026-06-06 16:37:46
+a0d0d9c2-a594-48aa-a07c-,Dinner,25.5,Dining,2026-06-07 16:37:46
+b832ba5a-d770-4056-b73f-,Movie,31.0,Entertainment,2026-06-08 16:37:46
+d29f4a48-e4d5-423f-ae93-,Shopping,36.5,Groceries,2026-06-09 16:37:46
+a353d91c-e34c-4086-b77d-,Bus Fare,42.0,Transport,2026-06-10 16:37:46
+d6fe5fae-cc1a-415c-8130-,Dinner,47.5,Dining,2026-06-11 16:37:46
+c13ee477-6ff7-48a5-aea0-,Movie,53.0,Entertainment,2026-06-12 16:37:46
+61680f5f-35d4-4b55-9f16-,Shopping,58.5,Groceries,2026-06-13 16:37:46
+e500c632-42cf-4a47-8ef7-,Bus Fare,64.0,Transport,2026-06-14 16:37:46
+439d4458-2850-4b61-9567-,Dinner,69.5,Dining,2026-06-15 16:37:46

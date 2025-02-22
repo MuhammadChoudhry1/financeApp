@@ -1,93 +1,125 @@
+import uuid
 from flask import Blueprint, request, jsonify, make_response, url_for
-from bson import ObjectId
 from datetime import datetime
-from globals import db
+from globals import cursor, conn  # SQL Connection
 
 saving_bp = Blueprint('saving_bp', __name__)
 
-saving_goals_collection = db.saving_goals
-
+# ✅ GET all saving goals with pagination
 @saving_bp.route("/api/v1.0/saving_goals", methods=["GET"])
 def show_all_saving_goals():
-    """
-    GET: Retrieve all saving goals with pagination.
-    """
-    page_num, page_size = 1, 10
-    if request.args.get('pn'):
-        page_num = int(request.args.get('pn'))
-    if request.args.get('ps'):
-        page_size = int(request.args.get('ps'))
-    page_start = (page_size * (page_num - 1))
-    data_to_return = []
-    for saving_goal in saving_goals_collection.find().skip(page_start).limit(page_size):
-        saving_goal['_id'] = str(saving_goal['_id'])
-        data_to_return.append(saving_goal)
+    page_num = int(request.args.get('pn', 1))
+    page_size = int(request.args.get('ps', 10))
+    offset = (page_num - 1) * page_size
+
+    cursor.execute("SELECT id, description, amount, category, date FROM saving_goals ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY", (offset, page_size))
+    saving_goals = cursor.fetchall()
+
+    data_to_return = [{
+        "id": str(row[0]),  # Ensure UUID is string
+        "description": row[1],
+        "amount": float(row[2]),  # Ensure numeric type
+        "category": row[3],
+        "date": row[4].strftime("%Y-%m-%d %H:%M:%S") if isinstance(row[4], datetime) else str(row[4])
+    } for row in saving_goals]
+
     return make_response(jsonify(data_to_return), 200)
 
+# ✅ GET a single saving goal by ID
 @saving_bp.route("/api/v1.0/saving_goals/<string:id>", methods=["GET"])
 def show_one_saving_goal(id):
-    """
-    GET: Retrieve a single saving goal by ID.
-    """
-    if not ObjectId.is_valid(id):
-        return make_response(jsonify({"error": "Invalid saving goal ID format"}), 400)
-    saving_goal = saving_goals_collection.find_one({'_id': ObjectId(id)})
-    if saving_goal is not None:
-        saving_goal['_id'] = str(saving_goal['_id'])
-        return make_response(jsonify(saving_goal), 200)
+    cursor.execute("SELECT id, description, amount, category, date FROM saving_goals WHERE id = ?", (id,))
+    saving_goal = cursor.fetchone()
+
+    if saving_goal:
+        saving_goal_data = {
+            "id": str(saving_goal[0]),  
+            "description": saving_goal[1],
+            "amount": float(saving_goal[2]),
+            "category": saving_goal[3],
+            "date": saving_goal[4].strftime("%Y-%m-%d %H:%M:%S") if isinstance(saving_goal[4], datetime) else str(saving_goal[4])
+        }
+        return make_response(jsonify(saving_goal_data), 200)
     else:
-        return make_response(jsonify({"error": "Invalid saving goal ID"}), 404)
+        return make_response(jsonify({"error": "Saving goal not found"}), 404)
 
 @saving_bp.route("/api/v1.0/saving_goals", methods=["POST"])
 def add_saving_goal():
     """
     POST: Add a new saving goal.
     """
-    if "name" in request.form and "target_amount" in request.form:
-        new_saving_goal = {
-            "name": request.form["name"],
-            "target_amount": request.form["target_amount"],
-            "category": request.form.get("category", ""),  # Optional field
-            "description": request.form.get("description", ""),  # Optional field
-            "status": request.form.get("status", ""),  # Optional field
-            "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Automatically add current date and time
-        }
-        new_saving_goal_id = saving_goals_collection.insert_one(new_saving_goal)
-        new_saving_goal_link = url_for('saving_bp.show_one_saving_goal', id=str(new_saving_goal_id.inserted_id), _external=True)
-        return make_response(jsonify({"url": new_saving_goal_link}), 201)
+
+    # Extract form-data correctly when using `x-www-form-urlencoded`
+    description = request.form.get("description")
+    amount = request.form.get("amount")
+    category = request.form.get("category")
+    status = request.form.get("status", "save")  # Default to "save" if missing
+
+    # Validate that required fields are provided
+    if description and amount and category:
+        new_id = str(uuid.uuid4())  # Generate UUID
+        amount = float(amount)  # Convert to float
+        date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Auto-generate date
+
+        # Insert into the database
+        cursor.execute(
+            "INSERT INTO saving_goals (id, description, amount, category, status, date) VALUES (?, ?, ?, ?, ?, ?)",
+            (new_id, description, amount, category, status, date),
+        )
+        conn.commit()
+
+        return make_response(jsonify({"message": "Saving goal added", "id": new_id}), 201)
     else:
-        return make_response(jsonify({"error": "Missing form data"}), 400)  # Corrected status code to 400
+        return make_response(jsonify({"error": "Missing required fields"}), 400)
 
 @saving_bp.route("/api/v1.0/saving_goals/<string:id>", methods=["PUT"])
 def edit_saving_goal(id):
     """
     PUT: Edit an existing saving goal by ID.
     """
-    if "name" in request.form and "target_amount" in request.form and "date" in request.form:
-        result = saving_goals_collection.update_one(
-            {"_id": ObjectId(id)},
-            {"$set": {
-                "name": request.form["name"],
-                "target_amount": request.form["target_amount"],
-                "date": request.form["date"]
-            }}
-        )
-        if result.matched_count == 1:
-            edited_saving_goal_link = url_for('saving_bp.show_one_saving_goal', id=id, _external=True)
-            return make_response(jsonify({"url": edited_saving_goal_link}), 200)
-        else:
-            return make_response(jsonify({"error": "Invalid saving goal ID"}), 404)
+    if request.is_json:
+        data = request.json  # If JSON is sent
     else:
-        return make_response(jsonify({"error": "Missing form data"}), 404)
+        data = request.form.to_dict()  # If form-data is sent (x-www-form-urlencoded)
 
+    # Check if the record exists before updating
+    cursor.execute("SELECT COUNT(*) FROM saving_goals WHERE id = ?", (id,))
+    exists = cursor.fetchone()[0]
+
+    if exists == 0:
+        return make_response(jsonify({"error": "Saving goal not found"}), 404)
+
+    # Extract fields, ensuring `status` is included
+    description = data.get("description")
+    amount = data.get("amount")
+    category = data.get("category", "")
+    status = data.get("status")  # Keep current status if not provided
+    date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    if description and amount:
+        # If `status` is not provided, retain the old value
+        if not status:
+            cursor.execute("SELECT status FROM saving_goals WHERE id = ?", (id,))
+            status = cursor.fetchone()[0]
+
+        cursor.execute(
+            "UPDATE saving_goals SET description = ?, amount = ?, category = ?, status = ?, date = ? WHERE id = ?",
+            (description, float(amount), category, status, date, id),
+        )
+        conn.commit()
+
+        edited_saving_goal_link = url_for('saving_bp.show_one_saving_goal', id=id, _external=True)
+        return make_response(jsonify({"message": "Saving goal updated", "url": edited_saving_goal_link}), 200)
+    else:
+        return make_response(jsonify({"error": "Missing required fields"}), 400)
+
+# ✅ DELETE: Remove a saving goal
 @saving_bp.route("/api/v1.0/saving_goals/<string:id>", methods=["DELETE"])
 def delete_saving_goal(id):
-    """
-    DELETE: Delete a saving goal by ID.
-    """
-    result = saving_goals_collection.delete_one({"_id": ObjectId(id)})
-    if result.deleted_count == 1:
+    cursor.execute("DELETE FROM saving_goals WHERE id = ?", (id,))
+    conn.commit()
+
+    if cursor.rowcount > 0:
         return make_response(jsonify({}), 204)
     else:
         return make_response(jsonify({"error": "Invalid saving goal ID"}), 404)
-    

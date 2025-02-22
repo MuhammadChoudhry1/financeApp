@@ -12,11 +12,11 @@ def generate_expenses(num_records=500):
     
     for i in range(num_records):
         data.append({
-            "id": str(uuid.uuid4())[:24],  # Generate unique ID
+            "id": str(uuid.uuid4()),  # Full UUID (36 characters)
             "description": descriptions[i % len(descriptions)],
             "amount": round(20 + (i % 10) * 5.5, 2),  # Structured amount pattern
             "category": categories[i % len(categories)],
-            "date": (base_date + timedelta(days=i)).strftime('%Y-%m-%d %H:%M:%S')
+            "date": (base_date + timedelta(days=i)).strftime('%Y-%m-%d %H:%M:%S')  # Correct date format
         })
     
     return pd.DataFrame(data)
@@ -29,10 +29,10 @@ def generate_salaries(num_records=500):
     for i in range(num_records):
         salary = 2000 + (i % 5) * 250  # Structured salary increments
         data.append({
-            "id": str(uuid.uuid4())[:24],
+            "id": str(uuid.uuid4()),  # Full UUID (36 characters)
             "name": f"Employee_{i+1}",
             "amount": salary,
-            "date": (base_date + timedelta(days=i)).strftime('%Y-%m-%d %H:%M:%S')
+            "date": (base_date + timedelta(days=i)).strftime('%Y-%m-%d %H:%M:%S')  # Correct date format
         })
     
     return pd.DataFrame(data)
@@ -47,12 +47,12 @@ def generate_saving_goals(num_records=500):
 
     for i in range(num_records):
         data.append({
-            "id": str(uuid.uuid4())[:24],
+            "id": str(uuid.uuid4()),  # Full UUID (36 characters)
             "description": f"Goal {i+1}",
             "amount": round(500 + (i % 7) * 150.75, 2),
             "category": categories[i % len(categories)],
             "status": statuses[i % len(statuses)],
-            "date": (base_date + timedelta(days=i)).strftime('%Y-%m-%d %H:%M:%S')
+            "date": (base_date + timedelta(days=i)).strftime('%Y-%m-%d %H:%M:%S')  # Correct date format
         })
     
     return pd.DataFrame(data)

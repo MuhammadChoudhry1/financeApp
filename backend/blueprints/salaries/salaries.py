@@ -1,91 +1,97 @@
 from flask import Blueprint, request, jsonify, make_response, url_for
-import globals
 from decorators import jwt_required
 from datetime import datetime
-from bson import ObjectId
+from globals import cursor, conn  # Import SQL connection
 
 salaries_bp = Blueprint('salaries_bp', __name__)
 
-salaries_collection = globals.db.salaries
-
+# ✅ GET all salaries with pagination
 @salaries_bp.route("/api/v1.0/salaries", methods=["GET"])
 def show_all_salaries():
     """
     GET: Retrieve all salaries with pagination.
     """
-    page_num, page_size = 1, 10
-    if request.args.get('pn'):
-        page_num = int(request.args.get('pn'))
-    if request.args.get('ps'):
-        page_size = int(request.args.get('ps'))
-    page_start = (page_size * (page_num - 1))
-    data_to_return = []
-    for salary in salaries_collection.find().skip(page_start).limit(page_size):
-        salary['_id'] = str(salary['_id'])
-        data_to_return.append(salary)
+    page_num = int(request.args.get('pn', 1))
+    page_size = int(request.args.get('ps', 10))
+    offset = (page_num - 1) * page_size
+
+    cursor.execute("SELECT id, name, amount, date FROM salaries ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY", (offset, page_size))
+    salaries = cursor.fetchall()
+
+    # Convert result to JSON
+    data_to_return = [{"id": row[0], "name": row[1], "amount": row[2], "date": row[3]} for row in salaries]
+    
     return make_response(jsonify(data_to_return), 200)
 
-@salaries_bp.route("/api/v1.0/salaries/<string:id>", methods=["GET"])
+# ✅ GET a single salary by ID
+@salaries_bp.route("/api/v1.0/salaries/<int:id>", methods=["GET"])
 def show_one_salary(id):
     """
     GET: Retrieve a single salary by ID.
     """
-    if not ObjectId.is_valid(id):
-        return make_response(jsonify({"error": "Invalid salary ID format"}), 400)
-    salary = salaries_collection.find_one({'_id': ObjectId(id)})
-    if salary is not None:
-        salary['_id'] = str(salary['_id'])
-        return make_response(jsonify(salary), 200)
+    cursor.execute("SELECT id, name, amount, date FROM salaries WHERE id = ?", (id,))
+    salary = cursor.fetchone()
+
+    if salary:
+        salary_data = {"id": salary[0], "name": salary[1], "amount": salary[2], "date": salary[3]}
+        return make_response(jsonify(salary_data), 200)
     else:
         return make_response(jsonify({"error": "Invalid salary ID"}), 404)
 
+# ✅ POST: Add a new salary
 @salaries_bp.route("/api/v1.0/salaries", methods=["POST"])
 def add_salary():
     """
     POST: Add a new salary.
     """
-    if "name" in request.form and "amount" in request.form:
-        new_salary = {
-            "name": request.form["name"],
-            "amount": request.form["amount"],
-            "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Automatically add current date and time
-        }
-        new_salary_id = salaries_collection.insert_one(new_salary)
-        new_salary_link = url_for('salaries_bp.show_one_salary', id=str(new_salary_id.inserted_id), _external=True)
+    data = request.json
+    if "name" in data and "amount" in data:
+        name = data["name"]
+        amount = data["amount"]
+        date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Automatically add current date
+
+        cursor.execute("INSERT INTO salaries (name, amount, date) VALUES (?, ?, ?)", (name, amount, date))
+        conn.commit()  # Save changes
+
+        # Get the ID of the inserted record
+        cursor.execute("SELECT SCOPE_IDENTITY()")
+        new_salary_id = cursor.fetchone()[0]
+        
+        new_salary_link = url_for('salaries_bp.show_one_salary', id=new_salary_id, _external=True)
         return make_response(jsonify({"url": new_salary_link}), 201)
     else:
-        return make_response(jsonify({"error": "Missing form data"}), 404)
+        return make_response(jsonify({"error": "Missing form data"}), 400)
 
-@salaries_bp.route("/api/v1.0/salaries/<string:id>", methods=["PUT"])
+# ✅ PUT: Edit an existing salary
+@salaries_bp.route("/api/v1.0/salaries/<int:id>", methods=["PUT"])
 def edit_salary(id):
     """
     PUT: Edit an existing salary by ID.
     """
-    if "name" in request.form and "amount" in request.form and "date" in request.form:
-        result = salaries_collection.update_one(
-            {"_id": ObjectId(id)},
-            {"$set": {
-                "name": request.form["name"],
-                "amount": request.form["amount"],
-                "date": request.form["date"]
-            }}
-        )
-        if result.matched_count == 1:
+    data = request.json
+    if "name" in data and "amount" in data and "date" in data:
+        cursor.execute("UPDATE salaries SET name = ?, amount = ?, date = ? WHERE id = ?", 
+                       (data["name"], data["amount"], data["date"], id))
+        conn.commit()
+
+        if cursor.rowcount > 0:
             edited_salary_link = url_for('salaries_bp.show_one_salary', id=id, _external=True)
             return make_response(jsonify({"url": edited_salary_link}), 200)
         else:
             return make_response(jsonify({"error": "Invalid salary ID"}), 404)
     else:
-        return make_response(jsonify({"error": "Missing form data"}), 404)
+        return make_response(jsonify({"error": "Missing form data"}), 400)
 
-@salaries_bp.route("/api/v1.0/salaries/<string:id>", methods=["DELETE"])
+# ✅ DELETE: Remove a salary
+@salaries_bp.route("/api/v1.0/salaries/<int:id>", methods=["DELETE"])
 def delete_salary(id):
     """
     DELETE: Delete a salary by ID.
     """
-    result = salaries_collection.delete_one({"_id": ObjectId(id)})
-    if result.deleted_count == 1:
+    cursor.execute("DELETE FROM salaries WHERE id = ?", (id,))
+    conn.commit()
+
+    if cursor.rowcount > 0:
         return make_response(jsonify({}), 204)
     else:
         return make_response(jsonify({"error": "Invalid salary ID"}), 404)
-    
