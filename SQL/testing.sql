@@ -1,1 +1,1 @@
-SELECT * FROM saving_goals WHERE amount = 1200.50;
+SELECT * FROM salaries WHERE id = '0030d79b-b301-4617-884d-';

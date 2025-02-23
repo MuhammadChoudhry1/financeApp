@@ -43,6 +43,8 @@ def show_one_saving_goal(id):
     else:
         return make_response(jsonify({"error": "Saving goal not found"}), 404)
 
+allowed_statuses = ['save', 'ongoing', 'completed']
+
 @saving_bp.route("/api/v1.0/saving_goals", methods=["POST"])
 def add_saving_goal():
     """
@@ -55,8 +57,8 @@ def add_saving_goal():
     category = request.form.get("category")
     status = request.form.get("status", "save")  # Default to "save" if missing
 
-    # Validate that required fields are provided
-    if description and amount and category:
+    # Validate that required fields are provided and status is valid
+    if description and amount and category and status in allowed_statuses:
         new_id = str(uuid.uuid4())  # Generate UUID
         amount = float(amount)  # Convert to float
         date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Auto-generate date
@@ -70,7 +72,7 @@ def add_saving_goal():
 
         return make_response(jsonify({"message": "Saving goal added", "id": new_id}), 201)
     else:
-        return make_response(jsonify({"error": "Missing required fields"}), 400)
+        return make_response(jsonify({"error": "Missing required fields or invalid status"}), 400)
 
 @saving_bp.route("/api/v1.0/saving_goals/<string:id>", methods=["PUT"])
 def edit_saving_goal(id):
@@ -101,6 +103,8 @@ def edit_saving_goal(id):
         if not status:
             cursor.execute("SELECT status FROM saving_goals WHERE id = ?", (id,))
             status = cursor.fetchone()[0]
+        elif status not in allowed_statuses:
+            return make_response(jsonify({"error": "Invalid status value"}), 400)
 
         cursor.execute(
             "UPDATE saving_goals SET description = ?, amount = ?, category = ?, status = ?, date = ? WHERE id = ?",
@@ -112,7 +116,7 @@ def edit_saving_goal(id):
         return make_response(jsonify({"message": "Saving goal updated", "url": edited_saving_goal_link}), 200)
     else:
         return make_response(jsonify({"error": "Missing required fields"}), 400)
-
+ 
 # ✅ DELETE: Remove a saving goal
 @saving_bp.route("/api/v1.0/saving_goals/<string:id>", methods=["DELETE"])
 def delete_saving_goal(id):
@@ -123,3 +127,4 @@ def delete_saving_goal(id):
         return make_response(jsonify({}), 204)
     else:
         return make_response(jsonify({"error": "Invalid saving goal ID"}), 404)
+
