@@ -52,12 +52,16 @@ def add_saving_goal():
     """
     POST: Add a new saving goal.
     """
+    if request.is_json:
+        data = request.json  # If JSON is sent
+    else:
+        data = request.form.to_dict()  # If form-data is sent (x-www-form-urlencoded)
 
-    # Extract form-data correctly when using `x-www-form-urlencoded`
-    description = request.form.get("description")
-    amount = request.form.get("amount")
-    category = request.form.get("category")
-    status = request.form.get("status", "save")  # Default to "save" if missing
+    # Extract form-data correctly
+    description = data.get("description")
+    amount = data.get("amount")
+    category = data.get("category")
+    status = data.get("status", "save")  # Default to "save" if missing
 
     # Validate that required fields are provided and status is valid
     if description and amount and category and status in allowed_statuses:
