@@ -12,7 +12,7 @@ def show_all_saving_goals():
     page_size = int(request.args.get('ps', 10))
     offset = (page_num - 1) * page_size
 
-    cursor.execute("SELECT id, description, amount, category, date FROM saving_goals ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY", (offset, page_size))
+    cursor.execute("SELECT id, description, amount, category, status, date FROM saving_goals ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY", (offset, page_size))
     saving_goals = cursor.fetchall()
 
     data_to_return = [{
@@ -20,7 +20,8 @@ def show_all_saving_goals():
         "description": row[1],
         "amount": float(row[2]),  # Ensure numeric type
         "category": row[3],
-        "date": row[4].strftime("%Y-%m-%d %H:%M:%S") if isinstance(row[4], datetime) else str(row[4])
+        "status": row[4],
+        "date": row[5].strftime("%Y-%m-%d %H:%M:%S") if isinstance(row[5], datetime) else str(row[5])
     } for row in saving_goals]
 
     return make_response(jsonify(data_to_return), 200)
@@ -28,7 +29,7 @@ def show_all_saving_goals():
 # ✅ GET a single saving goal by ID
 @saving_bp.route("/api/v1.0/saving_goals/<string:id>", methods=["GET"])
 def show_one_saving_goal(id):
-    cursor.execute("SELECT id, description, amount, category, date FROM saving_goals WHERE id = ?", (id,))
+    cursor.execute("SELECT id, description, amount, category, status, date FROM saving_goals WHERE id = ?", (id,))
     saving_goal = cursor.fetchone()
 
     if saving_goal:
@@ -37,7 +38,8 @@ def show_one_saving_goal(id):
             "description": saving_goal[1],
             "amount": float(saving_goal[2]),
             "category": saving_goal[3],
-            "date": saving_goal[4].strftime("%Y-%m-%d %H:%M:%S") if isinstance(saving_goal[4], datetime) else str(saving_goal[4])
+            "status": saving_goal[4],
+            "date": saving_goal[5].strftime("%Y-%m-%d %H:%M:%S") if isinstance(saving_goal[5], datetime) else str(saving_goal[5])
         }
         return make_response(jsonify(saving_goal_data), 200)
     else:
@@ -127,4 +129,3 @@ def delete_saving_goal(id):
         return make_response(jsonify({}), 204)
     else:
         return make_response(jsonify({"error": "Invalid saving goal ID"}), 404)
-

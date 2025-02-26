@@ -2,6 +2,7 @@ import pandas as pd
 import uuid
 from datetime import datetime, timedelta
 
+
 # Function to generate structured expenses data
 def generate_expenses(num_records=500):
     categories = ['Entertainment', 'Groceries', 'Transport', 'Dining']
