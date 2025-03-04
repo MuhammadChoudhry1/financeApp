@@ -5,6 +5,7 @@ import jwt
 from functools import wraps
 import bcrypt
 from globals import cursor, conn  # Use SQL connection
+from flask import current_app as app  # Import current_app to access app config
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
@@ -20,7 +21,7 @@ def jwt_required(f):
             return make_response(jsonify({'error': 'Token is missing'}), 403)
 
         try:
-            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+            data = jwt.decode(token, str(app.config['SECRET_KEY']), algorithms=["HS256"])  # Ensure SECRET_KEY is a string
         except:
             return make_response(jsonify({'error': 'Token is invalid'}), 403)
 
@@ -34,6 +35,15 @@ def jwt_required(f):
         return f(*args, **kwargs)
     
     return jwt_required_wrapper
+
+def log_request(f):
+    @wraps(f)
+    def log_request_wrapper(*args, **kwargs):
+        print("Request Headers:", request.headers)
+        print("Request Form Data:", request.form)
+        return f(*args, **kwargs)
+    
+    return log_request_wrapper
 
 if __name__ == "__main__":
     app.run(debug=True)

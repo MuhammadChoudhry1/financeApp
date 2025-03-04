@@ -1,31 +1,35 @@
+import uuid
 from flask import Blueprint, request, jsonify, make_response, url_for
 import globals
-from decorators import jwt_required
+from decorators import jwt_required, log_request
 from datetime import datetime, timedelta
-from bson import ObjectId
 import bcrypt
-import jwt
+from jwt import encode, decode  # Explicitly import from PyJWT
+from globals import cursor, conn  # Import SQL connection
+from flask import current_app as app  # Import current_app to access app config
 
 auth_bp = Blueprint('auth_bp', __name__)
 
-users_collection = globals.db.users
-blacklist_collection = globals.db.blacklist
-
-@auth_bp.route('/api/v1.0/login', methods=['POST'])  # Change methods to ['POST']
+@auth_bp.route('/api/v1.0/login', methods=['POST'])
 def login():
     auth = request.authorization
     if auth:
-        user = users_collection.find_one({'username': auth.username})  # Correct the collection name
-        if user is not None:
-            if bcrypt.checkpw(bytes(auth.password, 'UTF-8'), user['password']):  # Correct bcrypt usage
-                token = jwt.encode({
+        print(f"Attempting to log in user: {auth.username}")  # Debugging: Log username
+        cursor.execute("SELECT username, password FROM logins WHERE username = ?", (auth.username,))
+        user = cursor.fetchone()
+        print(f"Query result: {user}")  # Debugging: Log query result
+        if user:
+            print(f"User found: {user[0]}")  # Debugging: Log found user
+            if bcrypt.checkpw(auth.password.encode('utf-8'), user[1].encode('utf-8')):  # Ensure password comparison is correct
+                token = encode({
                     'user': auth.username,
                     'exp': datetime.utcnow() + timedelta(minutes=30)
-                }, globals.secret_key, algorithm='HS256')  # Correct the 'algorithm' parameter
+                }, str(app.config['SECRET_KEY']), algorithm='HS256')  # Ensure SECRET_KEY is a string
                 return make_response(jsonify({'token': token}), 200)
             else:
                 return make_response(jsonify({'error': 'Invalid password'}), 401)
         else:
+            print("User not found")  # Debugging: Log user not found
             return make_response(jsonify({'error': 'User not found'}), 404)
     return make_response(jsonify({'error': 'Unauthorized access'}), 403)
 
@@ -33,50 +37,45 @@ def login():
 @jwt_required
 def logout():
     token = request.headers['x-access-token']
-    blacklist_collection.insert_one({'token': token})
+    cursor.execute("INSERT INTO blacklist (token) VALUES (?)", (token,))
+    conn.commit()
     return make_response(jsonify({'message': 'Successfully logged out'}), 200)
 
 @auth_bp.route('/api/v1.0/register', methods=['POST'])
+@log_request
 def register():
     try:
-        # Log the incoming request headers and data for debugging
         print("Request Headers:", request.headers)
         print("Request Form Data:", request.form)
 
-        # Get data from form-urlencoded request
         name = request.form.get('name')
         email = request.form.get('email')
         username = request.form.get('username')
         password = request.form.get('password')
 
-        # Validate required fields
         if not name or not email or not username or not password:
             return make_response(jsonify({'error': 'Name, email, username, and password are required'}), 400)
 
-        # Check if email or username already exists
-        if users_collection.find_one({'email': email}):
+        cursor.execute("SELECT COUNT(*) FROM logins WHERE email = ?", (email,))
+        if cursor.fetchone()[0] > 0:
             return make_response(jsonify({'error': 'Email already registered'}), 409)
-        if users_collection.find_one({'username': username}):
+        
+        cursor.execute("SELECT COUNT(*) FROM logins WHERE username = ?", (username,))
+        if cursor.fetchone()[0] > 0:
             return make_response(jsonify({'error': 'Username already taken'}), 409)
 
-        # Hash the password
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')  # Ensure password is hashed
 
-        # Create new user
-        new_user = {
-            'email': email,
-            'username': username,
-            'password': hashed_password,
-            'name': name,
-            'created_at': datetime.utcnow()
-        }
+        user_id = str(uuid.uuid4())[:20]  # Truncate UUID to fit the column length
 
-        # Insert user into the database
-        users_collection.insert_one(new_user)
+        cursor.execute(
+            "INSERT INTO logins (id, name, username, password, email) VALUES (?, ?, ?, ?, ?)",
+            (user_id, name, username, hashed_password, email)
+        )
+        conn.commit()
 
         return make_response(jsonify({'message': 'User registered successfully'}), 201)
 
     except Exception as e:
-        # Log the error for debugging
         print(f"Error during registration: {e}")
         return make_response(jsonify({'error': 'Internal server error'}), 500)

@@ -24,3 +24,4 @@ CREATE TABLE saving_goals (
     status VARCHAR(50) NOT NULL CHECK (status IN ('save', 'spent', 'pending')), -- Constraint for status
     date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
