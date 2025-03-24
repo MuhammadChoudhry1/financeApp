@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, FlatList, Alert, StyleSheet, Modal } from 'react-native';
+import { View, Text, TextInput, Button, FlatList, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 
 const saving_goals = () => {
@@ -8,6 +8,8 @@ const saving_goals = () => {
     const [newIncome, setNewIncome] = useState({ name: '', amount: '' });
     const [editMode, setEditMode] = useState(null);
     const [editedIncome, setEditedIncome] = useState({ name: '', amount: '' });
+    const [showAddIncomeModal, setShowAddIncomeModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
 
     useEffect(() => {
         fetchIncomes();
@@ -21,7 +23,7 @@ const saving_goals = () => {
                 ...income,
                 amount: parseFloat(income.amount) // Ensure amount is a number
             }));
-            setIncomes(parsedData);
+            setIncomes(parsedData.sort((a, b) => new Date(b.date) - new Date(a.date))); // Sort by date to keep the latest at the top
         } catch (error) {
             Alert.alert('Error', 'Failed to fetch incomes.');
         }
@@ -46,10 +48,12 @@ const saving_goals = () => {
     const toggleEditMode = (index) => {
         if (editMode === index) {
             setEditMode(null);
+            setShowEditModal(false);
             return;
         }
         setEditMode(index);
         setEditedIncome(incomes[index]);
+        setShowEditModal(true); // Show the edit modal
     };
 
     const handleSaveEdit = async (id) => {
@@ -85,7 +89,7 @@ const saving_goals = () => {
 
     const handleAddIncome = async () => {
         if (!newIncome.name || !newIncome.amount) {
-            Alert.alert('Error', 'All fields are required.');
+            Alert.alert('Error', 'Name and amount are required.');
             return;
         }
 
@@ -93,6 +97,7 @@ const saving_goals = () => {
             const formData = new URLSearchParams();
             formData.append('name', newIncome.name);
             formData.append('amount', parseFloat(newIncome.amount)); // Ensure amount is a number
+            formData.append('date', new Date().toISOString()); // Set the current date
 
             const response = await fetch('http://localhost:5000/api/v1.0/salaries', {
                 method: 'POST',
@@ -107,10 +112,12 @@ const saving_goals = () => {
                 const newIncomeWithId = { 
                     ...newIncome, 
                     amount: parseFloat(newIncome.amount), // Ensure amount is a number
-                    id: result.id // Use the returned ID
+                    id: result.id, // Use the returned ID
+                    date: result.date // Use the returned date
                 };
-                setIncomes([...incomes, newIncomeWithId]);
+                setIncomes([newIncomeWithId, ...incomes]); // Add new income at the top
                 setNewIncome({ name: '', amount: '' });
+                setShowAddIncomeModal(false);
             } else {
                 Alert.alert('Error', 'Failed to add income.');
             }
@@ -120,95 +127,161 @@ const saving_goals = () => {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Income Documentation</Text>
-
-            <TextInput
-                style={styles.input}
-                placeholder="Name"
-                value={newIncome.name}
-                onChangeText={(text) => setNewIncome({ ...newIncome, name: text })}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Amount"
-                value={newIncome.amount}
-                onChangeText={(text) => setNewIncome({ ...newIncome, amount: text })}
-                keyboardType="numeric"
-            />
-            <Button
-                title="Add Income"
-                onPress={handleAddIncome}
-            />
-
-            <FlatList
+            <View style={styles.container}>
+              <Text style={styles.title}>Income Documentation</Text>
+          
+              <FlatList
                 data={incomes}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item, index }) => (
-                    <View style={styles.incomeItem}>
-                        {editMode === index ? (
-                            <>
-                                <TextInput
-                                    style={styles.input}
-                                    value={editedIncome.name}
-                                    onChangeText={(text) => setEditedIncome({ ...editedIncome, name: text })}
-                                    placeholder="Name"
-                                />
-                                <TextInput
-                                    style={styles.input}
-                                    value={editedIncome.amount.toString()}
-                                    onChangeText={(text) => setEditedIncome({ ...editedIncome, amount: parseFloat(text) })}
-                                    placeholder="Amount"
-                                    keyboardType="numeric"
-                                />
-                                <Button title="Save" onPress={() => handleSaveEdit(item.id)} />
-                            </>
-                        ) : (
-                            <>
-                                <Text>{item.name}</Text>
-                                <Text>Amount: ${item.amount.toFixed(2)}</Text>
-                                <Text>Date: {item.date}</Text>
-                                <Button title="Edit" onPress={() => toggleEditMode(index)} />
-                                <Button title="Delete" onPress={() => handleDeleteIncome(item.id)} />
-                            </>
-                        )}
+                  <View style={styles.incomeItem}>
+                    <View>
+                      <Text>{item.name}</Text>
+                      <Text>Amount: ${item.amount.toFixed(2)}</Text>
+                      <Text>Date: {item.date}</Text>
                     </View>
+                    <View style={styles.buttonContainer}>
+                      <TouchableOpacity style={styles.roundButton} onPress={() => handleDeleteIncome(item.id)}>
+                        <Text style={styles.buttonText}>Delete</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.roundButton} onPress={() => toggleEditMode(index)}>
+                        <Text style={styles.buttonText}>Edit</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
                 )}
-            />
-        </View>
-    );
+              />
+          
+              <View style={styles.addButtonContainer}>
+                <TouchableOpacity style={styles.roundButton} onPress={() => setShowAddIncomeModal(true)}>
+                  <Text style={styles.buttonText}>Add Income</Text>
+                </TouchableOpacity>
+              </View>
+          
+              {showAddIncomeModal && (
+                <View style={styles.modalContainer}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Name"
+                    value={newIncome.name}
+                    onChangeText={(text) => setNewIncome({ ...newIncome, name: text })}
+                  />
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Amount"
+                    value={newIncome.amount}
+                    onChangeText={(text) => setNewIncome({ ...newIncome, amount: text })}
+                    keyboardType="numeric"
+                  />
+                  <TouchableOpacity style={styles.roundButton} onPress={handleAddIncome}>
+                    <Text style={styles.buttonText}>Add Income</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.roundButton} onPress={() => setShowAddIncomeModal(false)}>
+                    <Text style={styles.buttonText}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+          
+              {showEditModal && (
+                <View style={styles.modalContainer}>
+                  <TextInput
+                    style={styles.input}
+                    value={editedIncome.name}
+                    onChangeText={(text) => setEditedIncome({ ...editedIncome, name: text })}
+                    placeholder="Name"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    value={editedIncome.amount.toString()}
+                    onChangeText={(text) => {
+                      const amount = parseFloat(text);
+                      setEditedIncome({ ...editedIncome, amount: isNaN(amount) ? '' : amount });
+                    }}
+                    placeholder="Amount"
+                    keyboardType="numeric"
+                  />
+                  <TouchableOpacity style={styles.roundButton} onPress={() => handleSaveEdit(editedIncome.id)}>
+                    <Text style={styles.buttonText}>Save</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.roundButton} onPress={() => setShowEditModal(false)}>
+                    <Text style={styles.buttonText}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </View>
+          );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: '#f5f5f5',
+      flex: 1,
+      padding: 20,
+      backgroundColor: '#fff',
     },
     title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginBottom: 20,
+      color: '#6A5ACD',
     },
     input: {
-        height: 40,
-        borderColor: '#ccc',
-        borderWidth: 1,
-        marginBottom: 10,
-        paddingHorizontal: 10,
-        borderRadius: 5,
+      height: 40,
+      borderColor: '#ccc',
+      borderWidth: 1,
+      marginBottom: 10,
+      paddingHorizontal: 10,
+      borderRadius: 5,
     },
     incomeItem: {
-        padding: 15,
-        backgroundColor: '#fff',
-        marginBottom: 10,
-        borderRadius: 5,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
-        elevation: 2,
+      padding: 15,
+      backgroundColor: '#fff',
+      marginBottom: 10,
+      borderRadius: 5,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 5,
+      elevation: 2,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
     },
-});
+    buttonContainer: {
+      flexDirection: 'column', // Arrange buttons vertically
+      gap: 10, // Adds space between buttons
+    },
+    roundButton: {
+      backgroundColor: '#6A5ACD',
+      borderRadius: 20, // Makes the button round
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    buttonText: {
+      color: '#fff',
+      fontSize: 14,
+    },
+    addButtonContainer: {
+      position: 'absolute',
+      bottom: 20,
+      left: 20,
+    },
+    modalContainer: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: [{ translateX: -150 }, { translateY: -150 }],
+      width: 300,
+      backgroundColor: '#fff',
+      padding: 20,
+      borderRadius: 10,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 5,
+      elevation: 2,
+    },
+  });
 
 export default saving_goals;

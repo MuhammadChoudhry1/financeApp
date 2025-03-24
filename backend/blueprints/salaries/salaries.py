@@ -64,7 +64,7 @@ def add_salary():
         )
         conn.commit()
 
-        return make_response(jsonify({"message": "Salary added", "id": new_id}), 201)
+        return make_response(jsonify({"message": "Salary added", "id": new_id, "date": date}), 201)
     else:
         return make_response(jsonify({"error": "Missing required fields"}), 400)
 

@@ -5,7 +5,6 @@ import IncomeDocumentation from './incomeDocumentation';
 import ExpenseTracking from './expensetracking';
 import CreateAccount from './create_account';
 import Login from './login';
-// ...existing code...
 
 const Stack = createStackNavigator();
 

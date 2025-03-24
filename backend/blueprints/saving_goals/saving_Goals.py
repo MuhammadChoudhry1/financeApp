@@ -2,8 +2,12 @@ import uuid
 from flask import Blueprint, request, jsonify, make_response, url_for
 from datetime import datetime
 from globals import cursor, conn  # SQL Connection
+from pyodbc import IntegrityError  # Add this import
 
 saving_bp = Blueprint('saving_bp', __name__)
+
+# Allowed status values (updated to match the database changes)
+allowed_statuses = ['completed', 'ongoing', 'save']
 
 # ✅ GET all saving goals with pagination
 @saving_bp.route("/api/v1.0/saving_goals", methods=["GET"])
@@ -45,67 +49,59 @@ def show_one_saving_goal(id):
     else:
         return make_response(jsonify({"error": "Saving goal not found"}), 404)
 
-allowed_statuses = ['save', 'ongoing', 'completed']
-
+# ✅ POST: Add a new saving goal
 @saving_bp.route("/api/v1.0/saving_goals", methods=["POST"])
 def add_saving_goal():
-    """
-    POST: Add a new saving goal.
-    """
     if request.is_json:
         data = request.json  # If JSON is sent
     else:
         data = request.form.to_dict()  # If form-data is sent (x-www-form-urlencoded)
 
-    # Extract form-data correctly
     description = data.get("description")
     amount = data.get("amount")
     category = data.get("category")
     status = data.get("status", "save")  # Default to "save" if missing
 
-    # Validate that required fields are provided and status is valid
     if description and amount and category and status in allowed_statuses:
         new_id = str(uuid.uuid4())  # Generate UUID
         amount = float(amount)  # Convert to float
         date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Auto-generate date
 
-        # Insert into the database
-        cursor.execute(
-            "INSERT INTO saving_goals (id, description, amount, category, status, date) VALUES (?, ?, ?, ?, ?, ?)",
-            (new_id, description, amount, category, status, date),
-        )
-        conn.commit()
-
-        return make_response(jsonify({"message": "Saving goal added", "id": new_id}), 201)
+        try:
+            cursor.execute(
+                "INSERT INTO saving_goals (id, description, amount, category, status, date) VALUES (?, ?, ?, ?, ?, ?)",
+                (new_id, description, amount, category, status, date),
+            )
+            conn.commit()
+            return make_response(jsonify({"message": "Saving goal added", "id": new_id}), 201)
+        except IntegrityError as e:
+            return make_response(jsonify({"error": "Invalid status value"}), 400)
+        except Exception as e:
+            return make_response(jsonify({"error": str(e)}), 500)
     else:
         return make_response(jsonify({"error": "Missing required fields or invalid status"}), 400)
 
+# ✅ PUT: Edit an existing saving goal
 @saving_bp.route("/api/v1.0/saving_goals/<string:id>", methods=["PUT"])
 def edit_saving_goal(id):
-    """
-    PUT: Edit an existing saving goal by ID.
-    """
     if request.is_json:
         data = request.json  # If JSON is sent
     else:
         data = request.form.to_dict()  # If form-data is sent (x-www-form-urlencoded)
 
-    # Check if the record exists before updating
     cursor.execute("SELECT COUNT(*) FROM saving_goals WHERE id = ?", (id,))
     exists = cursor.fetchone()[0]
 
     if exists == 0:
         return make_response(jsonify({"error": "Saving goal not found"}), 404)
 
-    # Extract fields, ensuring `status` is included
     description = data.get("description")
     amount = data.get("amount")
     category = data.get("category", "")
-    status = data.get("status")  # Keep current status if not provided
+    status = data.get("status")
     date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     if description and amount:
-        # If `status` is not provided, retain the old value
         if not status:
             cursor.execute("SELECT status FROM saving_goals WHERE id = ?", (id,))
             status = cursor.fetchone()[0]
@@ -122,7 +118,7 @@ def edit_saving_goal(id):
         return make_response(jsonify({"message": "Saving goal updated", "url": edited_saving_goal_link}), 200)
     else:
         return make_response(jsonify({"error": "Missing required fields"}), 400)
- 
+
 # ✅ DELETE: Remove a saving goal
 @saving_bp.route("/api/v1.0/saving_goals/<string:id>", methods=["DELETE"])
 def delete_saving_goal(id):
@@ -133,3 +129,5 @@ def delete_saving_goal(id):
         return make_response(jsonify({}), 204)
     else:
         return make_response(jsonify({"error": "Invalid saving goal ID"}), 404)
+    
+    

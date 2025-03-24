@@ -1,2 +1,3 @@
--- Drop the logins table if it exists
-DROP TABLE IF EXISTS logins;
+SELECT name, definition
+FROM sys.check_constraints
+WHERE parent_object_id = OBJECT_ID('dbo.saving_goals');

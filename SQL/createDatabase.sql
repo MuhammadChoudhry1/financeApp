@@ -1,3 +1,0 @@
-CREATE DATABASE FinanceDB;
-GO
-
