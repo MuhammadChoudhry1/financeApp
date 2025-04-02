@@ -3,6 +3,7 @@ from flask import Blueprint, request, jsonify, make_response, url_for
 from datetime import datetime
 from globals import cursor, conn  # SQL Connection
 from pyodbc import IntegrityError  # Add this import
+from decorators import login_required  # Import the login_required decorator
 
 saving_bp = Blueprint('saving_bp', __name__)
 
@@ -11,6 +12,7 @@ allowed_statuses = ['completed', 'ongoing', 'save']
 
 # ✅ GET all saving goals with pagination
 @saving_bp.route("/api/v1.0/saving_goals", methods=["GET"])
+@login_required
 def show_all_saving_goals():
     page_num = int(request.args.get('pn', 1))
     page_size = int(request.args.get('ps', 10))
@@ -32,6 +34,7 @@ def show_all_saving_goals():
 
 # ✅ GET a single saving goal by ID
 @saving_bp.route("/api/v1.0/saving_goals/<string:id>", methods=["GET"])
+@login_required
 def show_one_saving_goal(id):
     cursor.execute("SELECT id, description, amount, category, status, date FROM saving_goals WHERE id = ?", (id,))
     saving_goal = cursor.fetchone()
@@ -51,6 +54,7 @@ def show_one_saving_goal(id):
 
 # ✅ POST: Add a new saving goal
 @saving_bp.route("/api/v1.0/saving_goals", methods=["POST"])
+@login_required
 def add_saving_goal():
     if request.is_json:
         data = request.json  # If JSON is sent
@@ -83,6 +87,7 @@ def add_saving_goal():
 
 # ✅ PUT: Edit an existing saving goal
 @saving_bp.route("/api/v1.0/saving_goals/<string:id>", methods=["PUT"])
+@login_required
 def edit_saving_goal(id):
     if request.is_json:
         data = request.json  # If JSON is sent
@@ -121,6 +126,7 @@ def edit_saving_goal(id):
 
 # ✅ DELETE: Remove a saving goal
 @saving_bp.route("/api/v1.0/saving_goals/<string:id>", methods=["DELETE"])
+@login_required
 def delete_saving_goal(id):
     cursor.execute("DELETE FROM saving_goals WHERE id = ?", (id,))
     conn.commit()
@@ -129,5 +135,4 @@ def delete_saving_goal(id):
         return make_response(jsonify({}), 204)
     else:
         return make_response(jsonify({"error": "Invalid saving goal ID"}), 404)
-    
-    
+

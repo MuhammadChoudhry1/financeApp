@@ -2,11 +2,13 @@ import uuid
 from flask import Blueprint, request, jsonify, make_response, url_for
 from datetime import datetime
 from globals import cursor, conn  # Import the SQL Server connection
+from decorators import login_required  # Import the login_required decorator
 
 salaries_bp = Blueprint('salaries_bp', __name__)
 
 # ✅ GET all salaries with pagination
 @salaries_bp.route("/api/v1.0/salaries", methods=["GET"])
+@login_required
 def show_all_salaries():
     page_num = int(request.args.get('pn', 1))
     page_size = int(request.args.get('ps', 10))
@@ -29,6 +31,7 @@ def show_all_salaries():
 
 # ✅ GET a single salary by ID
 @salaries_bp.route("/api/v1.0/salaries/<string:id>", methods=["GET"])
+@login_required
 def show_one_salary(id):
     cursor.execute("SELECT id, name, amount, date FROM salaries WHERE id = ?", (id,))
     salary = cursor.fetchone()
@@ -46,6 +49,7 @@ def show_one_salary(id):
 
 # ✅ POST: Add a new salary
 @salaries_bp.route("/api/v1.0/salaries", methods=["POST"])
+@login_required
 def add_salary():
     """
     POST: Add a new salary.
@@ -70,6 +74,7 @@ def add_salary():
 
 # ✅ PUT: Edit an existing salary
 @salaries_bp.route("/api/v1.0/salaries/<string:id>", methods=["PUT"])
+@login_required
 def edit_salary(id):
     """
     PUT: Edit an existing salary by ID.
@@ -102,6 +107,7 @@ def edit_salary(id):
 
 # ✅ DELETE: Remove a salary
 @salaries_bp.route("/api/v1.0/salaries/<string:id>", methods=["DELETE"])
+@login_required
 def delete_salary(id):
     cursor.execute("DELETE FROM salaries WHERE id = ?", (id,))
     conn.commit()

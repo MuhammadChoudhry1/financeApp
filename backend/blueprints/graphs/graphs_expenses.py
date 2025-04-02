@@ -1,101 +1,119 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+from flask import Blueprint, jsonify, make_response
+from globals import cursor, conn
 from datetime import datetime
-from ...globals import cursor  # Adjust the import to be relative
+from decorators import jwt_required
 
-def fetch_expenses_data(user_id):
-    query = f"SELECT date, amount, category FROM expenses WHERE user_id = {user_id}"
-    cursor.execute(query)
-    return cursor.fetchall()
+expense_graph_bp = Blueprint('expense_graph_bp', __name__)
 
-def fetch_savings_data(user_id):
-    query = f"SELECT date, amount FROM savings WHERE user_id = {user_id}"
-    cursor.execute(query)
-    return cursor.fetchall()
+def parse_date(date_input):
+    """Helper function to handle both string and datetime dates"""
+    if isinstance(date_input, datetime):
+        return date_input
+    try:
+        return datetime.strptime(date_input, '%Y-%m-%d')
+    except (TypeError, ValueError):
+        return None
 
-def plot_spending_over_time(user_id):
-    """Create a line plot of spending over time"""
-    expenses_data = fetch_expenses_data(user_id)
-    df = pd.DataFrame(expenses_data, columns=['date', 'amount', 'category'])
-    df['date'] = pd.to_datetime(df['date'])
-    df = df.sort_values('date')
-    
-    plt.figure(figsize=(12, 6))
-    sns.lineplot(data=df, x='date', y='amount', hue='category')
-    plt.title(f'Spending Over Time for User {user_id}')
-    plt.ylabel('Amount ($)')
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    
-    filename = f"spending_time_{user_id}.png"
-    plt.savefig(filename)
-    plt.close()
-    return filename
+@expense_graph_bp.route("/api/v1.0/expenses/summary", methods=["GET"])
+@jwt_required
+def expense_summary(username):
+    """GET: Return total amount spent per category for the logged-in user"""
+    try:
+        cursor.execute("SELECT category, amount FROM expenses WHERE username = ?", (username,))
+        expenses = cursor.fetchall()
+        
+        if not expenses:
+            return make_response(jsonify({"error": "No expenses found"}), 404)
+        
+        summary = {}
+        for category, amount in expenses:
+            if not category:
+                continue
+            if category not in summary:
+                summary[category] = 0.0
+            try:
+                summary[category] += float(amount)
+            except (TypeError, ValueError):
+                continue
+                
+        return make_response(jsonify(summary), 200)
+        
+    except Exception as e:
+        return make_response(jsonify({"error": str(e)}), 500)
 
-def plot_category_breakdown(user_id):
-    """Create a pie chart of spending by category"""
-    expenses_data = fetch_expenses_data(user_id)
-    df = pd.DataFrame(expenses_data, columns=['date', 'amount', 'category'])
-    category_totals = df.groupby('category')['amount'].sum()
+@expense_graph_bp.route("/api/v1.0/expenses/monthly", methods=["GET"])
+@jwt_required
+def monthly_summary(username):
+    """GET: Return total expenses per month (format: YYYY-MM) for the logged-in user"""
+    try:
+        cursor.execute("SELECT date, amount FROM expenses WHERE username = ? ORDER BY date", (username,))
+        expenses = cursor.fetchall()
+        
+        if not expenses:
+            return make_response(jsonify({"error": "No expenses found"}), 404)
+        
+        monthly_data = {}
+        for date_value, amount in expenses:
+            date_obj = parse_date(date_value)
+            if not date_obj:
+                continue
+                
+            month_key = date_obj.strftime('%Y-%m')
+            
+            try:
+                amount_float = float(amount)
+            except (TypeError, ValueError):
+                continue
+                
+            if month_key not in monthly_data:
+                monthly_data[month_key] = 0.0
+            monthly_data[month_key] += amount_float
+        
+        result = [{"month": month, "amount": total} 
+                 for month, total in sorted(monthly_data.items())]
+        
+        return make_response(jsonify(result), 200)
+        
+    except Exception as e:
+        return make_response(jsonify({"error": str(e)}), 500)
     
-    plt.figure(figsize=(8, 8))
-    plt.pie(category_totals, labels=category_totals.index, autopct='%1.1f%%')
-    plt.title(f'Spending by Category for User {user_id}')
-    
-    filename = f"category_breakdown_{user_id}.png"
-    plt.savefig(filename)
-    plt.close()
-    return filename
+@expense_graph_bp.route("/api/v1.0/expenses/monthly-category", methods=["GET"])
+@jwt_required
+def monthly_category_summary(username):
+    """GET: Return total expenses per category per month (format: YYYY-MM) for the logged-in user"""
+    try:
+        cursor.execute("SELECT date, category, amount FROM expenses WHERE username = ? ORDER BY date", (username,))
+        rows = cursor.fetchall()
+        
+        if not rows:
+            return make_response(jsonify({"error": "No expenses found"}), 404)
+        
+        monthly_category_data = {}
+        
+        for date_value, category, amount in rows:
+            date_obj = parse_date(date_value)
+            if not date_obj or not category:
+                continue
+            
+            month_key = date_obj.strftime('%Y-%m')
+            key = (month_key, category)
 
-def plot_monthly_comparison(user_id):
-    """Compare monthly spending"""
-    expenses_data = fetch_expenses_data(user_id)
-    df = pd.DataFrame(expenses_data, columns=['date', 'amount', 'category'])
-    df['date'] = pd.to_datetime(df['date'])
-    df['month'] = df['date'].dt.strftime('%Y-%m')
-    
-    monthly_totals = df.groupby('month')['amount'].sum()
-    
-    plt.figure(figsize=(12, 6))
-    monthly_totals.plot(kind='bar')
-    plt.title(f'Monthly Spending Comparison for User {user_id}')
-    plt.ylabel('Total Amount ($)')
-    plt.xlabel('Month')
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    
-    filename = f"monthly_comparison_{user_id}.png"
-    plt.savefig(filename)
-    plt.close()
-    return filename
+            try:
+                amount_float = float(amount)
+            except (TypeError, ValueError):
+                continue
 
-def plot_spending_vs_saving(user_id):
-    """Compare spending vs saving over time"""
-    expenses_data = fetch_expenses_data(user_id)
-    savings_data = fetch_savings_data(user_id)
+            if key not in monthly_category_data:
+                monthly_category_data[key] = 0.0
+            monthly_category_data[key] += amount_float
+        
+        # Format result
+        result = [
+            {"month": month, "category": category, "total": total}
+            for (month, category), total in sorted(monthly_category_data.items())
+        ]
+        
+        return make_response(jsonify(result), 200)
     
-    exp_df = pd.DataFrame(expenses_data, columns=['date', 'amount', 'category'])
-    sav_df = pd.DataFrame(savings_data, columns=['date', 'amount'])
-    
-    exp_df['date'] = pd.to_datetime(exp_df['date'])
-    sav_df['date'] = pd.to_datetime(sav_df['date'])
-    
-    monthly_exp = exp_df.groupby(pd.Grouper(key='date', freq='M'))['amount'].sum()
-    monthly_sav = sav_df.groupby(pd.Grouper(key='date', freq='M'))['amount'].sum()
-    
-    plt.figure(figsize=(12, 6))
-    plt.plot(monthly_exp.index, monthly_exp.values, label='Spending')
-    plt.plot(monthly_sav.index, monthly_sav.values, label='Saving')
-    plt.title(f'Spending vs Saving Trends for User {user_id}')
-    plt.ylabel('Amount ($)')
-    plt.xlabel('Date')
-    plt.legend()
-    plt.grid(True)
-    plt.tight_layout()
-    
-    filename = f"spend_vs_save_{user_id}.png"
-    plt.savefig(filename)
-    plt.close()
-    return filename
-
+    except Exception as e:
+        return make_response(jsonify({"error": str(e)}), 500)

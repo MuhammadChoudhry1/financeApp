@@ -1,42 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, FlatList, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // ✅ Import AsyncStorage
 
-const saving_goals = () => {
+const IncomeDocumentation = () => {
     const router = useRouter();
-    const [incomes, setIncomes] = useState([]);
+    const [incomeList, setIncomeList] = useState([]);
     const [newIncome, setNewIncome] = useState({ name: '', amount: '' });
-    const [editMode, setEditMode] = useState(null);
-    const [editedIncome, setEditedIncome] = useState({ name: '', amount: '' });
-    const [showAddIncomeModal, setShowAddIncomeModal] = useState(false);
-    const [showEditModal, setShowEditModal] = useState(false);
+    const [editIndex, setEditIndex] = useState(null);
+    const [currentEdit, setCurrentEdit] = useState({ name: '', amount: '' });
+    const [isAddModalVisible, setAddModalVisible] = useState(false);
+    const [isEditModalVisible, setEditModalVisible] = useState(false);
 
     useEffect(() => {
-        fetchIncomes();
+        fetchIncomeData();
     }, []);
 
-    const fetchIncomes = async () => {
+    const fetchIncomeData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/v1.0/salaries');
+            const token = await AsyncStorage.getItem('token'); // ✅ Get token from AsyncStorage
+            const response = await fetch('http://localhost:5000/api/v1.0/salaries', {
+                headers: { 'x-access-token': token }, // ✅ Add token to headers
+            });
             const data = await response.json();
-            const parsedData = data.map(income => ({
+            const formattedData = data.map(income => ({
                 ...income,
-                amount: parseFloat(income.amount) // Ensure amount is a number
+                amount: parseFloat(income.amount),
             }));
-            setIncomes(parsedData.sort((a, b) => new Date(b.date) - new Date(a.date))); // Sort by date to keep the latest at the top
+            setIncomeList(formattedData.sort((a, b) => new Date(b.date) - new Date(a.date)));
         } catch (error) {
-            Alert.alert('Error', 'Failed to fetch incomes.');
+            Alert.alert('Error', 'Failed to fetch income data.');
         }
     };
 
-    const handleDeleteIncome = async (id) => {
+    const deleteIncome = async (id) => {
         try {
+            const token = await AsyncStorage.getItem('token'); // ✅ Get token from AsyncStorage
             const response = await fetch(`http://localhost:5000/api/v1.0/salaries/${id}`, {
                 method: 'DELETE',
+                headers: { 'x-access-token': token }, // ✅ Add token to headers
             });
-
             if (response.ok) {
-                setIncomes(incomes.filter(income => income.id !== id));
+                setIncomeList(incomeList.filter(income => income.id !== id));
             } else {
                 Alert.alert('Error', 'Failed to delete income.');
             }
@@ -45,79 +50,83 @@ const saving_goals = () => {
         }
     };
 
-    const toggleEditMode = (index) => {
-        if (editMode === index) {
-            setEditMode(null);
-            setShowEditModal(false);
+    const toggleEditModal = (index) => {
+        if (editIndex === index) {
+            setEditIndex(null);
+            setEditModalVisible(false);
             return;
         }
-        setEditMode(index);
-        setEditedIncome(incomes[index]);
-        setShowEditModal(true); // Show the edit modal
+        setEditIndex(index);
+        setCurrentEdit(incomeList[index]);
+        setEditModalVisible(true);
     };
 
-    const handleSaveEdit = async (id) => {
-        if (!editedIncome.name || !editedIncome.amount) {
+    const saveIncomeEdit = async (id) => {
+        if (!currentEdit.name || !currentEdit.amount) {
             Alert.alert('Error', 'All fields are required.');
             return;
         }
 
         try {
+            const token = await AsyncStorage.getItem('token'); // ✅ Get token from AsyncStorage
             const formData = new URLSearchParams();
-            formData.append('name', editedIncome.name);
-            formData.append('amount', parseFloat(editedIncome.amount)); // Ensure amount is a number
+            formData.append('name', currentEdit.name);
+            formData.append('amount', parseFloat(currentEdit.amount));
 
             const response = await fetch(`http://localhost:5000/api/v1.0/salaries/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
+                    'x-access-token': token, // ✅ Add token to headers
                 },
                 body: formData.toString(),
             });
 
             if (response.ok) {
-                setIncomes(incomes.map(income => income.id === id ? { ...income, ...editedIncome } : income));
-                setEditMode(null);
+                setIncomeList(incomeList.map(income => income.id === id ? { ...income, ...currentEdit } : income));
+                setEditIndex(null);
+                setEditModalVisible(false);
             } else {
-                Alert.alert('Error', 'Failed to edit income.');
+                Alert.alert('Error', 'Failed to update income.');
             }
-
         } catch (error) {
-            Alert.alert('Error', 'An error occurred while editing the income.');
+            Alert.alert('Error', 'An error occurred while updating the income.');
         }
     };
 
-    const handleAddIncome = async () => {
+    const addIncome = async () => {
         if (!newIncome.name || !newIncome.amount) {
             Alert.alert('Error', 'Name and amount are required.');
             return;
         }
 
         try {
+            const token = await AsyncStorage.getItem('token'); // ✅ Get token from AsyncStorage
             const formData = new URLSearchParams();
             formData.append('name', newIncome.name);
-            formData.append('amount', parseFloat(newIncome.amount)); // Ensure amount is a number
-            formData.append('date', new Date().toISOString()); // Set the current date
+            formData.append('amount', parseFloat(newIncome.amount));
+            formData.append('date', new Date().toISOString());
 
             const response = await fetch('http://localhost:5000/api/v1.0/salaries', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
+                    'x-access-token': token, // ✅ Add token to headers
                 },
                 body: formData.toString(),
             });
 
             if (response.ok) {
                 const result = await response.json();
-                const newIncomeWithId = { 
-                    ...newIncome, 
-                    amount: parseFloat(newIncome.amount), // Ensure amount is a number
-                    id: result.id, // Use the returned ID
-                    date: result.date // Use the returned date
+                const newIncomeEntry = {
+                    ...newIncome,
+                    amount: parseFloat(newIncome.amount),
+                    id: result.id,
+                    date: result.date,
                 };
-                setIncomes([newIncomeWithId, ...incomes]); // Add new income at the top
+                setIncomeList([newIncomeEntry, ...incomeList]);
                 setNewIncome({ name: '', amount: '' });
-                setShowAddIncomeModal(false);
+                setAddModalVisible(false);
             } else {
                 Alert.alert('Error', 'Failed to add income.');
             }
@@ -127,161 +136,166 @@ const saving_goals = () => {
     };
 
     return (
-            <View style={styles.container}>
-              <Text style={styles.title}>Income Documentation</Text>
-          
-              <FlatList
-                data={incomes}
+        <View style={styles.container}>
+            <Text style={styles.title}>Income Documentation</Text>
+            <FlatList
+                data={incomeList}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item, index }) => (
-                  <View style={styles.incomeItem}>
-                    <View>
-                      <Text>{item.name}</Text>
-                      <Text>Amount: ${item.amount.toFixed(2)}</Text>
-                      <Text>Date: {item.date}</Text>
+                    <View style={styles.incomeItem}>
+                        <View>
+                            <Text>{item.name}</Text>
+                            <Text>Amount: ${item.amount.toFixed(2)}</Text>
+                            <Text>Date: {item.date}</Text>
+                        </View>
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity style={styles.roundButton} onPress={() => deleteIncome(item.id)}>
+                                <Text style={styles.buttonText}>Delete</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.roundButton} onPress={() => toggleEditModal(index)}>
+                                <Text style={styles.buttonText}>Edit</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.buttonContainer}>
-                      <TouchableOpacity style={styles.roundButton} onPress={() => handleDeleteIncome(item.id)}>
-                        <Text style={styles.buttonText}>Delete</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity style={styles.roundButton} onPress={() => toggleEditMode(index)}>
-                        <Text style={styles.buttonText}>Edit</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
                 )}
-              />
-          
-              <View style={styles.addButtonContainer}>
-                <TouchableOpacity style={styles.roundButton} onPress={() => setShowAddIncomeModal(true)}>
-                  <Text style={styles.buttonText}>Add Income</Text>
-                </TouchableOpacity>
-              </View>
-          
-              {showAddIncomeModal && (
-                <View style={styles.modalContainer}>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Name"
-                    value={newIncome.name}
-                    onChangeText={(text) => setNewIncome({ ...newIncome, name: text })}
-                  />
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Amount"
-                    value={newIncome.amount}
-                    onChangeText={(text) => setNewIncome({ ...newIncome, amount: text })}
-                    keyboardType="numeric"
-                  />
-                  <TouchableOpacity style={styles.roundButton} onPress={handleAddIncome}>
+            />
+            <View style={styles.addButtonContainer}>
+                <TouchableOpacity style={styles.roundButton} onPress={() => setAddModalVisible(true)}>
                     <Text style={styles.buttonText}>Add Income</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.roundButton} onPress={() => setShowAddIncomeModal(false)}>
-                    <Text style={styles.buttonText}>Cancel</Text>
-                  </TouchableOpacity>
-                </View>
-              )}
-          
-              {showEditModal && (
-                <View style={styles.modalContainer}>
-                  <TextInput
-                    style={styles.input}
-                    value={editedIncome.name}
-                    onChangeText={(text) => setEditedIncome({ ...editedIncome, name: text })}
-                    placeholder="Name"
-                  />
-                  <TextInput
-                    style={styles.input}
-                    value={editedIncome.amount.toString()}
-                    onChangeText={(text) => {
-                      const amount = parseFloat(text);
-                      setEditedIncome({ ...editedIncome, amount: isNaN(amount) ? '' : amount });
-                    }}
-                    placeholder="Amount"
-                    keyboardType="numeric"
-                  />
-                  <TouchableOpacity style={styles.roundButton} onPress={() => handleSaveEdit(editedIncome.id)}>
-                    <Text style={styles.buttonText}>Save</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.roundButton} onPress={() => setShowEditModal(false)}>
-                    <Text style={styles.buttonText}>Cancel</Text>
-                  </TouchableOpacity>
-                </View>
-              )}
+                </TouchableOpacity>
             </View>
-          );
+            {isAddModalVisible && (
+                <View style={styles.modalContainer}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Name"
+                        value={newIncome.name}
+                        onChangeText={(text) => setNewIncome({ ...newIncome, name: text })}
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Amount"
+                        value={newIncome.amount}
+                        onChangeText={(text) => setNewIncome({ ...newIncome, amount: text })}
+                        keyboardType="numeric"
+                    />
+                    <View style={styles.buttonSpacing}> {/* Add a container for spacing */}
+                        <TouchableOpacity style={styles.roundButton} onPress={addIncome}>
+                            <Text style={styles.buttonText}>Add Income</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.roundButton} onPress={() => setAddModalVisible(false)}>
+                            <Text style={styles.buttonText}>Cancel</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            )}
+            {isEditModalVisible && (
+                <View style={styles.modalContainer}>
+                    <TextInput
+                        style={styles.input}
+                        value={currentEdit.name}
+                        onChangeText={(text) => setCurrentEdit({ ...currentEdit, name: text })}
+                        placeholder="Name"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        value={currentEdit.amount.toString()}
+                        onChangeText={(text) => {
+                            const amount = parseFloat(text);
+                            setCurrentEdit({ ...currentEdit, amount: isNaN(amount) ? '' : amount });
+                        }}
+                        placeholder="Amount"
+                        keyboardType="numeric"
+                    />
+                    <View style={styles.buttonSpacing}> {/* Add a container for spacing */}
+                        <TouchableOpacity style={styles.roundButton} onPress={() => saveIncomeEdit(currentEdit.id)}>
+                            <Text style={styles.buttonText}>Save</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.roundButton} onPress={() => setEditModalVisible(false)}>
+                            <Text style={styles.buttonText}>Cancel</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            )}
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      padding: 20,
-      backgroundColor: '#fff',
+        flex: 1,
+        padding: 20,
+        backgroundColor: '#fff',
     },
     title: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginBottom: 20,
-      color: '#6A5ACD',
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        color: '#6A5ACD',
     },
     input: {
-      height: 40,
-      borderColor: '#ccc',
-      borderWidth: 1,
-      marginBottom: 10,
-      paddingHorizontal: 10,
-      borderRadius: 5,
+        height: 40,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        borderRadius: 5,
     },
     incomeItem: {
-      padding: 15,
-      backgroundColor: '#fff',
-      marginBottom: 10,
-      borderRadius: 5,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 5,
-      elevation: 2,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
+        padding: 15,
+        backgroundColor: '#fff',
+        marginBottom: 10,
+        borderRadius: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 2,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     buttonContainer: {
-      flexDirection: 'column', // Arrange buttons vertically
-      gap: 10, // Adds space between buttons
+        flexDirection: 'column',
+        gap: 10,
     },
     roundButton: {
-      backgroundColor: '#6A5ACD',
-      borderRadius: 20, // Makes the button round
-      paddingVertical: 10,
-      paddingHorizontal: 20,
-      justifyContent: 'center',
-      alignItems: 'center',
+        backgroundColor: '#6A5ACD',
+        borderRadius: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     buttonText: {
-      color: '#fff',
-      fontSize: 14,
+        color: '#fff',
+        fontSize: 14,
     },
     addButtonContainer: {
-      position: 'absolute',
-      bottom: 20,
-      left: 20,
+        position: 'absolute',
+        bottom: 20,
+        left: 20,
     },
     modalContainer: {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: [{ translateX: -150 }, { translateY: -150 }],
-      width: 300,
-      backgroundColor: '#fff',
-      padding: 20,
-      borderRadius: 10,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 5,
-      elevation: 2,
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: [{ translateX: -150 }, { translateY: -150 }],
+        width: 300,
+        backgroundColor: '#fff',
+        padding: 20,
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 2,
     },
-  });
+    buttonSpacing: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10, // Add margin between buttons
+    },
+});
 
-export default saving_goals;
+export default IncomeDocumentation;

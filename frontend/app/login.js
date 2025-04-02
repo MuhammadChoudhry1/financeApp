@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions, Platform, SafeAreaView, Image } from 'react-native';
+import {
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    StyleSheet,
+    Dimensions,
+    Platform,
+    SafeAreaView,
+    Image,
+    Alert
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get('window');
 
@@ -13,23 +25,33 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
-            // Send a POST request to the login endpoint
-            const response = await axios.post('http://localhost:5000/api/v1.0/login', null, {
+            if (!email || !password) {
+                Alert.alert('Validation Error', 'Please enter both email and password.');
+                return;
+            }
+
+            const response = await axios.post('http://192.168.1.214:5000/api/v1.0/login', null, {
                 auth: {
-                    username: email, // Use email as the username
+                    username: email,
                     password: password,
                 },
             });
-    
-            // If login is successful, store the token and navigate to the homepage
+
             if (response.data.token) {
                 console.log('Login successful! Token:', response.data.token);
-                router.push('/homepage'); // Navigate to the homepage
+
+                // ✅ Store token securely in AsyncStorage
+                await AsyncStorage.setItem('token', response.data.token);
+
+                // ✅ Navigate to homepage
+                router.push('/homepage');
             } else {
                 console.error('Login failed:', response.data.error);
+                Alert.alert('Login Failed', response.data.error || 'Invalid login credentials.');
             }
         } catch (error) {
-            console.error('Error during login:', error.response ? error.response.data : error.message);
+            console.error('Login error:', error);
+            Alert.alert('Error', error?.response?.data?.error || 'Could not connect to the server.');
         }
     };
 
@@ -41,7 +63,7 @@ const Login = () => {
                     <Text style={styles.title}>Login</Text>
                     <TextInput
                         style={styles.input}
-                        placeholder="Email"
+                        placeholder="Email or Username"
                         value={email}
                         onChangeText={setEmail}
                         keyboardType="email-address"
@@ -103,7 +125,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     button: {
-        backgroundColor: '#483D8B', // Darker shade of purple
+        backgroundColor: '#483D8B',
         paddingVertical: 15,
         paddingHorizontal: 20,
         borderRadius: 8,

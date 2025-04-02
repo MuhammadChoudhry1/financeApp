@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, FlatList, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 
 const App = () => {
   const [savingGoals, setSavingGoals] = useState([]);
@@ -15,15 +16,29 @@ const App = () => {
   // Fetch all saving goals
   const fetchSavingGoals = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/v1.0/saving_goals');
+      const token = await AsyncStorage.getItem('token'); // Retrieve the token from AsyncStorage
+      if (!token) {
+        throw new Error('Authentication token is missing.');
+      }
+
+      const response = await fetch('http://localhost:5000/api/v1.0/saving_goals', {
+        headers: {
+          'x-access-token': token, // Include the token in the headers
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch saving goals.');
+      }
+
       const data = await response.json();
-      const parsedData = data.map(goal => ({
+      const parsedData = (data || []).map(goal => ({
         ...goal,
         amount: parseFloat(goal.amount), // Ensure amount is a float
       }));
       setSavingGoals(parsedData);
     } catch (error) {
-      Alert.alert('Error', 'Failed to fetch saving goals.');
+      Alert.alert('Error', error.message || 'Failed to fetch saving goals.');
     }
   };
 
@@ -38,6 +53,12 @@ const App = () => {
     if (isNaN(parseFloat(amount))) {
         Alert.alert('Error', 'Amount must be a number.');
         return;
+    }
+
+    const allowedStatuses = ['save', 'ongoing', 'completed'];
+    if (!allowedStatuses.includes(status)) {
+      Alert.alert('Error', 'Invalid status value.');
+      return;
     }
 
     // Prepare the payload
@@ -123,7 +144,7 @@ const App = () => {
   
       <FlatList
         data={savingGoals}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()} // Ensure id is treated as a string
         renderItem={({ item }) => (
           <View style={styles.goalItem}>
             <View>
@@ -181,12 +202,14 @@ const App = () => {
             <Picker.Item label="Ongoing" value="ongoing" />
             <Picker.Item label="Completed" value="completed" />
           </Picker>
-          <TouchableOpacity style={styles.roundButton} onPress={handleAddOrUpdateSavingGoal}>
-            <Text style={styles.buttonText}>Add Saving Goal</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.roundButton} onPress={resetForm}>
-            <Text style={styles.buttonText}>Cancel</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonSpacing}> {/* Add a container for spacing */}
+            <TouchableOpacity style={styles.roundButton} onPress={handleAddOrUpdateSavingGoal}>
+              <Text style={styles.buttonText}>Add Saving Goal</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.roundButton} onPress={resetForm}>
+              <Text style={styles.buttonText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
   
@@ -220,12 +243,14 @@ const App = () => {
             <Picker.Item label="Ongoing" value="ongoing" />
             <Picker.Item label="Completed" value="completed" />
           </Picker>
-          <TouchableOpacity style={styles.roundButton} onPress={handleAddOrUpdateSavingGoal}>
-            <Text style={styles.buttonText}>Save</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.roundButton} onPress={() => setShowEditModal(false)}>
-            <Text style={styles.buttonText}>Cancel</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonSpacing}> {/* Add a container for spacing */}
+            <TouchableOpacity style={styles.roundButton} onPress={handleAddOrUpdateSavingGoal}>
+              <Text style={styles.buttonText}>Save</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.roundButton} onPress={() => setShowEditModal(false)}>
+              <Text style={styles.buttonText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
     </View>
@@ -301,6 +326,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 2,
+  },
+  buttonSpacing: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10, // Add margin between buttons
   },
 });
 

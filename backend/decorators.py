@@ -1,40 +1,52 @@
-from flask import Flask, request, jsonify, make_response
-import json
-from datetime import datetime, timedelta
-import jwt
+from flask import request, jsonify, make_response, current_app as app
 from functools import wraps
-import bcrypt
-from globals import cursor, conn  # Use SQL connection
-from flask import current_app as app  # Import current_app to access app config
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mysecret'
+import jwt
+from globals import cursor
 
 def jwt_required(f):
     @wraps(f)
     def jwt_required_wrapper(*args, **kwargs):
-        token = None
-        if 'x-access-token' in request.headers:
-            token = request.headers['x-access-token']
-        
+        token = request.headers.get('x-access-token')
         if not token:
             return make_response(jsonify({'error': 'Token is missing'}), 403)
 
         try:
-            data = jwt.decode(token, str(app.config['SECRET_KEY']), algorithms=["HS256"])  # Ensure SECRET_KEY is a string
-        except:
+            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+        except jwt.ExpiredSignatureError:
+            return make_response(jsonify({'error': 'Token has expired'}), 403)
+        except jwt.InvalidTokenError:
             return make_response(jsonify({'error': 'Token is invalid'}), 403)
 
-        # Check if token is blacklisted in SQL Server
         cursor.execute("SELECT COUNT(*) FROM blacklist WHERE token = ?", (token,))
-        bl_token = cursor.fetchone()[0]
-
-        if bl_token > 0:
+        if cursor.fetchone()[0] > 0:
             return make_response(jsonify({'error': 'Token is blacklisted'}), 403)
+
+        return f(*args, **kwargs, username=data['user'])
+    
+    return jwt_required_wrapper
+
+def login_required(f):
+    @wraps(f)
+    def login_required_wrapper(*args, **kwargs):
+        token = request.headers.get('x-access-token')
+
+        if not token:
+            return make_response(jsonify({'error': 'Login required'}), 401)
+
+        try:
+            data = jwt.decode(token, str(app.config['SECRET_KEY']), algorithms=["HS256"])
+            print("Decoded token:", data)  # For debugging
+        except Exception as e:
+            print("JWT Decode Error:", str(e))
+            return make_response(jsonify({'error': 'Invalid or expired token'}), 401)
+
+        cursor.execute("SELECT COUNT(*) FROM blacklist WHERE token = ?", (token,))
+        if cursor.fetchone()[0] > 0:
+            return make_response(jsonify({'error': 'Token is blacklisted'}), 401)
 
         return f(*args, **kwargs)
     
-    return jwt_required_wrapper
+    return login_required_wrapper
 
 def log_request(f):
     @wraps(f)

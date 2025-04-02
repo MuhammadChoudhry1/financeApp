@@ -1,32 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView, Platform, SafeAreaView, Image, Modal } from 'react-native';
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    StyleSheet,
+    Dimensions,
+    ScrollView,
+    Platform,
+    SafeAreaView,
+    Image,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // ✅ Import AsyncStorage
 
 const { width, height } = Dimensions.get('window');
 
 const HomePage = () => {
     const navigation = useNavigation();
-    const [expenses, setExpenses] = useState([]); // State to store expenses
-    const [pageNum, setPageNum] = useState(1); // State for pagination
-    const [pageSize, setPageSize] = useState(10); // State for page size
+    const [expenses, setExpenses] = useState([]);
+    const [pageNum, setPageNum] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
 
-    // Fetch expenses from the backend
+    // ✅ Fetch expenses from the backend with token
     const fetchExpenses = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/v1.0/expenses', {
+            const token = await AsyncStorage.getItem('token'); // ✅ Get token
+            const response = await axios.get('http://192.168.1.214:5000/api/v1.0/expenses', {
+                headers: {
+                    'x-access-token': token, // ✅ Secure header
+                },
                 params: {
                     pn: pageNum,
                     ps: pageSize,
                 },
             });
-            setExpenses(response.data); // Update state with fetched data
+            setExpenses(response.data);
         } catch (error) {
-            console.error('Error fetching expenses:', error);
+            console.error('Error fetching expenses:', error.response?.data || error.message);
         }
     };
 
-    // Fetch expenses when the component mounts or when pagination changes
     useEffect(() => {
         fetchExpenses();
     }, [pageNum, pageSize]);
@@ -48,17 +62,34 @@ const HomePage = () => {
                 </View>
 
                 {/* Navigation Buttons */}
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.navBarContainer} contentContainerStyle={styles.navBarContent}>
-                    <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('expensetracking')}>
+                <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={styles.navBarContainer}
+                    contentContainerStyle={styles.navBarContent}
+                >
+                    <TouchableOpacity
+                        style={[styles.navBarItem, styles.navBarItemShadow]}
+                        onPress={() => navigation.navigate('expensetracking')}
+                    >
                         <Text style={styles.navBarText}>Expense Tracking</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('incomeDocumentation')}>
+                    <TouchableOpacity
+                        style={[styles.navBarItem, styles.navBarItemShadow]}
+                        onPress={() => navigation.navigate('incomeDocumentation')}
+                    >
                         <Text style={styles.navBarText}>Income Documentation</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('saving_goals')}>
+                    <TouchableOpacity
+                        style={[styles.navBarItem, styles.navBarItemShadow]}
+                        onPress={() => navigation.navigate('saving_goals')}
+                    >
                         <Text style={styles.navBarText}>Saving Goals</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.navBarItem, styles.navBarItemShadow]} onPress={() => navigation.navigate('reporting-analytics')}>
+                    <TouchableOpacity
+                        style={[styles.navBarItem, styles.navBarItemShadow]}
+                        onPress={() => navigation.navigate('graphs')}
+                    >
                         <Text style={styles.navBarText}>Reporting Analytics</Text>
                     </TouchableOpacity>
                 </ScrollView>
@@ -67,7 +98,7 @@ const HomePage = () => {
                 <View style={styles.expenseListContainer}>
                     <ScrollView contentContainerStyle={styles.expenseListContent}>
                         {expenses.map((expense) => (
-                            <View key={expense._id} style={styles.expenseItem}>
+                            <View key={expense.id || expense._id} style={styles.expenseItem}>
                                 <View>
                                     <Text style={styles.expenseDescription}>{expense.description}</Text>
                                     <Text style={styles.expenseCategory}>{expense.category}</Text>
@@ -93,7 +124,7 @@ const styles = StyleSheet.create({
     },
     topBackground: {
         width: '100%',
-        height: '30%', // Adjusted height
+        height: '30%',
         justifyContent: 'center',
         padding: 16,
         backgroundColor: '#6A5ACD',
@@ -166,7 +197,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     expenseListContainer: {
-        flex: 15, // Take up remaining space
+        flex: 15,
         padding: 10,
     },
     expenseListContent: {

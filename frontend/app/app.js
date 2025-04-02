@@ -5,6 +5,7 @@ import IncomeDocumentation from './incomeDocumentation';
 import ExpenseTracking from './expensetracking';
 import CreateAccount from './create_account';
 import Login from './login';
+import Graphs from './graphs';
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,7 @@ const App = () => {
                 <Stack.Screen name="ExpenseTracking" component={ExpenseTracking} />
                 <Stack.Screen name="CreateAccount" component={CreateAccount} />
                 <Stack.Screen name="Login" component={Login} />
-                // ...existing code...
+                <Stack.Screen name="Graphs" component={Graphs} />
             </Stack.Navigator>
         </NavigationContainer>
     );

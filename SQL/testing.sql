@@ -1,3 +1,7 @@
-SELECT name, definition
-FROM sys.check_constraints
-WHERE parent_object_id = OBJECT_ID('dbo.saving_goals');
+-- Assign expenses without a username to user 12 and 123
+UPDATE expenses
+SET username = CASE 
+    WHEN ASCII(SUBSTRING(id, 1, 1)) % 2 = 0 THEN '12'  -- Assign based on ASCII value of the first character
+    ELSE '123'
+END
+WHERE username IS NULL;

@@ -10,6 +10,13 @@ from flask import current_app as app  # Import current_app to access app config
 
 auth_bp = Blueprint('auth_bp', __name__)
 
+def generate_token_response(username):
+    token = encode({
+        'user': username,
+        'exp': datetime.utcnow() + timedelta(hours=1)  # Extend token expiration to 1 hour
+    }, str(app.config['SECRET_KEY']), algorithm='HS256')  # Ensure SECRET_KEY is a string
+    return make_response(jsonify({'token': token}), 200)
+
 @auth_bp.route('/api/v1.0/login', methods=['POST'])
 def login():
     auth = request.authorization
@@ -21,11 +28,7 @@ def login():
         if user:
             print(f"User found: {user[0]}")  # Debugging: Log found user
             if bcrypt.checkpw(auth.password.encode('utf-8'), user[1].encode('utf-8')):  # Ensure password comparison is correct
-                token = encode({
-                    'user': auth.username,
-                    'exp': datetime.utcnow() + timedelta(minutes=30)
-                }, str(app.config['SECRET_KEY']), algorithm='HS256')  # Ensure SECRET_KEY is a string
-                return make_response(jsonify({'token': token}), 200)
+                return generate_token_response(auth.username)  # Use the reusable function
             else:
                 return make_response(jsonify({'error': 'Invalid password'}), 401)
         else:

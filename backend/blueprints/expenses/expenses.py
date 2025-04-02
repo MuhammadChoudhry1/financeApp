@@ -2,6 +2,7 @@ import uuid
 from flask import Blueprint, request, jsonify, make_response, url_for
 from datetime import datetime
 from globals import cursor, conn  # Import SQL connection
+from decorators import jwt_required, login_required  # Import the new decorator
 
 expense_bp = Blueprint('expense_bp', __name__)
 
@@ -11,7 +12,9 @@ allowed_descriptions = ['Movie', 'Shopping', 'Bus Fare', 'Dinner', 'Electricity 
 
 # ✅ GET all expenses with pagination
 @expense_bp.route("/api/v1.0/expenses", methods=["GET"])
-def show_all_expenses():
+@login_required
+@jwt_required
+def show_all_expenses(username):
     """
     GET: Retrieve all expenses with pagination.
     """
@@ -21,8 +24,8 @@ def show_all_expenses():
         offset = (page_num - 1) * page_size
 
         cursor.execute(
-            "SELECT id, description, amount, category, date FROM expenses ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY",
-            (offset, page_size)
+            "SELECT id, description, amount, category, date FROM expenses WHERE username = ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY",
+            (username, offset, page_size)
         )
         expenses = cursor.fetchall()
 
@@ -41,12 +44,13 @@ def show_all_expenses():
 
 # ✅ GET a single expense by ID
 @expense_bp.route("/api/v1.0/expenses/<string:id>", methods=["GET"])
-def show_one_expense(id):
+@login_required
+@jwt_required
+def show_one_expense(id, username):
     """
     GET: Retrieve a single expense by ID.
     """
     try:
-        cursor.execute("SELECT id, description, amount, category, date FROM expenses WHERE id = ?", (id,))
         expense = cursor.fetchone()
 
         if expense:
@@ -66,6 +70,7 @@ def show_one_expense(id):
 
 # ✅ POST: Add a new expense (handles x-www-form-urlencoded)
 @expense_bp.route("/api/v1.0/expenses", methods=["POST"])
+@login_required
 def add_expense():
     """
     POST: Add a new expense.
@@ -112,6 +117,7 @@ def add_expense():
 
 # ✅ POST: Add a new utility expense (handles x-www-form-urlencoded)
 @expense_bp.route("/api/v1.0/Utilities", methods=["POST"])
+@login_required
 def add_utility():
     """
     POST: Add a new utility expense.
@@ -158,6 +164,7 @@ def add_utility():
 
 # ✅ PUT: Edit an existing expense (handles x-www-form-urlencoded)
 @expense_bp.route("/api/v1.0/expenses/<string:id>", methods=["PUT"])
+@login_required
 def edit_expense(id):
     """
     PUT: Edit an existing expense by ID.
@@ -207,6 +214,7 @@ def edit_expense(id):
 
 # ✅ DELETE: Remove an expense
 @expense_bp.route("/api/v1.0/expenses/<string:id>", methods=["DELETE"])
+@login_required
 def delete_expense(id):
     """
     DELETE: Delete an expense by ID.
