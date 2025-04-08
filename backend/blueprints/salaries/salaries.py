@@ -1,22 +1,22 @@
 import uuid
 from flask import Blueprint, request, jsonify, make_response, url_for
 from datetime import datetime
-from globals import cursor, conn  # Import the SQL Server connection
-from decorators import login_required  # Import the login_required decorator
+from globals import cursor, conn  # SQL connection
+from decorators import login_required  # Assumes this injects `username`
 
 salaries_bp = Blueprint('salaries_bp', __name__)
 
-# ✅ GET all salaries with pagination
+# ✅ GET all salaries (filtered by username)
 @salaries_bp.route("/api/v1.0/salaries", methods=["GET"])
 @login_required
-def show_all_salaries():
+def show_all_salaries(username):
     page_num = int(request.args.get('pn', 1))
     page_size = int(request.args.get('ps', 10))
     offset = (page_num - 1) * page_size
 
     cursor.execute(
-        "SELECT id, name, amount, date FROM salaries ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY",
-        (offset, page_size)
+        "SELECT id, name, amount, date FROM salaries WHERE username = ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY",
+        (username, offset, page_size)
     )
     salaries = cursor.fetchall()
 
@@ -29,11 +29,14 @@ def show_all_salaries():
 
     return make_response(jsonify(data_to_return), 200)
 
-# ✅ GET a single salary by ID
+# ✅ GET single salary (only if owned by user)
 @salaries_bp.route("/api/v1.0/salaries/<string:id>", methods=["GET"])
 @login_required
-def show_one_salary(id):
-    cursor.execute("SELECT id, name, amount, date FROM salaries WHERE id = ?", (id,))
+def show_one_salary(id, username):
+    cursor.execute(
+        "SELECT id, name, amount, date FROM salaries WHERE id = ? AND username = ?",
+        (id, username)
+    )
     salary = cursor.fetchone()
 
     if salary:
@@ -45,26 +48,23 @@ def show_one_salary(id):
         }
         return make_response(jsonify(salary_data), 200)
     else:
-        return make_response(jsonify({"error": "Salary not found"}), 404)
+        return make_response(jsonify({"error": "Salary not found or unauthorized"}), 404)
 
-# ✅ POST: Add a new salary
+# ✅ POST: Add new salary for this user
 @salaries_bp.route("/api/v1.0/salaries", methods=["POST"])
 @login_required
-def add_salary():
-    """
-    POST: Add a new salary.
-    """
+def add_salary(username):
     data = request.json if request.is_json else request.form.to_dict()
 
     if "name" in data and "amount" in data:
-        new_id = str(uuid.uuid4())  # Generate UUID
+        new_id = str(uuid.uuid4())
         name = data["name"]
         amount = float(data["amount"])
-        date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Auto-generate date
+        date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         cursor.execute(
-            "INSERT INTO salaries (id, name, amount, date) VALUES (?, ?, ?, ?)",
-            (new_id, name, amount, date)
+            "INSERT INTO salaries (id, name, amount, date, username) VALUES (?, ?, ?, ?, ?)",
+            (new_id, name, amount, date, username)
         )
         conn.commit()
 
@@ -72,31 +72,27 @@ def add_salary():
     else:
         return make_response(jsonify({"error": "Missing required fields"}), 400)
 
-# ✅ PUT: Edit an existing salary
+# ✅ PUT: Edit only if salary belongs to user
 @salaries_bp.route("/api/v1.0/salaries/<string:id>", methods=["PUT"])
 @login_required
-def edit_salary(id):
-    """
-    PUT: Edit an existing salary by ID.
-    """
+def edit_salary(id, username):
     data = request.json if request.is_json else request.form.to_dict()
 
-    # Check if the record exists before updating
-    cursor.execute("SELECT COUNT(*) FROM salaries WHERE id = ?", (id,))
+    # Check ownership
+    cursor.execute("SELECT COUNT(*) FROM salaries WHERE id = ? AND username = ?", (id, username))
     exists = cursor.fetchone()[0]
 
     if exists == 0:
-        return make_response(jsonify({"error": "Salary not found"}), 404)
+        return make_response(jsonify({"error": "Salary not found or unauthorized"}), 404)
 
     if "name" in data and "amount" in data:
         name = data["name"]
         amount = float(data["amount"])
-        # Update the date to the current time on modification
         date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         cursor.execute(
-            "UPDATE salaries SET name = ?, amount = ?, date = ? WHERE id = ?",
-            (name, amount, date, id)
+            "UPDATE salaries SET name = ?, amount = ?, date = ? WHERE id = ? AND username = ?",
+            (name, amount, date, id, username)
         )
         conn.commit()
 
@@ -105,14 +101,14 @@ def edit_salary(id):
     else:
         return make_response(jsonify({"error": "Missing required fields"}), 400)
 
-# ✅ DELETE: Remove a salary
+# ✅ DELETE: Remove only if owned by user
 @salaries_bp.route("/api/v1.0/salaries/<string:id>", methods=["DELETE"])
 @login_required
-def delete_salary(id):
-    cursor.execute("DELETE FROM salaries WHERE id = ?", (id,))
+def delete_salary(id, username):
+    cursor.execute("DELETE FROM salaries WHERE id = ? AND username = ?", (id, username))
     conn.commit()
 
     if cursor.rowcount > 0:
         return make_response(jsonify({}), 204)
     else:
-        return make_response(jsonify({"error": "Invalid salary ID"}), 404)
+        return make_response(jsonify({"error": "Salary not found or unauthorized"}), 404)

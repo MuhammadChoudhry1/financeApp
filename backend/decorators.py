@@ -12,8 +12,7 @@ def jwt_required(f):
 
         try:
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
-        except jwt.ExpiredSignatureError:
-            return make_response(jsonify({'error': 'Token has expired'}), 403)
+            # Removed expiration check since the token no longer has 'exp'
         except jwt.InvalidTokenError:
             return make_response(jsonify({'error': 'Token is invalid'}), 403)
 
@@ -28,23 +27,21 @@ def jwt_required(f):
 def login_required(f):
     @wraps(f)
     def login_required_wrapper(*args, **kwargs):
-        token = request.headers.get('x-access-token')
-
-        if not token:
-            return make_response(jsonify({'error': 'Login required'}), 401)
-
         try:
-            data = jwt.decode(token, str(app.config['SECRET_KEY']), algorithms=["HS256"])
-            print("Decoded token:", data)  # For debugging
+            token = request.headers.get('x-access-token')
+            if not token:
+                return make_response(jsonify({"error": "Token is missing"}), 401)
+
+            decoded_token = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+            cursor.execute("SELECT COUNT(*) FROM blacklist WHERE token = ?", (token,))
+            if cursor.fetchone()[0] > 0:
+                return make_response(jsonify({"error": "Token is blacklisted"}), 401)
+
+            return f(*args, **kwargs, username=decoded_token['user'])
+        except jwt.InvalidTokenError:
+            return make_response(jsonify({"error": "Invalid token"}), 401)
         except Exception as e:
-            print("JWT Decode Error:", str(e))
-            return make_response(jsonify({'error': 'Invalid or expired token'}), 401)
-
-        cursor.execute("SELECT COUNT(*) FROM blacklist WHERE token = ?", (token,))
-        if cursor.fetchone()[0] > 0:
-            return make_response(jsonify({'error': 'Token is blacklisted'}), 401)
-
-        return f(*args, **kwargs)
+            return make_response(jsonify({"error": "Internal server error"}), 500)
     
     return login_required_wrapper
 

@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, FlatList, Alert, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View, Text, TextInput, FlatList, Alert, StyleSheet, TouchableOpacity, ScrollView
+} from 'react-native';
 import { useRouter } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // ✅ Import AsyncStorage
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const IncomeDocumentation = () => {
-    const router = useRouter();
-    const [incomeList, setIncomeList] = useState([]);
-    const [newIncome, setNewIncome] = useState({ name: '', amount: '' });
-    const [editIndex, setEditIndex] = useState(null);
-    const [currentEdit, setCurrentEdit] = useState({ name: '', amount: '' });
-    const [isAddModalVisible, setAddModalVisible] = useState(false);
-    const [isEditModalVisible, setEditModalVisible] = useState(false);
+  const router = useRouter();
+  const [incomeList, setIncomeList] = useState([]);
+  const [newIncome, setNewIncome] = useState({ name: '', amount: '' });
+  const [editIndex, setEditIndex] = useState(null);
+  const [currentEdit, setCurrentEdit] = useState({ name: '', amount: '' });
+  const [isAddModalVisible, setAddModalVisible] = useState(false);
+  const [isEditModalVisible, setEditModalVisible] = useState(false);
+
 
     useEffect(() => {
         fetchIncomeData();
@@ -138,6 +141,28 @@ const IncomeDocumentation = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Income Documentation</Text>
+                  {/* Navigation Bar at the Top */}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.navBarContainer}
+        contentContainerStyle={styles.navBarContent}
+      >
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('expensetracking')}>
+          <Text style={styles.navBarText}>Expense Tracking</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('incomeDocumentation')}>
+          <Text style={styles.navBarText}>Income Documentation</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('saving_goals')}>
+          <Text style={styles.navBarText}>Saving Goals</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('graphs')}>
+          <Text style={styles.navBarText}>Reporting Analytics</Text>
+        </TouchableOpacity>
+      </ScrollView>
+
+<View style={{flex:45}}>
             <FlatList
                 data={incomeList}
                 keyExtractor={(item) => item.id}
@@ -159,6 +184,7 @@ const IncomeDocumentation = () => {
                     </View>
                 )}
             />
+            </View>
             <View style={styles.addButtonContainer}>
                 <TouchableOpacity style={styles.roundButton} onPress={() => setAddModalVisible(true)}>
                     <Text style={styles.buttonText}>Add Income</Text>
@@ -296,6 +322,29 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginTop: 10, // Add margin between buttons
     },
+    navBarContainer: {
+        backgroundColor: '#fff',
+        paddingVertical: 10,
+        paddingTop: 10,
+      },
+      navBarContent: {
+        flexDirection: 'row',
+        paddingHorizontal: 10,
+      },
+      navBarItem: {
+        backgroundColor: '#6A5ACD',
+        height: 50,
+        paddingHorizontal: 20,
+        borderRadius: 10,
+        marginHorizontal: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      navBarText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 14,
+      },
 });
 
 export default IncomeDocumentation;

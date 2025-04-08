@@ -9,10 +9,14 @@ import {
     Platform,
     SafeAreaView,
     Image,
+    ActivityIndicator,
+    RefreshControl
 } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // ✅ Import AsyncStorage
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FontAwesome5 } from '@expo/vector-icons'; // Add this import for icons
 
 const { width, height } = Dimensions.get('window');
 
@@ -21,14 +25,60 @@ const HomePage = () => {
     const [expenses, setExpenses] = useState([]);
     const [pageNum, setPageNum] = useState(1);
     const [pageSize, setPageSize] = useState(10);
+    const [accountBalance, setAccountBalance] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [totalIncome, setTotalIncome] = useState(0);
+    const [totalExpenses, setTotalExpenses] = useState(0);
+    const [totalSavings, setTotalSavings] = useState(0);
+    const [menuVisible, setMenuVisible] = useState(false);
 
-    // ✅ Fetch expenses from the backend with token
+    const toggleMenu = () => {
+        setMenuVisible(!menuVisible);
+    };
+
+    const closeMenu = () => {
+        setMenuVisible(false);
+    };
+
+    const handleLogout = async () => {
+        console.log('Logout initiated'); // Debugging log
+        closeMenu();
+
+        // Navigate to Login page immediately
+        navigation.replace('index');
+        console.log('Navigated to Login'); // Debugging log
+
+        // Perform token removal and API call in the background
+        try {
+            const token = await AsyncStorage.getItem('token');
+            console.log('Token before removal:', token); // Log token before removal
+
+            if (token) {
+                await axios.post(
+                    'http://192.168.1.214:5000/api/v1.0/logout',
+                    {},
+                    {
+                        headers: {
+                            'x-access-token': token,
+                        },
+                    }
+                );
+                console.log('Logout API called successfully'); // Debugging log
+            }
+
+            await AsyncStorage.removeItem('token'); // Remove token
+            console.log('Token removed'); // Debugging log
+        } catch (error) {
+            console.error('Error during logout:', error.response?.data || error.message); // Log any errors
+        }
+    };
+
     const fetchExpenses = async () => {
         try {
-            const token = await AsyncStorage.getItem('token'); // ✅ Get token
+            const token = await AsyncStorage.getItem('token');
             const response = await axios.get('http://192.168.1.214:5000/api/v1.0/expenses', {
                 headers: {
-                    'x-access-token': token, // ✅ Secure header
+                    'x-access-token': token,
                 },
                 params: {
                     pn: pageNum,
@@ -41,22 +91,74 @@ const HomePage = () => {
         }
     };
 
+    const fetchAccountBalance = async () => {
+        try {
+            const token = await AsyncStorage.getItem('token');
+            const response = await axios.get('http://192.168.1.214:5000/api/v1.0/account_balance', {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+
+            setAccountBalance(response.data.account_balance);
+            setTotalIncome(response.data.total_income);
+            setTotalExpenses(response.data.total_expenses);
+            setTotalSavings(response.data.total_savings);
+        } catch (error) {
+            console.error('Error fetching account balance:', error.response?.data || error.message);
+        }
+    };
+
     useEffect(() => {
-        fetchExpenses();
+        const fetchData = async () => {
+            setLoading(true);
+            await fetchExpenses();
+            await fetchAccountBalance();
+            setLoading(false);
+        };
+        fetchData();
     }, [pageNum, pageSize]);
 
     return (
         <SafeAreaView style={styles.safeArea}>
             <View style={styles.container}>
+                {/* Burger Menu Section */}
+                <View style={styles.menuContainer}>
+                    {/* Burger Menu Button */}
+                    <TouchableOpacity onPress={toggleMenu} style={styles.menuButton}>
+                        <Text style={{ fontSize: 28, color: 'black' }}>☰</Text>
+                    </TouchableOpacity>
+                </View>
+
+                {/* Dropdown Menu */}
+                {menuVisible && (
+                    <View style={styles.menu}>
+                        <TouchableOpacity onPress={handleLogout} style={styles.menuItem}>
+                            <Text style={styles.menuItemText}>Logout</Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
+
                 {/* Top Section with Logo and Balance */}
                 <View style={styles.topBackground}>
                     <View style={styles.headerContainer}>
                         <TouchableOpacity style={styles.logoContainer}>
                             <Image source={require('../assets/images/logo.png')} style={styles.logo} />
                         </TouchableOpacity>
+
                         <View style={styles.balanceContainer}>
                             <Text style={styles.balanceText}>Account Balance</Text>
-                            <Text style={styles.balanceAmount}>$1234.56</Text>
+                            <Text style={styles.balanceAmount}>{`$${accountBalance}`}</Text>
+                            <View style={styles.breakdownContainer}>
+                                <View style={styles.breakdownItem}>
+                                    <FontAwesome5 name="arrow-up" size={16} color="green" style={styles.breakdownIcon} />
+                                    <Text style={styles.breakdownText}>Income: ${totalIncome}</Text>
+                                </View>
+                                <View style={styles.breakdownItem}>
+                                    <FontAwesome5 name="arrow-down" size={16} color="red" style={styles.breakdownIcon} />
+                                    <Text style={styles.breakdownText}>Expenses: ${totalExpenses}</Text>
+                                </View>
+                            </View>
                         </View>
                     </View>
                 </View>
@@ -91,6 +193,12 @@ const HomePage = () => {
                         onPress={() => navigation.navigate('graphs')}
                     >
                         <Text style={styles.navBarText}>Reporting Analytics</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.navBarItem, styles.navBarItemShadow]}
+                        onPress={() => navigation.navigate('budget')}
+                    >
+                        <Text style={styles.navBarText}>Budgeting</Text> {/* New navigation button */}
                     </TouchableOpacity>
                 </ScrollView>
 
@@ -160,6 +268,21 @@ const styles = StyleSheet.create({
     balanceAmount: {
         fontSize: 38,
         fontWeight: 'bold',
+        color: '#fff',
+    },
+    breakdownContainer: {
+        marginTop: 8,
+    },
+    breakdownItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: 4,
+    },
+    breakdownIcon: {
+        marginRight: 8,
+    },
+    breakdownText: {
+        fontSize: 14,
         color: '#fff',
     },
     navBarContainer: {
@@ -232,6 +355,40 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#888',
         fontStyle: 'italic',
+    },
+    menuContainer: {
+        backgroundColor: '#fff', // Background remains white
+        height: 50, // Reduced height
+        paddingHorizontal: 10,
+        flexDirection: 'row',
+        justifyContent: 'flex-start', // Move to the left
+        alignItems: 'center',
+    },
+    menuButton: {
+        padding: 10,
+        color: 'black', // Set burger menu button color to black
+    },
+    menu: {
+        position: 'absolute',
+        top: 50, // Ensure it appears below the menu button
+        left: 10,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        elevation: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        zIndex: 999,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+    },
+    menuItem: {
+        paddingVertical: 10,
+    },
+    menuItemText: {
+        fontSize: 16,
+        color: '#333',
     },
 });
 

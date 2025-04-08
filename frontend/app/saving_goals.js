@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, FlatList, Alert, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, FlatList, Alert, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 
@@ -141,7 +141,29 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Saving Goals</Text>
-  
+
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.navBarContainer}
+        contentContainerStyle={styles.navBarContent}
+      >
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('expensetracking')}>
+          <Text style={styles.navBarText}>Expense Tracking</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('incomeDocumentation')}>
+          <Text style={styles.navBarText}>Income Documentation</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('saving_goals')}>
+          <Text style={styles.navBarText}>Saving Goals</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('graphs')}>
+          <Text style={styles.navBarText}>Reporting Analytics</Text>
+        </TouchableOpacity>
+      </ScrollView>
+
+<View style={{flex:45}}>
+
       <FlatList
         data={savingGoals}
         keyExtractor={(item) => item.id.toString()} // Ensure id is treated as a string
@@ -165,6 +187,7 @@ const App = () => {
           </View>
         )}
       />
+      </View>
   
       <View style={styles.addButtonContainer}>
         <TouchableOpacity style={styles.roundButton} onPress={() => setShowInputExpense(true)}>
@@ -331,6 +354,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 10, // Add margin between buttons
+  },
+  navBarContainer: {
+    backgroundColor: '#fff',
+    paddingVertical: 10,
+    paddingTop: 10,
+  },
+  navBarContent: {
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+  },
+  navBarItem: {
+    backgroundColor: '#6A5ACD',
+    height: 50,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    marginHorizontal: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  navBarText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
 });
 

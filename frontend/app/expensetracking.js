@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import {
   View, Text, TextInput, FlatList, Alert, StyleSheet,
-  TouchableOpacity
+  TouchableOpacity, ScrollView
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // ✅ Import AsyncStorage
+import { useNavigation } from '@react-navigation/native'; // Add navigation import
 
 const ExpenseTracking = () => {
+  const navigation = useNavigation(); // Initialize navigation
   const [expenses, setExpenses] = useState([]);
   const [newExpense, setNewExpense] = useState({ description: '', amount: '', category: '' });
   const [editMode, setEditMode] = useState(null);
@@ -151,27 +153,51 @@ const ExpenseTracking = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Expenses</Text>
 
-      <FlatList
-        data={expenses}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item, index }) => (
-          <View style={styles.expenseItem}>
-            <View>
-              <Text>{item.description}</Text>
-              <Text>Amount: ${item.amount.toFixed(2)}</Text>
-              <Text>Category: {item.category}</Text>
+      {/* Navigation Bar at the Top */}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.navBarContainer}
+        contentContainerStyle={styles.navBarContent}
+      >
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('expensetracking')}>
+          <Text style={styles.navBarText}>Expense Tracking</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('incomeDocumentation')}>
+          <Text style={styles.navBarText}>Income Documentation</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('saving_goals')}>
+          <Text style={styles.navBarText}>Saving Goals</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('graphs')}>
+          <Text style={styles.navBarText}>Reporting Analytics</Text>
+        </TouchableOpacity>
+      </ScrollView>
+      {/* End of Navigation Bar */}
+
+      <View style={{ flex: 45 }}>
+        <FlatList
+          data={expenses}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item, index }) => (
+            <View style={styles.expenseItem}>
+              <View>
+                <Text>{item.description}</Text>
+                <Text>Amount: ${item.amount.toFixed(2)}</Text>
+                <Text>Category: {item.category}</Text>
+              </View>
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.roundButton} onPress={() => handleDeleteExpense(item.id)}>
+                  <Text style={styles.buttonText}>Delete</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.roundButton} onPress={() => toggleEditMode(index)}>
+                  <Text style={styles.buttonText}>Edit</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.roundButton} onPress={() => handleDeleteExpense(item.id)}>
-                <Text style={styles.buttonText}>Delete</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.roundButton} onPress={() => toggleEditMode(index)}>
-                <Text style={styles.buttonText}>Edit</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
-      />
+          )}
+        />
+      </View>
 
       <View style={styles.addButtonContainer}>
         <TouchableOpacity style={styles.roundButton} onPress={() => setShowInputExpense(true)}>
@@ -277,6 +303,29 @@ const styles = StyleSheet.create({
     width: 300, backgroundColor: '#fff', padding: 20, borderRadius: 10,
     shadowColor: '#000', shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1, shadowRadius: 5, elevation: 2,
+  },
+  navBarContainer: {
+    backgroundColor: '#fff',
+    paddingVertical: 10,
+    paddingTop: 10,
+  },
+  navBarContent: {
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+  },
+  navBarItem: {
+    backgroundColor: '#6A5ACD',
+    height: 50,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    marginHorizontal: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  navBarText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
 });
 

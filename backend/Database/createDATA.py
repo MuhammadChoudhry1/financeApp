@@ -1,71 +1,112 @@
-import pandas as pd
 import uuid
-from datetime import datetime, timedelta
+from flask import Blueprint, request, jsonify, make_response
+from datetime import datetime
+from globals import cursor, conn
+from decorators import login_required
 
+budget_bp = Blueprint('budget_bp', __name__)
 
-# Function to generate structured expenses data
-def generate_expenses(num_records=500):
-    categories = ['Entertainment', 'Groceries', 'Transport', 'Dining']
-    descriptions = ['Movie', 'Shopping', 'Bus Fare', 'Dinner']
+# Allowed budget categories
+allowed_categories = ['Entertainment', 'Groceries', 'Transport', 'Dining']
 
-    data = []
-    base_date = datetime(2025, 2, 1, 16, 37, 46)
-    
-    for i in range(num_records):
-        data.append({
-            "id": str(uuid.uuid4()),  # Full UUID (36 characters)
-            "description": descriptions[i % len(descriptions)],
-            "amount": round(20 + (i % 10) * 5.5, 2),  # Structured amount pattern
-            "category": categories[i % len(categories)],
-            "date": (base_date + timedelta(days=i)).strftime('%Y-%m-%d %H:%M:%S')  # Correct date format
-        })
-    
-    return pd.DataFrame(data)
+# ✅ GET all budgets for a user
+@budget_bp.route("/api/v1.0/budgets", methods=["GET"])
+@login_required
+def get_budgets(username):
+    try:
+        cursor.execute("SELECT id, category, monthly_limit, created_at, updated_at FROM budgets WHERE username = ?", (username,))
+        rows = cursor.fetchall()
 
-# Function to generate structured salaries data
-def generate_salaries(num_records=500):
-    base_date = datetime(2025, 2, 10, 0, 43, 8)
+        budgets = [
+            {
+                "id": row[0],
+                "category": row[1],
+                "monthly_limit": float(row[2]),
+                "created_at": row[3].strftime("%Y-%m-%d %H:%M:%S"),
+                "updated_at": row[4].strftime("%Y-%m-%d %H:%M:%S")
+            } for row in rows if row[1] in allowed_categories
+        ]
+        return make_response(jsonify(budgets), 200)
+    except Exception as e:
+        return make_response(jsonify({"error": str(e)}), 500)
 
-    data = []
-    for i in range(num_records):
-        salary = 2000 + (i % 5) * 250  # Structured salary increments
-        data.append({
-            "id": str(uuid.uuid4()),  # Full UUID (36 characters)
-            "name": f"Employee_{i+1}",
-            "amount": salary,
-            "date": (base_date + timedelta(days=i)).strftime('%Y-%m-%d %H:%M:%S')  # Correct date format
-        })
-    
-    return pd.DataFrame(data)
+# ✅ POST a new budget
+@budget_bp.route("/api/v1.0/budgets", methods=["POST"])
+@login_required
+def add_budget(username):
+    data = request.json if request.is_json else request.form.to_dict()
 
-# Function to generate structured saving goals data
-def generate_saving_goals(num_records=500):
-    categories = ['Electronics', 'Vacation', 'Education', 'Emergency Fund']
-    statuses = ['save', 'ongoing', 'completed']
+    category = data.get("category")
+    limit = data.get("monthly_limit")
 
-    data = []
-    base_date = datetime(2025, 2, 1, 16, 37, 46)
+    if not category or not limit:
+        return make_response(jsonify({"error": "Missing category or limit"}), 400)
 
-    for i in range(num_records):
-        data.append({
-            "id": str(uuid.uuid4()),  # Full UUID (36 characters)
-            "description": f"Goal {i+1}",
-            "amount": round(500 + (i % 7) * 150.75, 2),
-            "category": categories[i % len(categories)],
-            "status": statuses[i % len(statuses)],
-            "date": (base_date + timedelta(days=i)).strftime('%Y-%m-%d %H:%M:%S')  # Correct date format
-        })
-    
-    return pd.DataFrame(data)
+    category = category.strip().capitalize()
+    if category not in allowed_categories:
+        return make_response(jsonify({"error": f"Invalid category '{category}'. Allowed categories: {', '.join(allowed_categories)}"}), 400)
 
-# Generate DataFrames
-expenses_df = generate_expenses()
-salaries_df = generate_salaries()
-saving_goals_df = generate_saving_goals()
+    try:
+        new_id = str(uuid.uuid4())
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        cursor.execute(
+            "INSERT INTO budgets (id, username, category, monthly_limit, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
+            (new_id, username, category, float(limit), now, now)
+        )
+        conn.commit()
+        return make_response(jsonify({"message": "Budget created", "id": new_id}), 201)
+    except Exception as e:
+        return make_response(jsonify({"error": str(e)}), 500)
 
-# Save to CSV files
-expenses_df.to_csv("expenses.csv", index=False)
-salaries_df.to_csv("salaries.csv", index=False)
-saving_goals_df.to_csv("saving_goals.csv", index=False)
+# ✅ PUT update budget
+@budget_bp.route("/api/v1.0/budgets/<string:id>", methods=["PUT"])
+@login_required
+def update_budget(id, username):
+    data = request.json if request.is_json else request.form.to_dict()
+    limit = data.get("monthly_limit")
+    category = data.get("category")
 
-print("Fake data generated and saved as CSV files!")
+    if not limit:
+        return make_response(jsonify({"error": "Missing limit"}), 400)
+
+    if category:
+        category = category.strip().capitalize()
+        if category not in allowed_categories:
+            return make_response(jsonify({"error": f"Invalid category '{category}'. Allowed categories: {', '.join(allowed_categories)}"}), 400)
+
+    try:
+        cursor.execute("SELECT COUNT(*) FROM budgets WHERE id = ? AND username = ?", (id, username))
+        if cursor.fetchone()[0] == 0:
+            return make_response(jsonify({"error": "Budget not found or unauthorized"}), 404)
+
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        if category:
+            cursor.execute(
+                "UPDATE budgets SET category = ?, monthly_limit = ?, updated_at = ? WHERE id = ? AND username = ?",
+                (category, float(limit), now, id, username)
+            )
+        else:
+            cursor.execute(
+                "UPDATE budgets SET monthly_limit = ?, updated_at = ? WHERE id = ? AND username = ?",
+                (float(limit), now, id, username)
+            )
+
+        conn.commit()
+        return make_response(jsonify({"message": "Budget updated"}), 200)
+    except Exception as e:
+        return make_response(jsonify({"error": str(e)}), 500)
+
+# ✅ DELETE budget
+@budget_bp.route("/api/v1.0/budgets/<string:id>", methods=["DELETE"])
+@login_required
+def delete_budget(id, username):
+    try:
+        cursor.execute("DELETE FROM budgets WHERE id = ? AND username = ?", (id, username))
+        conn.commit()
+
+        if cursor.rowcount > 0:
+            return make_response(jsonify({"message": "Budget deleted"}), 204)
+        else:
+            return make_response(jsonify({"error": "Budget not found or unauthorized"}), 404)
+    except Exception as e:
+        return make_response(jsonify({"error": str(e)}), 500)

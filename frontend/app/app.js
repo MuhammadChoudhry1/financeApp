@@ -12,12 +12,12 @@ const Stack = createStackNavigator();
 const App = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="HomePage">
+            <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="Login" component={Login} /> {/* Ensure this is correct */}
                 <Stack.Screen name="HomePage" component={HomePage} />
                 <Stack.Screen name="IncomeDocumentation" component={IncomeDocumentation} />
                 <Stack.Screen name="ExpenseTracking" component={ExpenseTracking} />
                 <Stack.Screen name="CreateAccount" component={CreateAccount} />
-                <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Graphs" component={Graphs} />
             </Stack.Navigator>
         </NavigationContainer>

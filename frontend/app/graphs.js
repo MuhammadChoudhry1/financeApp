@@ -15,17 +15,43 @@ const Graphs = () => {
     const [monthlyByCategory, setMonthlyByCategory] = useState({ labels: [], datasets: [] });
     const [activeChart, setActiveChart] = useState('pie'); // 'pie', 'line', 'bar'
     const [loading, setLoading] = useState(true);
+    const [forecast, setForecast] = useState(null);
+    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        fetchExpenses();
-    }, []);
+    const fetchForecast = async () => {
+        try {
+            setLoading(true);
+            setError(null);
 
-    useEffect(() => {
-        if (expenses.length > 0) {
-            calculateExpenseSummary();
-            calculateMonthlySummary();
+            const token = localStorage.getItem('token');
+            if (!token) {
+                setError('Authentication token is missing. Please log in again.');
+                return;
+            }
+
+            const headers = { 'x-access-token': token };
+            const response = await axios.get('http://localhost:5000/api/v1.0/predict-next-month', { headers });
+
+            if (response.status === 200 && response.data) {
+                setForecast(response.data);
+            } else {
+                setError('Unexpected response from the server. Please try again.');
+            }
+        } catch (err) {
+            console.error('Error fetching forecast:', err);
+            setError('Failed to fetch forecast data. Please check your connection or try again later.');
+        } finally {
+            setLoading(false);
         }
-    }, [expenses]);
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await fetchForecast(); // Fetch forecast data
+            await fetchExpenses(); // Fetch expenses data
+        };
+        fetchData();
+    }, []); // Ensure both forecast and expenses are fetched on mount
 
     useEffect(() => {
         if (monthlyByCategory.length > 0) {
@@ -165,18 +191,27 @@ const Graphs = () => {
                 </TouchableOpacity>
             </View>
 
-            {/* Chart Navigation */}
-            <View style={styles.navContainer}>
-                <TouchableOpacity style={[styles.navButton, styles.purpleButton]}>
-                    <Text style={styles.navText}>Categories</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.navButton, styles.purpleButton]}>
-                    <Text style={styles.navText}>Trends</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.navButton, styles.purpleButton]}>
-                    <Text style={styles.navText}>Breakdown</Text>
-                </TouchableOpacity>
-            </View>
+            <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.navBarContainer}
+        contentContainerStyle={styles.navBarContent}
+      >
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('expensetracking')}>
+          <Text style={styles.navBarText}>Expense Tracking</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('incomeDocumentation')}>
+          <Text style={styles.navBarText}>Income Documentation</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('saving_goals')}>
+          <Text style={styles.navBarText}>Saving Goals</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('graphs')}>
+          <Text style={styles.navBarText}>Reporting Analytics</Text>
+        </TouchableOpacity>
+      </ScrollView>
+
+<View style={{flex:45}}>
 
             {/* Pie Chart */}
             <View style={styles.chartWrapper}>
@@ -321,6 +356,28 @@ const Graphs = () => {
                     </View>
                 )}
             </View>
+            <View style={styles.chartWrapper}>
+                <Text style={styles.chartTitle}>Next Month Forecast</Text>
+                <Text style={styles.chartDescription}>Predicted summary for the upcoming month</Text>
+                {loading ? (
+                    <ActivityIndicator size="large" color="#6A5ACD" />
+                ) : error ? (
+                    <Text style={styles.error}>{error}</Text>
+                ) : forecast ? (
+                    <View style={styles.forecastContainer}>
+                        <Text style={styles.message}>{forecast.message}</Text>
+                        <Text style={styles.details}>Income: £{forecast.details.income}</Text>
+                        <Text style={styles.details}>Expense: £{forecast.details.expense}</Text>
+                        <Text style={styles.details}>Savings: £{forecast.details.savings}</Text>
+                    </View>
+                ) : (
+                    <Text style={styles.placeholder}>No forecast data available</Text>
+                )}
+                <TouchableOpacity onPress={fetchForecast} style={styles.refreshButton}>
+                    <Text style={styles.refreshText}>Refresh Forecast</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
         </ScrollView>
     );
 };
@@ -328,7 +385,7 @@ const Graphs = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f8f9fa',
+        backgroundColor: '#f4f6f8', // Softer background color
         paddingTop: 20,
     },
     contentContainer: {
@@ -338,12 +395,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f8f9fa',
+        backgroundColor: '#f4f6f8',
     },
     loadingText: {
         marginTop: 10,
         color: '#6A5ACD',
         fontSize: 16,
+        fontWeight: '500',
     },
     header: {
         flexDirection: 'row',
@@ -353,12 +411,14 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
     headerTitle: {
-        fontSize: 24,
+        fontSize: 26, // Slightly larger font
         fontWeight: 'bold',
         color: '#333',
     },
     refreshButton: {
         padding: 8,
+        backgroundColor: '#e8eaf6', // Subtle background for button
+        borderRadius: 8,
     },
     navContainer: {
         flexDirection: 'row',
@@ -370,20 +430,25 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         marginHorizontal: 5,
         borderRadius: 20,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
     },
     purpleButton: {
         backgroundColor: '#6A5ACD',
     },
     navText: {
         color: '#fff',
-        fontWeight: '500',
+        fontWeight: '600',
     },
     chartWrapper: {
         width: width - 20,
         marginHorizontal: 10,
         backgroundColor: '#fff',
         borderRadius: 16,
-        padding: 15,
+        padding: 20, // Increased padding for better spacing
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
@@ -396,10 +461,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     chartTitle: {
-        fontSize: 18,
-        fontWeight: '600',
+        fontSize: 20, // Larger font for titles
+        fontWeight: '700',
         color: '#333',
-        marginBottom: 5,
+        marginBottom: 8,
         textAlign: 'center',
     },
     chartDescription: {
@@ -417,7 +482,59 @@ const styles = StyleSheet.create({
         marginTop: 10,
         color: '#999',
         fontSize: 16,
+        fontStyle: 'italic',
     },
+    forecastContainer: {
+        backgroundColor: '#f0f0ff', // Light purple to match chart cards
+        padding: 15,
+        borderRadius: 10,
+        marginTop: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
+    },
+    message: {
+        fontSize: 18,
+        fontWeight: '600',
+        color: '#6A5ACD', // Match theme color
+        marginBottom: 10,
+    },
+    placeholder: {
+        fontSize: 16,
+        color: '#999',
+        textAlign: 'center',
+        marginVertical: 10,
+    },
+    refreshText: {
+        color: '#6A5ACD',
+        fontWeight: '600',
+        textAlign: 'center',
+    },
+    navBarContainer: {
+        backgroundColor: '#fff',
+        paddingVertical: 10,
+        paddingTop: 10,
+      },
+      navBarContent: {
+        flexDirection: 'row',
+        paddingHorizontal: 10,
+      },
+      navBarItem: {
+        backgroundColor: '#6A5ACD',
+        height: 50,
+        paddingHorizontal: 20,
+        borderRadius: 10,
+        marginHorizontal: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      navBarText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 14,
+      },
 });
 
 export default Graphs;
