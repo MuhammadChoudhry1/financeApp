@@ -107,7 +107,6 @@ def monthly_category_summary(username):
                 monthly_category_data[key] = 0.0
             monthly_category_data[key] += amount_float
         
-        # Format result
         result = [
             {"month": month, "category": category, "total": total}
             for (month, category), total in sorted(monthly_category_data.items())

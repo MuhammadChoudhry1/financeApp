@@ -12,7 +12,7 @@ def jwt_required(f):
 
         try:
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
-            # Removed expiration check since the token no longer has 'exp'
+
         except jwt.InvalidTokenError:
             return make_response(jsonify({'error': 'Token is invalid'}), 403)
 

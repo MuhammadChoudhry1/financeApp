@@ -6,10 +6,8 @@ from decorators import login_required
 
 budget_bp = Blueprint('budget_bp', __name__)
 
-# Allowed budget categories
 allowed_categories = ['Entertainment', 'Groceries', 'Transport', 'Dining']
 
-# ✅ GET all budgets for a user
 @budget_bp.route("/api/v1.0/budgets", methods=["GET"])
 @login_required
 def get_budgets(username):
@@ -30,7 +28,6 @@ def get_budgets(username):
     except Exception as e:
         return make_response(jsonify({"error": str(e)}), 500)
 
-# ✅ POST a new budget
 @budget_bp.route("/api/v1.0/budgets", methods=["POST"])
 @login_required
 def add_budget(username):
@@ -58,7 +55,6 @@ def add_budget(username):
     except Exception as e:
         return make_response(jsonify({"error": str(e)}), 500)
 
-# ✅ PUT update budget
 @budget_bp.route("/api/v1.0/budgets/<string:id>", methods=["PUT"])
 @login_required
 def update_budget(id, username):
@@ -96,7 +92,6 @@ def update_budget(id, username):
     except Exception as e:
         return make_response(jsonify({"error": str(e)}), 500)
 
-# ✅ DELETE budget
 @budget_bp.route("/api/v1.0/budgets/<string:id>", methods=["DELETE"])
 @login_required
 def delete_budget(id, username):

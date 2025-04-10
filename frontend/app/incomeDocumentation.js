@@ -4,8 +4,10 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native'; 
 
 const IncomeDocumentation = () => {
+  const navigation = useNavigation(); 
   const router = useRouter();
   const [incomeList, setIncomeList] = useState([]);
   const [newIncome, setNewIncome] = useState({ name: '', amount: '' });
@@ -21,10 +23,20 @@ const IncomeDocumentation = () => {
 
     const fetchIncomeData = async () => {
         try {
-            const token = await AsyncStorage.getItem('token'); // ✅ Get token from AsyncStorage
-            const response = await fetch('http://localhost:5000/api/v1.0/salaries', {
-                headers: { 'x-access-token': token }, // ✅ Add token to headers
+            const token = await AsyncStorage.getItem('token');
+            if (!token) {
+                throw new Error('Token not found. Please log in again.');
+            }
+
+            const response = await fetch('http://192.168.1.214:5000/api/v1.0/salaries', { 
+                headers: { 'x-access-token': token },
             });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`API Error: ${response.status} - ${errorText}`);
+            }
+
             const data = await response.json();
             const formattedData = data.map(income => ({
                 ...income,
@@ -32,13 +44,14 @@ const IncomeDocumentation = () => {
             }));
             setIncomeList(formattedData.sort((a, b) => new Date(b.date) - new Date(a.date)));
         } catch (error) {
-            Alert.alert('Error', 'Failed to fetch income data.');
+            console.error('Error fetching income data:', error.message);
+            Alert.alert('Error', `Failed to fetch income data: ${error.message}`);
         }
     };
 
     const deleteIncome = async (id) => {
         try {
-            const token = await AsyncStorage.getItem('token'); // ✅ Get token from AsyncStorage
+            const token = await AsyncStorage.getItem('token'); 
             const response = await fetch(`http://localhost:5000/api/v1.0/salaries/${id}`, {
                 method: 'DELETE',
                 headers: { 'x-access-token': token }, // ✅ Add token to headers
@@ -71,7 +84,7 @@ const IncomeDocumentation = () => {
         }
 
         try {
-            const token = await AsyncStorage.getItem('token'); // ✅ Get token from AsyncStorage
+            const token = await AsyncStorage.getItem('token'); 
             const formData = new URLSearchParams();
             formData.append('name', currentEdit.name);
             formData.append('amount', parseFloat(currentEdit.amount));
@@ -80,7 +93,7 @@ const IncomeDocumentation = () => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    'x-access-token': token, // ✅ Add token to headers
+                    'x-access-token': token, 
                 },
                 body: formData.toString(),
             });
@@ -104,7 +117,7 @@ const IncomeDocumentation = () => {
         }
 
         try {
-            const token = await AsyncStorage.getItem('token'); // ✅ Get token from AsyncStorage
+            const token = await AsyncStorage.getItem('token'); 
             const formData = new URLSearchParams();
             formData.append('name', newIncome.name);
             formData.append('amount', parseFloat(newIncome.amount));
@@ -114,7 +127,7 @@ const IncomeDocumentation = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    'x-access-token': token, // ✅ Add token to headers
+                    'x-access-token': token, 
                 },
                 body: formData.toString(),
             });
@@ -141,7 +154,6 @@ const IncomeDocumentation = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Income Documentation</Text>
-                  {/* Navigation Bar at the Top */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -205,7 +217,7 @@ const IncomeDocumentation = () => {
                         onChangeText={(text) => setNewIncome({ ...newIncome, amount: text })}
                         keyboardType="numeric"
                     />
-                    <View style={styles.buttonSpacing}> {/* Add a container for spacing */}
+                    <View style={styles.buttonSpacing}> 
                         <TouchableOpacity style={styles.roundButton} onPress={addIncome}>
                             <Text style={styles.buttonText}>Add Income</Text>
                         </TouchableOpacity>
@@ -233,7 +245,7 @@ const IncomeDocumentation = () => {
                         placeholder="Amount"
                         keyboardType="numeric"
                     />
-                    <View style={styles.buttonSpacing}> {/* Add a container for spacing */}
+                    <View style={styles.buttonSpacing}> 
                         <TouchableOpacity style={styles.roundButton} onPress={() => saveIncomeEdit(currentEdit.id)}>
                             <Text style={styles.buttonText}>Save</Text>
                         </TouchableOpacity>
@@ -320,7 +332,7 @@ const styles = StyleSheet.create({
     buttonSpacing: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 10, // Add margin between buttons
+        marginTop: 10, 
     },
     navBarContainer: {
         backgroundColor: '#fff',

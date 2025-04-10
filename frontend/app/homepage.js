@@ -16,7 +16,7 @@ import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { FontAwesome5 } from '@expo/vector-icons'; // Add this import for icons
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 const { width, height } = Dimensions.get('window');
 
@@ -41,17 +41,15 @@ const HomePage = () => {
     };
 
     const handleLogout = async () => {
-        console.log('Logout initiated'); // Debugging log
+        console.log('Logout initiated'); 
         closeMenu();
 
-        // Navigate to Login page immediately
         navigation.replace('index');
-        console.log('Navigated to Login'); // Debugging log
+        console.log('Navigated to Login'); 
 
-        // Perform token removal and API call in the background
         try {
             const token = await AsyncStorage.getItem('token');
-            console.log('Token before removal:', token); // Log token before removal
+            console.log('Token before removal:', token); 
 
             if (token) {
                 await axios.post(
@@ -63,13 +61,13 @@ const HomePage = () => {
                         },
                     }
                 );
-                console.log('Logout API called successfully'); // Debugging log
+                console.log('Logout API called successfully'); 
             }
 
-            await AsyncStorage.removeItem('token'); // Remove token
-            console.log('Token removed'); // Debugging log
+            await AsyncStorage.removeItem('token'); 
+            console.log('Token removed'); 
         } catch (error) {
-            console.error('Error during logout:', error.response?.data || error.message); // Log any errors
+            console.error('Error during logout:', error.response?.data || error.message); 
         }
     };
 
@@ -122,15 +120,12 @@ const HomePage = () => {
     return (
         <SafeAreaView style={styles.safeArea}>
             <View style={styles.container}>
-                {/* Burger Menu Section */}
                 <View style={styles.menuContainer}>
-                    {/* Burger Menu Button */}
                     <TouchableOpacity onPress={toggleMenu} style={styles.menuButton}>
                         <Text style={{ fontSize: 28, color: 'black' }}>☰</Text>
                     </TouchableOpacity>
                 </View>
 
-                {/* Dropdown Menu */}
                 {menuVisible && (
                     <View style={styles.menu}>
                         <TouchableOpacity onPress={handleLogout} style={styles.menuItem}>
@@ -139,7 +134,6 @@ const HomePage = () => {
                     </View>
                 )}
 
-                {/* Top Section with Logo and Balance */}
                 <View style={styles.topBackground}>
                     <View style={styles.headerContainer}>
                         <TouchableOpacity style={styles.logoContainer}>
@@ -163,7 +157,6 @@ const HomePage = () => {
                     </View>
                 </View>
 
-                {/* Navigation Buttons */}
                 <ScrollView
                     horizontal
                     showsHorizontalScrollIndicator={false}
@@ -198,11 +191,10 @@ const HomePage = () => {
                         style={[styles.navBarItem, styles.navBarItemShadow]}
                         onPress={() => navigation.navigate('budget')}
                     >
-                        <Text style={styles.navBarText}>Budgeting</Text> {/* New navigation button */}
+                        <Text style={styles.navBarText}>Budgeting</Text> 
                     </TouchableOpacity>
                 </ScrollView>
 
-                {/* Expenses List */}
                 <View style={styles.expenseListContainer}>
                     <ScrollView contentContainerStyle={styles.expenseListContent}>
                         {expenses.map((expense) => (
@@ -357,20 +349,20 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
     },
     menuContainer: {
-        backgroundColor: '#fff', // Background remains white
-        height: 50, // Reduced height
+        backgroundColor: '#fff', 
+        height: 50, 
         paddingHorizontal: 10,
         flexDirection: 'row',
-        justifyContent: 'flex-start', // Move to the left
+        justifyContent: 'flex-start', 
         alignItems: 'center',
     },
     menuButton: {
         padding: 10,
-        color: 'black', // Set burger menu button color to black
+        color: 'black', 
     },
     menu: {
         position: 'absolute',
-        top: 50, // Ensure it appears below the menu button
+        top: 50, 
         left: 10,
         backgroundColor: '#fff',
         borderRadius: 10,

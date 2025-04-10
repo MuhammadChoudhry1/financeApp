@@ -1,13 +1,12 @@
 import uuid
 from flask import Blueprint, request, jsonify, make_response, url_for
 from datetime import datetime
-from globals import cursor, conn  # SQL Connection
-from pyodbc import IntegrityError  # Add this import
-from decorators import login_required  # Import the login_required decorator
+from globals import cursor, conn  
+from pyodbc import IntegrityError  
+from decorators import login_required  
 
 saving_bp = Blueprint('saving_bp', __name__)
 
-# Allowed status values (updated to match the database changes)
 allowed_statuses = ['completed', 'ongoing', 'save']
 
 @saving_bp.route("/api/v1.0/saving_goals", methods=["GET"])
@@ -96,7 +95,6 @@ def edit_saving_goal(id, username):
     else:
         data = request.form.to_dict()
 
-    # Check ownership
     cursor.execute("SELECT COUNT(*) FROM saving_goals WHERE id = ? AND username = ?", (id, username))
     exists = cursor.fetchone()[0]
 

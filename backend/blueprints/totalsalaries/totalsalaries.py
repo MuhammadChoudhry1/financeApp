@@ -18,15 +18,12 @@ def get_total_balance(username):
         cursor2 = conn.cursor()
         cursor3 = conn.cursor()
 
-        # Total income from salaries (user-specific)
         cursor1.execute("SELECT SUM(amount) FROM salaries WHERE username = ?", (username,))
         total_income = cursor1.fetchone()[0] or 0
 
-        # Total expenses (user-specific)
         cursor2.execute("SELECT SUM(amount) FROM expenses WHERE username = ?", (username,))
         total_expenses = cursor2.fetchone()[0] or 0
 
-        # Total savings (user-specific)
         cursor3.execute("SELECT SUM(amount) FROM saving_goals WHERE username = ?", (username,))
         total_savings = cursor3.fetchone()[0] or 0
 

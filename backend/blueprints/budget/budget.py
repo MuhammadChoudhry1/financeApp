@@ -6,10 +6,8 @@ from decorators import login_required
 
 budget_bp = Blueprint('budget_bp', __name__)
 
-# Allowed budget categories
 allowed_categories = ['Entertainment', 'Groceries', 'Transport', 'Dining']
 
-# ✅ GET all budgets for a user
 @budget_bp.route("/api/v1.0/budgets", methods=["GET"])
 @login_required
 def get_budgets(username):
@@ -27,6 +25,7 @@ def get_budgets(username):
                 "category": row[1],
                 "monthly_limit": float(row[2]),
                 "used_amount": float(row[3]),
+                "exceeded": float(row[3]) > float(row[2]),  # Add exceeded flag
                 "created_at": row[4].strftime("%Y-%m-%d %H:%M:%S"),
                 "updated_at": row[5].strftime("%Y-%m-%d %H:%M:%S")
             } for row in rows if row[1] in allowed_categories
@@ -35,7 +34,6 @@ def get_budgets(username):
     except Exception as e:
         return make_response(jsonify({"error": str(e)}), 500)
 
-# ✅ POST a new budget
 @budget_bp.route("/api/v1.0/budgets", methods=["POST"])
 @login_required
 def add_budget(username):
@@ -52,7 +50,6 @@ def add_budget(username):
         return make_response(jsonify({"error": f"Invalid category '{category}'. Allowed categories: {', '.join(allowed_categories)}"}), 400)
 
     try:
-        # Check if a budget for this category already exists for the current month
         now = datetime.now()
         start_of_month = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
         cursor.execute(
@@ -62,7 +59,6 @@ def add_budget(username):
         if cursor.fetchone()[0] > 0:
             return make_response(jsonify({"error": f"A budget for category '{category}' already exists for this month."}), 400)
 
-        # Insert the new budget with used_amount initialized to 0
         new_id = str(uuid.uuid4())
         now_str = now.strftime("%Y-%m-%d %H:%M:%S")
         cursor.execute(
@@ -74,7 +70,6 @@ def add_budget(username):
     except Exception as e:
         return make_response(jsonify({"error": str(e)}), 500)
 
-# ✅ PUT update budget
 @budget_bp.route("/api/v1.0/budgets/<string:id>", methods=["PUT"])
 @login_required
 def update_budget(id, username):

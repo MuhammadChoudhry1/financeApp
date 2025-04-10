@@ -1,8 +1,7 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
-from globals import conn  # Ensures database connection is initialized
+from globals import conn 
 
-# Import blueprints
 from blueprints.salaries.salaries import salaries_bp
 from blueprints.expenses.expenses import expense_bp
 from blueprints.saving_goals.saving_Goals import saving_bp
@@ -15,10 +14,15 @@ from blueprints.budget.budget import budget_bp
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-# Secret key for JWT
 app.config['SECRET_KEY'] = 'mysecret'
 
-# Register blueprints
+@app.before_request
+def log_request_info():
+    print(f"Request Method: {request.method}")
+    print(f"Request URL: {request.url}")
+    print(f"Request Headers: {request.headers}")
+    print(f"Request Body: {request.get_data(as_text=True)}")
+
 app.register_blueprint(auth_bp)
 app.register_blueprint(expense_bp)
 app.register_blueprint(salaries_bp)

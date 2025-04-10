@@ -1,10 +1,35 @@
 {
   "expo": {
-    "scheme": "acme",
+    "scheme": "financeapp",
+    "owner": "muhammadchoudhry",
     "plugins": [
       "expo-router"
     ],
     "name": "FinanceApp",
-    "slug": "FinanceApp"
+    "slug": "FinanceApp",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "09b984b5-0ab8-468b-a58a-46b3a07811b2"
+      }
+    },
+    "android": {
+      "package": "com.muhammadchoudhry.financeapp",
+      "googleServicesFile": "./google-services.json",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "financeapp",
+              "host": "*"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
+    }
   }
 }

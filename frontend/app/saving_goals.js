@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, FlatList, Alert, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import { useNavigation } from '@react-navigation/native'; 
 
 const App = () => {
+  const navigation = useNavigation(); 
   const [savingGoals, setSavingGoals] = useState([]);
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
@@ -13,17 +15,16 @@ const App = () => {
   const [showInputExpense, setShowInputExpense] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
-  // Fetch all saving goals
   const fetchSavingGoals = async () => {
     try {
-      const token = await AsyncStorage.getItem('token'); // Retrieve the token from AsyncStorage
+      const token = await AsyncStorage.getItem('token'); 
       if (!token) {
         throw new Error('Authentication token is missing.');
       }
 
-      const response = await fetch('http://localhost:5000/api/v1.0/saving_goals', {
+      const response = await fetch('http://192.168.1.214:5000/api/v1.0/saving_goals', { 
         headers: {
-          'x-access-token': token, // Include the token in the headers
+          'x-access-token': token, 
         },
       });
 
@@ -34,7 +35,7 @@ const App = () => {
       const data = await response.json();
       const parsedData = (data || []).map(goal => ({
         ...goal,
-        amount: parseFloat(goal.amount), // Ensure amount is a float
+        amount: parseFloat(goal.amount), 
       }));
       setSavingGoals(parsedData);
     } catch (error) {
@@ -43,13 +44,11 @@ const App = () => {
   };
 
   const handleAddOrUpdateSavingGoal = async () => {
-    // Validate required fields
     if (!description || !amount || !category) {
         Alert.alert('Error', 'All fields are required.');
         return;
     }
 
-    // Validate amount is a number
     if (isNaN(parseFloat(amount))) {
         Alert.alert('Error', 'Amount must be a number.');
         return;
@@ -61,7 +60,6 @@ const App = () => {
       return;
     }
 
-    // Prepare the payload
     const savingGoalData = {
         description,
         amount: parseFloat(amount),
@@ -69,9 +67,9 @@ const App = () => {
         status,
     };
 
-    console.log('Sending payload:', savingGoalData); // Log the payload
+    console.log('Sending payload:', savingGoalData); 
 
-    const url = editingId ? `http://localhost:5000/api/v1.0/saving_goals/${editingId}` : 'http://localhost:5000/api/v1.0/saving_goals';
+    const url = editingId ? `http://192.168.1.214:5000/api/v1.0/saving_goals/${editingId}` : 'http://192.168.1.214:5000/api/v1.0/saving_goals'; // Updated URL
     const method = editingId ? 'PUT' : 'POST';
 
     try {
@@ -98,7 +96,7 @@ const App = () => {
   // Delete a saving goal
   const handleDeleteSavingGoal = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/v1.0/saving_goals/${id}`, {
+      const response = await fetch(`http://192.168.1.214:5000/api/v1.0/saving_goals/${id}`, { 
         method: 'DELETE',
       });
 
@@ -112,14 +110,13 @@ const App = () => {
     }
   };
 
-  // Edit a saving goal (pre-fill form)
   const handleEditSavingGoal = (goal) => {
     setDescription(goal.description);
     setAmount(goal.amount.toString());
     setCategory(goal.category);
     setStatus(goal.status);
     setEditingId(goal.id);
-    setShowEditModal(true); // Show the edit modal
+    setShowEditModal(true); 
   };
 
   // Reset form fields
@@ -133,7 +130,6 @@ const App = () => {
     setShowEditModal(false);
   };
 
-  // Fetch saving goals on component mount
   useEffect(() => {
     fetchSavingGoals();
   }, []);
@@ -166,7 +162,7 @@ const App = () => {
 
       <FlatList
         data={savingGoals}
-        keyExtractor={(item) => item.id.toString()} // Ensure id is treated as a string
+        keyExtractor={(item) => item.id.toString()} 
         renderItem={({ item }) => (
           <View style={styles.goalItem}>
             <View>
@@ -225,7 +221,7 @@ const App = () => {
             <Picker.Item label="Ongoing" value="ongoing" />
             <Picker.Item label="Completed" value="completed" />
           </Picker>
-          <View style={styles.buttonSpacing}> {/* Add a container for spacing */}
+          <View style={styles.buttonSpacing}> 
             <TouchableOpacity style={styles.roundButton} onPress={handleAddOrUpdateSavingGoal}>
               <Text style={styles.buttonText}>Add Saving Goal</Text>
             </TouchableOpacity>
@@ -266,7 +262,7 @@ const App = () => {
             <Picker.Item label="Ongoing" value="ongoing" />
             <Picker.Item label="Completed" value="completed" />
           </Picker>
-          <View style={styles.buttonSpacing}> {/* Add a container for spacing */}
+          <View style={styles.buttonSpacing}> 
             <TouchableOpacity style={styles.roundButton} onPress={handleAddOrUpdateSavingGoal}>
               <Text style={styles.buttonText}>Save</Text>
             </TouchableOpacity>
@@ -315,12 +311,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonContainer: {
-    flexDirection: 'column', // Arrange buttons vertically
-    gap: 10, // Adds space between buttons
+    flexDirection: 'column', 
+    gap: 10, 
   },
   roundButton: {
     backgroundColor: '#6A5ACD',
-    borderRadius: 20, // Makes the button round
+    borderRadius: 20, 
     paddingVertical: 10,
     paddingHorizontal: 20,
     justifyContent: 'center',
@@ -353,7 +349,7 @@ const styles = StyleSheet.create({
   buttonSpacing: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10, // Add margin between buttons
+    marginTop: 10,
   },
   navBarContainer: {
     backgroundColor: '#fff',

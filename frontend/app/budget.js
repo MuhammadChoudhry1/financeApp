@@ -6,6 +6,7 @@ import {
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import * as Notifications from 'expo-notifications';
 
 const BudgetTracking = () => {
   const navigation = useNavigation();
@@ -20,8 +21,27 @@ const BudgetTracking = () => {
   const API_BASE = 'http://192.168.1.214:5000/api/v1.0/budgets';
 
   useEffect(() => {
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: false,
+      }),
+    });
+
     fetchBudgets();
   }, []);
+
+  const sendNotification = async (message) => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: 'Budget Alert!',
+        body: message,
+        sound: 'default',
+      },
+      trigger: null,
+    });
+  };
 
   const fetchBudgets = async () => {
     try {
@@ -30,6 +50,13 @@ const BudgetTracking = () => {
         headers: { 'x-access-token': token },
       });
       const data = await response.json();
+
+      const exceededBudgets = data.filter(budget => budget.exceeded);
+      if (exceededBudgets.length > 0) {
+        const message = `You have exceeded your budget for: ${exceededBudgets.map(b => b.category).join(', ')}.`;
+        sendNotification(message);
+      }
+
       setBudgets(data);
     } catch (error) {
       Alert.alert('Error', 'Failed to fetch budgets.');
@@ -143,7 +170,6 @@ const BudgetTracking = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Budgets</Text>
 
-      {/* Navigation Bar at the Top */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -166,7 +192,6 @@ const BudgetTracking = () => {
           <Text style={styles.navBarText}>Budget Overview</Text> {/* New navigation option */}
         </TouchableOpacity>
       </ScrollView>
-      {/* End of Navigation Bar */}
 
       <View style={{ flex: 45 }}>
         <FlatList

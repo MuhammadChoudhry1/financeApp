@@ -1,16 +1,14 @@
 import uuid
 from flask import Blueprint, request, jsonify, make_response, url_for
 from datetime import datetime
-from globals import cursor, conn  # Import SQL connection
-from decorators import jwt_required  # Only need jwt_required since it passes username
+from globals import cursor, conn  
+from decorators import jwt_required 
 
 expense_bp = Blueprint('expense_bp', __name__)
 
-# Allowed values for expense descriptions and categories
 allowed_categories = ['Entertainment', 'Groceries', 'Transport', 'Dining', 'Utilities']
 allowed_descriptions = ['Movie', 'Shopping', 'Bus Fare', 'Dinner', 'Electricity Bill']
 
-# ✅ GET all expenses with pagination
 @expense_bp.route("/api/v1.0/expenses", methods=["GET"])
 @jwt_required
 def show_all_expenses(username):
@@ -37,7 +35,6 @@ def show_all_expenses(username):
     except Exception as e:
         return make_response(jsonify({"error": "Database error: " + str(e)}), 500)
 
-# ✅ GET one expense
 @expense_bp.route("/api/v1.0/expenses/<string:id>", methods=["GET"])
 @jwt_required
 def show_one_expense(id, username):
@@ -61,7 +58,6 @@ def show_one_expense(id, username):
     except Exception as e:
         return make_response(jsonify({"error": "Database error: " + str(e)}), 500)
 
-# ✅ POST: Add an expense and update budget
 @expense_bp.route("/api/v1.0/expenses", methods=["POST"])
 @jwt_required
 def add_expense(username):
@@ -82,14 +78,12 @@ def add_expense(username):
         date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         try:
-            # Insert expense
             cursor.execute(
                 "INSERT INTO expenses (id, description, amount, category, date, username) VALUES (?, ?, ?, ?, ?, ?)",
                 (new_id, description, amount, category, date, username)
             )
             conn.commit()
 
-            # Update used_amount in budget
             cursor.execute(
                 "SELECT used_amount FROM budgets WHERE username = ? AND category = ?",
                 (username, category)
@@ -110,7 +104,6 @@ def add_expense(username):
     else:
         return make_response(jsonify({"error": "Missing required fields"}), 400)
 
-# ✅ PUT: Edit expense
 @expense_bp.route("/api/v1.0/expenses/<string:id>", methods=["PUT"])
 @jwt_required
 def edit_expense(id, username):
@@ -145,7 +138,6 @@ def edit_expense(id, username):
     else:
         return make_response(jsonify({"error": "Missing required fields"}), 400)
 
-# ✅ DELETE: Remove expense
 @expense_bp.route("/api/v1.0/expenses/<string:id>", methods=["DELETE"])
 @jwt_required
 def delete_expense(id, username):

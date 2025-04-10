@@ -4,11 +4,11 @@ import {
   TouchableOpacity, ScrollView
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // ✅ Import AsyncStorage
-import { useNavigation } from '@react-navigation/native'; // Add navigation import
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import { useNavigation } from '@react-navigation/native'; 
 
 const ExpenseTracking = () => {
-  const navigation = useNavigation(); // Initialize navigation
+  const navigation = useNavigation(); 
   const [expenses, setExpenses] = useState([]);
   const [newExpense, setNewExpense] = useState({ description: '', amount: '', category: '' });
   const [editMode, setEditMode] = useState(null);
@@ -25,9 +25,9 @@ const ExpenseTracking = () => {
 
   const fetchExpenses = async () => {
     try {
-      const token = await AsyncStorage.getItem('token'); // ✅ Get token from AsyncStorage
+      const token = await AsyncStorage.getItem('token'); 
       const response = await fetch(API_BASE, {
-        headers: { 'x-access-token': token }, // ✅ Add token to headers
+        headers: { 'x-access-token': token }, 
       });
       const data = await response.json();
       const parsedData = data.map(expense => ({
@@ -42,10 +42,10 @@ const ExpenseTracking = () => {
 
   const handleDeleteExpense = async (id) => {
     try {
-      const token = await AsyncStorage.getItem('token'); // ✅ Get token from AsyncStorage
+      const token = await AsyncStorage.getItem('token');
       const response = await fetch(`${API_BASE}/${id}`, {
         method: 'DELETE',
-        headers: { 'x-access-token': token }, // ✅ Add token to headers
+        headers: { 'x-access-token': token }, 
       });
 
       if (response.ok) {
@@ -76,7 +76,7 @@ const ExpenseTracking = () => {
     }
 
     try {
-      const token = await AsyncStorage.getItem('token'); // ✅ Get token from AsyncStorage
+      const token = await AsyncStorage.getItem('token'); 
       const formData = new URLSearchParams();
       formData.append('description', editedExpense.description);
       formData.append('amount', editedExpense.amount.toString());
@@ -86,7 +86,7 @@ const ExpenseTracking = () => {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'x-access-token': token, // ✅ Add token to headers
+          'x-access-token': token,
         },
         body: formData.toString(),
       });
@@ -116,7 +116,7 @@ const ExpenseTracking = () => {
     }
 
     try {
-      const token = await AsyncStorage.getItem('token'); // ✅ Get token from AsyncStorage
+      const token = await AsyncStorage.getItem('token'); 
       const formData = new URLSearchParams();
       formData.append('description', newExpense.description);
       formData.append('amount', newExpense.amount);
@@ -126,7 +126,7 @@ const ExpenseTracking = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'x-access-token': token, // ✅ Add token to headers
+          'x-access-token': token,
         },
         body: formData.toString(),
       });
@@ -153,7 +153,6 @@ const ExpenseTracking = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Expenses</Text>
 
-      {/* Navigation Bar at the Top */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -173,7 +172,6 @@ const ExpenseTracking = () => {
           <Text style={styles.navBarText}>Reporting Analytics</Text>
         </TouchableOpacity>
       </ScrollView>
-      {/* End of Navigation Bar */}
 
       <View style={{ flex: 45 }}>
         <FlatList
@@ -230,12 +228,14 @@ const ExpenseTracking = () => {
               <Picker.Item key={index} label={cat} value={cat} />
             ))}
           </Picker>
-          <TouchableOpacity style={styles.roundButton} onPress={handleAddExpense}>
-            <Text style={styles.buttonText}>Add Expense</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.roundButton} onPress={() => setShowInputExpense(false)}>
-            <Text style={styles.buttonText}>Cancel</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonSpacing}> {/* Add a container for spacing */}
+            <TouchableOpacity style={styles.roundButton} onPress={handleAddExpense}>
+              <Text style={styles.buttonText}>Add Expense</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.roundButton} onPress={() => setShowInputExpense(false)}>
+              <Text style={styles.buttonText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
 
@@ -264,12 +264,14 @@ const ExpenseTracking = () => {
               <Picker.Item key={index} label={cat} value={cat} />
             ))}
           </Picker>
-          <TouchableOpacity style={styles.roundButton} onPress={() => handleSaveEdit(editedExpense.id)}>
-            <Text style={styles.buttonText}>Save</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.roundButton} onPress={() => setShowEditModal(false)}>
-            <Text style={styles.buttonText}>Cancel</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonSpacing}> {/* Add a container for spacing */}
+            <TouchableOpacity style={styles.roundButton} onPress={() => handleSaveEdit(editedExpense.id)}>
+              <Text style={styles.buttonText}>Save</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.roundButton} onPress={() => setShowEditModal(false)}>
+              <Text style={styles.buttonText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
     </View>
@@ -326,6 +328,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 14,
+  },
+  buttonSpacing: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
   },
 });
 

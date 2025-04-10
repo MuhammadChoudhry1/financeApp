@@ -1,12 +1,11 @@
 import uuid
 from flask import Blueprint, request, jsonify, make_response, url_for
 from datetime import datetime
-from globals import cursor, conn  # SQL connection
-from decorators import login_required  # Assumes this injects `username`
+from globals import cursor, conn  
+from decorators import login_required 
 
 salaries_bp = Blueprint('salaries_bp', __name__)
 
-# ✅ GET all salaries (filtered by username)
 @salaries_bp.route("/api/v1.0/salaries", methods=["GET"])
 @login_required
 def show_all_salaries(username):
@@ -29,7 +28,6 @@ def show_all_salaries(username):
 
     return make_response(jsonify(data_to_return), 200)
 
-# ✅ GET single salary (only if owned by user)
 @salaries_bp.route("/api/v1.0/salaries/<string:id>", methods=["GET"])
 @login_required
 def show_one_salary(id, username):
@@ -50,7 +48,6 @@ def show_one_salary(id, username):
     else:
         return make_response(jsonify({"error": "Salary not found or unauthorized"}), 404)
 
-# ✅ POST: Add new salary for this user
 @salaries_bp.route("/api/v1.0/salaries", methods=["POST"])
 @login_required
 def add_salary(username):
@@ -72,7 +69,6 @@ def add_salary(username):
     else:
         return make_response(jsonify({"error": "Missing required fields"}), 400)
 
-# ✅ PUT: Edit only if salary belongs to user
 @salaries_bp.route("/api/v1.0/salaries/<string:id>", methods=["PUT"])
 @login_required
 def edit_salary(id, username):
@@ -101,7 +97,6 @@ def edit_salary(id, username):
     else:
         return make_response(jsonify({"error": "Missing required fields"}), 400)
 
-# ✅ DELETE: Remove only if owned by user
 @salaries_bp.route("/api/v1.0/salaries/<string:id>", methods=["DELETE"])
 @login_required
 def delete_salary(id, username):

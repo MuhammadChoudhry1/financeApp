@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         borderRadius: 60,
     },
     button: {
-        backgroundColor: '#483D8B', // Darker shade of purple
+        backgroundColor: '#483D8B', 
         paddingVertical: 15,
         paddingHorizontal: 20,
         borderRadius: 8,

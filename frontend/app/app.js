@@ -6,12 +6,30 @@ import ExpenseTracking from './expensetracking';
 import CreateAccount from './create_account';
 import Login from './login';
 import Graphs from './graphs';
+import ForgotPassword from './forgot-password'; 
+import ResetPassword from './reset-password'; 
+import * as Linking from 'expo-linking';
 
 const Stack = createStackNavigator();
 
+const linking = {
+    prefixes: [Linking.createURL('/')],
+    config: {
+        screens: {
+            Login: 'login',
+            ResetPassword: 'reset-password',
+            HomePage: 'home',
+            CreateAccount: 'create-account',
+            IncomeDocumentation: 'income',
+            ExpenseTracking: 'expenses',
+            Graphs: 'graphs',
+        },
+    },
+};
+
 const App = () => {
     return (
-        <NavigationContainer>
+        <NavigationContainer linking={linking}>
             <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Login" component={Login} /> {/* Ensure this is correct */}
                 <Stack.Screen name="HomePage" component={HomePage} />
@@ -19,7 +37,9 @@ const App = () => {
                 <Stack.Screen name="ExpenseTracking" component={ExpenseTracking} />
                 <Stack.Screen name="CreateAccount" component={CreateAccount} />
                 <Stack.Screen name="Graphs" component={Graphs} />
-            </Stack.Navigator>
+                <Stack.Screen name="ForgotPassword" component={ForgotPassword} /> {/* Add ForgotPassword */}
+                <Stack.Screen name="ResetPassword" component={ResetPassword} />
+                </Stack.Navigator>
         </NavigationContainer>
     );
 };

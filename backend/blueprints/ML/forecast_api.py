@@ -9,12 +9,8 @@ from sklearn.ensemble import RandomForestRegressor
 
 ml_bp = Blueprint('ml_bp', __name__)
 
-# Path to model
 model_path = os.path.join(os.path.dirname(__file__), "next_month_net_predictor.pkl")
 
-# --------------------------
-# TRAINING BLOCK
-# --------------------------
 def fetch_data():
     query_income = """
         SELECT 
@@ -68,22 +64,16 @@ def train_and_save_model():
 
     print(f"✅ Model trained and saved at {model_path}")
 
-# Train model if not found
 if not os.path.exists(model_path):
     train_and_save_model()
 
-# Load model
 with open(model_path, "rb") as f:
     model = pickle.load(f)
 
-# --------------------------
-# FORECAST API ENDPOINT
-# --------------------------
 @ml_bp.route("/api/v1.0/predict-next-month", methods=["GET"])
 @jwt_required
 def predict_next_month(username):
     try:
-        # Income
         cursor.execute("""
             SELECT TOP 1 
                 CONCAT(YEAR(date), '-', RIGHT('0' + CAST(MONTH(date) AS VARCHAR), 2)) AS month, 
@@ -96,7 +86,6 @@ def predict_next_month(username):
         income_row = cursor.fetchone()
         total_income = float(income_row[1]) if income_row else 0.0
 
-        # Expense
         cursor.execute("""
             SELECT TOP 1 
                 CONCAT(YEAR(date), '-', RIGHT('0' + CAST(MONTH(date) AS VARCHAR), 2)) AS month, 
@@ -109,7 +98,6 @@ def predict_next_month(username):
         expense_row = cursor.fetchone()
         total_expense = float(expense_row[1]) if expense_row else 0.0
 
-        # Savings
         cursor.execute("""
             SELECT TOP 1 
                 CONCAT(YEAR(date), '-', RIGHT('0' + CAST(MONTH(date) AS VARCHAR), 2)) AS month, 
@@ -122,7 +110,6 @@ def predict_next_month(username):
         savings_row = cursor.fetchone()
         total_savings = float(savings_row[1]) if savings_row else 0.0
 
-        # Predict
         features = np.array([[total_income, total_expense, total_savings]])
         prediction = round(model.predict(features)[0], 2)
 
