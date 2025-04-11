@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import {
-  View, Text, TextInput, FlatList, Alert, StyleSheet,
-  TouchableOpacity, ScrollView
+  View, Text, FlatList, Alert, StyleSheet, TouchableOpacity, SafeAreaView
 } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
-import { useNavigation } from '@react-navigation/native'; 
+import Navigation2 from './components/Navagation/Navagation2'; // Ensure Navigation2 is imported
+import HeaderMenu from './components/Common/HeaderMenu'; // Ensure HeaderMenu is imported
+import ExpenseForm from './components/Expenses/ExpenseForm';
+import ExpenseItem from './components/Expenses/ExpenseItem';
 
 const ExpenseTracking = () => {
-  const navigation = useNavigation(); 
   const [expenses, setExpenses] = useState([]);
   const [newExpense, setNewExpense] = useState({ description: '', amount: '', category: '' });
   const [editMode, setEditMode] = useState(null);
@@ -150,189 +150,92 @@ const ExpenseTracking = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Expenses</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <HeaderMenu /> {/* Add HeaderMenu at the top */}
+      <View style={styles.container}>
+        <Text style={styles.title}>Expenses</Text>
 
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.navBarContainer}
-        contentContainerStyle={styles.navBarContent}
-      >
-        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('expensetracking')}>
-          <Text style={styles.navBarText}>Expense Tracking</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('incomeDocumentation')}>
-          <Text style={styles.navBarText}>Income Documentation</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('saving_goals')}>
-          <Text style={styles.navBarText}>Saving Goals</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('graphs')}>
-          <Text style={styles.navBarText}>Reporting Analytics</Text>
-        </TouchableOpacity>
-      </ScrollView>
+        <Navigation2 /> {/* Add Navigation2 component */}
 
-      <View style={{ flex: 45 }}>
-        <FlatList
-          data={expenses}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item, index }) => (
-            <View style={styles.expenseItem}>
-              <View>
-                <Text>{item.description}</Text>
-                <Text>Amount: ${item.amount.toFixed(2)}</Text>
-                <Text>Category: {item.category}</Text>
-              </View>
-              <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.roundButton} onPress={() => handleDeleteExpense(item.id)}>
-                  <Text style={styles.buttonText}>Delete</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.roundButton} onPress={() => toggleEditMode(index)}>
-                  <Text style={styles.buttonText}>Edit</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          )}
-        />
-      </View>
-
-      <View style={styles.addButtonContainer}>
-        <TouchableOpacity style={styles.roundButton} onPress={() => setShowInputExpense(true)}>
-          <Text style={styles.buttonText}>Add Expense</Text>
-        </TouchableOpacity>
-      </View>
-
-      {showInputExpense && (
-        <View style={styles.modalContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Description"
-            value={newExpense.description}
-            onChangeText={(text) => setNewExpense({ ...newExpense, description: text })}
+        <View style={{ flex: 45 }}>
+          <FlatList
+            data={expenses}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item, index }) => (
+              <ExpenseItem
+                item={item}
+                onDelete={() => handleDeleteExpense(item.id)}
+                onEdit={() => toggleEditMode(index)}
+              />
+            )}
           />
-          <TextInput
-            style={styles.input}
-            placeholder="Amount"
-            value={newExpense.amount}
-            onChangeText={(text) => setNewExpense({ ...newExpense, amount: text })}
-            keyboardType="numeric"
-          />
-          <Picker
-            selectedValue={newExpense.category}
-            style={styles.input}
-            onValueChange={(itemValue) => setNewExpense({ ...newExpense, category: itemValue })}
-          >
-            <Picker.Item label="Select Category" value="" />
-            {categories.map((cat, index) => (
-              <Picker.Item key={index} label={cat} value={cat} />
-            ))}
-          </Picker>
-          <View style={styles.buttonSpacing}> {/* Add a container for spacing */}
-            <TouchableOpacity style={styles.roundButton} onPress={handleAddExpense}>
-              <Text style={styles.buttonText}>Add Expense</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.roundButton} onPress={() => setShowInputExpense(false)}>
-              <Text style={styles.buttonText}>Cancel</Text>
-            </TouchableOpacity>
-          </View>
         </View>
-      )}
 
-      {showEditModal && (
-        <View style={styles.modalContainer}>
-          <TextInput
-            style={styles.input}
-            value={editedExpense.description}
-            onChangeText={(text) => setEditedExpense({ ...editedExpense, description: text })}
-            placeholder="Description"
-          />
-          <TextInput
-            style={styles.input}
-            value={editedExpense.amount.toString()}
-            onChangeText={(text) => setEditedExpense({ ...editedExpense, amount: text })}
-            placeholder="Amount"
-            keyboardType="numeric"
-          />
-          <Picker
-            selectedValue={editedExpense.category}
-            style={styles.input}
-            onValueChange={(itemValue) => setEditedExpense({ ...editedExpense, category: itemValue })}
-          >
-            <Picker.Item label="Select Category" value="" />
-            {categories.map((cat, index) => (
-              <Picker.Item key={index} label={cat} value={cat} />
-            ))}
-          </Picker>
-          <View style={styles.buttonSpacing}> {/* Add a container for spacing */}
-            <TouchableOpacity style={styles.roundButton} onPress={() => handleSaveEdit(editedExpense.id)}>
-              <Text style={styles.buttonText}>Save</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.roundButton} onPress={() => setShowEditModal(false)}>
-              <Text style={styles.buttonText}>Cancel</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.addButtonContainer}>
+          <TouchableOpacity style={styles.roundButton} onPress={() => setShowInputExpense(true)}>
+            <Text style={styles.buttonText}>Add Expense</Text>
+          </TouchableOpacity>
         </View>
-      )}
-    </View>
+
+        {showInputExpense && (
+          <ExpenseForm
+            title="Add Expense"
+            values={newExpense}
+            onChange={setNewExpense}
+            onSubmit={handleAddExpense}
+            onCancel={() => setShowInputExpense(false)}
+            categories={categories}
+          />
+        )}
+
+        {showEditModal && (
+          <ExpenseForm
+            title="Edit Expense"
+            values={editedExpense}
+            onChange={setEditedExpense}
+            onSubmit={() => handleSaveEdit(editedExpense.id)}
+            onCancel={() => setShowEditModal(false)}
+            categories={categories}
+          />
+        )}
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: '#fff' },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20, color: '#6A5ACD' },
-  input: {
-    height: 40, borderColor: '#ccc', borderWidth: 1, marginBottom: 10,
-    paddingHorizontal: 10, borderRadius: 5,
-  },
-  expenseItem: {
-    padding: 15, backgroundColor: '#fff', marginBottom: 10, borderRadius: 5,
-    shadowColor: '#000', shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1, shadowRadius: 5, elevation: 2,
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-  },
-  buttonContainer: { flexDirection: 'column', gap: 10 },
-  roundButton: {
-    backgroundColor: '#6A5ACD', borderRadius: 20,
-    paddingVertical: 10, paddingHorizontal: 20,
-    justifyContent: 'center', alignItems: 'center',
-  },
-  buttonText: { color: '#fff', fontSize: 14 },
-  addButtonContainer: { position: 'absolute', bottom: 20, left: 20 },
-  modalContainer: {
-    position: 'absolute', top: '50%', left: '50%',
-    transform: [{ translateX: -150 }, { translateY: -150 }],
-    width: 300, backgroundColor: '#fff', padding: 20, borderRadius: 10,
-    shadowColor: '#000', shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1, shadowRadius: 5, elevation: 2,
-  },
-  navBarContainer: {
+  safeArea: {
+    flex: 1,
     backgroundColor: '#fff',
-    paddingVertical: 10,
-    paddingTop: 10,
   },
-  navBarContent: {
-    flexDirection: 'row',
-    paddingHorizontal: 10,
-  },
-  navBarItem: {
-    backgroundColor: '#6A5ACD',
-    height: 50,
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
     paddingHorizontal: 20,
-    borderRadius: 10,
-    marginHorizontal: 5,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: '#6A5ACD',
+    textAlign: 'center',
+  },
+  addButtonContainer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+  },
+  roundButton: {
+    backgroundColor: '#6A5ACD',
+    borderRadius: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  navBarText: {
+  buttonText: {
     color: '#fff',
-    fontWeight: 'bold',
     fontSize: 14,
-  },
-  buttonSpacing: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10,
   },
 });
 

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import { PieChart, LineChart, BarChart } from 'react-native-chart-kit';
 import axios from 'axios';
 import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import Navigation2 from './components/Navagation/Navagation2'; // Ensure Navigation2 is imported
+import HeaderMenu from './components/Common/HeaderMenu'; // Ensure HeaderMenu is imported
+import ChartCard from './components/Charts/ChartCard'; // Import ChartCard
+import ForecastCard from './components/Charts/ForecastCard'; // Import ForecastCard
+import ChartLoader from './components/Charts/ChartLoader'; // Import ChartLoader
 
 const { width } = Dimensions.get('window');
 const chartWidth = width * 0.9;
@@ -174,296 +179,133 @@ const Graphs = () => {
     };
 
     if (loading) {
-        return (
-            <View style={styles.loadingContainer}>
-                <MaterialIcons name="refresh" size={24} color="#6A5ACD" />
-                <Text style={styles.loadingText}>Loading data...</Text>
-            </View>
-        );
+        return <ChartLoader message="Loading data..." />; // Replace loading UI with ChartLoader
     }
 
     return (
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-            {/* Header */}
-            <View style={styles.header}>
-                <Text style={styles.headerTitle}>Expense Analytics</Text>
-                <TouchableOpacity onPress={refreshData} style={styles.refreshButton}>
-                    <MaterialIcons name="refresh" size={24} color="#6A5ACD" />
-                </TouchableOpacity>
-            </View>
+        <SafeAreaView style={styles.container}>
+            <HeaderMenu /> {/* Add HeaderMenu at the top */}
 
-            {/* Navigation Bar */}
-            <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                style={styles.navBarContainer}
-                contentContainerStyle={styles.navBarContent}
-            >
-                <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('expensetracking')}>
-                    <Text style={styles.navBarText}>Expense Tracking</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('incomeDocumentation')}>
-                    <Text style={styles.navBarText}>Income Documentation</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('saving_goals')}>
-                    <Text style={styles.navBarText}>Saving Goals</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('graphs')}>
-                    <Text style={styles.navBarText}>Reporting Analytics</Text>
-                </TouchableOpacity>
+            <ScrollView contentContainerStyle={styles.contentContainer}>
+                {/* Header */}
+                <View style={styles.header}>
+                    <Text style={styles.headerTitle}>Expense Analytics</Text>
+                    <TouchableOpacity onPress={refreshData} style={styles.refreshButton}>
+                        <MaterialIcons name="refresh" size={24} color="#6A5ACD" />
+                    </TouchableOpacity>
+                </View>
+
+                <Navigation2 /> {/* Add Navigation2 component */}
+
+                <View style={{ flex: 45 }}>
+
+                    {/* Pie Chart */}
+                    <ChartCard title="Spending by Category" fallback="No expense data available">
+                        {expenseSummary.length > 0 && (
+                            <PieChart
+                                data={expenseSummary}
+                                width={chartWidth}
+                                height={chartHeight}
+                                chartConfig={{
+                                    backgroundColor: '#ffffff',
+                                    backgroundGradientFrom: '#f8f9fa',
+                                    backgroundGradientTo: '#f8f9fa',
+                                    decimalPlaces: 0,
+                                    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                                }}
+                                accessor="amount"
+                                backgroundColor="transparent"
+                                paddingLeft="15"
+                                absolute
+                            />
+                        )}
+                    </ChartCard>
+
+                    {/* Line Chart */}
+                    <ChartCard title="Monthly Spending Trend" fallback="No monthly data available">
+                        {monthlySummary.length > 0 && (
+                            <LineChart
+                                data={{
+                                    labels: monthlySummary.map(item => formatMonthLabel(item.month)),
+                                    datasets: [{ data: monthlySummary.map(item => item.amount) }],
+                                }}
+                                width={chartWidth}
+                                height={chartHeight}
+                                chartConfig={{
+                                    backgroundColor: '#ffffff',
+                                    backgroundGradientFrom: '#f8f9fa',
+                                    backgroundGradientTo: '#f8f9fa',
+                                    decimalPlaces: 0,
+                                    color: (opacity = 1) => `rgba(106, 90, 205, ${opacity})`,
+                                }}
+                                bezier
+                            />
+                        )}
+                    </ChartCard>
+
+                    {/* Bar Chart */}
+                    <ChartCard title="Monthly by Category" fallback="No category data available">
+                        {monthlyByCategory?.datasets?.length > 0 && (
+                            <BarChart
+                                data={{
+                                    labels: monthlyByCategory.labels.map(label => formatMonthLabel(label)),
+                                    datasets: monthlyByCategory.datasets,
+                                }}
+                                width={chartWidth}
+                                height={chartHeight}
+                                chartConfig={{
+                                    backgroundColor: '#ffffff',
+                                    backgroundGradientFrom: '#f8f9fa',
+                                    backgroundGradientTo: '#f8f9fa',
+                                    decimalPlaces: 0,
+                                    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                                }}
+                            />
+                        )}
+                    </ChartCard>
+
+                    {/* Forecast Card */}
+                    <ForecastCard
+                        forecast={forecast}
+                        onRefresh={fetchForecast}
+                        loading={loading}
+                        error={error}
+                    />
+                </View>
             </ScrollView>
-
-            {/* Pie Chart */}
-            <View style={styles.chartWrapper}>
-                <Text style={styles.chartTitle}>Spending by Category</Text>
-                {expenseSummary.length > 0 ? (
-                    <PieChart
-                        data={expenseSummary}
-                        width={chartWidth}
-                        height={chartHeight}
-                        chartConfig={{
-                            backgroundColor: '#ffffff',
-                            backgroundGradientFrom: '#f8f9fa',
-                            backgroundGradientTo: '#f8f9fa',
-                            decimalPlaces: 0,
-                            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-                        }}
-                        accessor="amount"
-                        backgroundColor="transparent"
-                        paddingLeft="15"
-                        absolute
-                    />
-                ) : (
-                    <Text style={styles.emptyText}>No expense data available</Text>
-                )}
-            </View>
-
-            {/* Line Chart */}
-            <View style={styles.chartWrapper}>
-                <Text style={styles.chartTitle}>Monthly Spending Trend</Text>
-                {monthlySummary.length > 0 ? (
-                    <LineChart
-                        data={{
-                            labels: monthlySummary.map(item => formatMonthLabel(item.month)),
-                            datasets: [{ data: monthlySummary.map(item => item.amount) }],
-                        }}
-                        width={chartWidth}
-                        height={chartHeight}
-                        chartConfig={{
-                            backgroundColor: '#ffffff',
-                            backgroundGradientFrom: '#f8f9fa',
-                            backgroundGradientTo: '#f8f9fa',
-                            decimalPlaces: 0,
-                            color: (opacity = 1) => `rgba(106, 90, 205, ${opacity})`,
-                        }}
-                        bezier
-                    />
-                ) : (
-                    <Text style={styles.emptyText}>No monthly data available</Text>
-                )}
-            </View>
-
-            {/* Bar Chart */}
-            <View style={styles.chartWrapper}>
-                <Text style={styles.chartTitle}>Monthly by Category</Text>
-                {monthlyByCategory?.datasets?.length > 0 ? (
-                    <BarChart
-                        data={{
-                            labels: monthlyByCategory.labels.map(label => formatMonthLabel(label)),
-                            datasets: monthlyByCategory.datasets,
-                        }}
-                        width={chartWidth}
-                        height={chartHeight}
-                        chartConfig={{
-                            backgroundColor: '#ffffff',
-                            backgroundGradientFrom: '#f8f9fa',
-                            backgroundGradientTo: '#f8f9fa',
-                            decimalPlaces: 0,
-                            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-                        }}
-                    />
-                ) : (
-                    <Text style={styles.emptyText}>No category data available</Text>
-                )}
-            </View>
-            <View style={styles.chartWrapper}>
-                <Text style={styles.chartTitle}>Next Month Forecast</Text>
-                <Text style={styles.chartDescription}>Predicted summary for the upcoming month</Text>
-                {loading ? (
-                    <ActivityIndicator size="large" color="#6A5ACD" />
-                ) : error ? (
-                    <Text style={styles.error}>{error}</Text>
-                ) : forecast ? (
-                    <View style={styles.forecastContainer}>
-                        <Text style={styles.message}>{forecast.message}</Text>
-                        <Text style={styles.details}>Income: £{forecast.details.income}</Text>
-                        <Text style={styles.details}>Expense: £{forecast.details.expense}</Text>
-                        <Text style={styles.details}>Savings: £{forecast.details.savings}</Text>
-                    </View>
-                ) : (
-                    <Text style={styles.placeholder}>No forecast data available</Text>
-                )}
-                <TouchableOpacity onPress={fetchForecast} style={styles.refreshButton}>
-                    <Text style={styles.refreshText}>Refresh Forecast</Text>
-                </TouchableOpacity>
-            </View>
-        </ScrollView>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f4f6f8', 
-        paddingTop: 20,
-    },
-    contentContainer: {
-        paddingBottom: 20,
-    },
-    loadingContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#f4f6f8',
-    },
-    loadingText: {
-        marginTop: 10,
-        color: '#6A5ACD',
-        fontSize: 16,
-        fontWeight: '500',
-    },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        marginBottom: 15,
-    },
-    headerTitle: {
-        fontSize: 26, 
-        fontWeight: 'bold',
-        color: '#333',
-    },
-    refreshButton: {
-        padding: 8,
-        backgroundColor: '#e8eaf6', 
-        borderRadius: 8,
-    },
-    navContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginBottom: 15,
-    },
-    navButton: {
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        marginHorizontal: 5,
-        borderRadius: 20,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
-    },
-    purpleButton: {
-        backgroundColor: '#6A5ACD',
-    },
-    navText: {
-        color: '#fff',
-        fontWeight: '600',
-    },
-    chartWrapper: {
-        width: width - 20,
-        marginHorizontal: 10,
-        backgroundColor: '#fff',
-        borderRadius: 16,
-        padding: 20, 
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 6,
-        elevation: 3,
-        marginBottom: 20,
-    },
-    responsiveChartContainer: {
-        width: '100%',
-        alignItems: 'center',
-    },
-    chartTitle: {
-        fontSize: 20, 
-        fontWeight: '700',
-        color: '#333',
-        marginBottom: 8,
-        textAlign: 'center',
-    },
-    chartDescription: {
-        fontSize: 14,
-        color: '#666',
-        marginBottom: 15,
-        textAlign: 'center',
-    },
-    emptyState: {
-        height: chartHeight - 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    emptyText: {
-        marginTop: 10,
-        color: '#999',
-        fontSize: 16,
-        fontStyle: 'italic',
-    },
-    forecastContainer: {
-        backgroundColor: '#f0f0ff', 
-        padding: 15,
-        borderRadius: 10,
-        marginTop: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
-    },
-    message: {
-        fontSize: 18,
-        fontWeight: '600',
-        color: '#6A5ACD', 
-        marginBottom: 10,
-    },
-    placeholder: {
-        fontSize: 16,
-        color: '#999',
-        textAlign: 'center',
-        marginVertical: 10,
-    },
-    refreshText: {
-        color: '#6A5ACD',
-        fontWeight: '600',
-        textAlign: 'center',
-    },
-    navBarContainer: {
-        backgroundColor: '#fff',
-        paddingVertical: 10,
-        paddingTop: 10,
-      },
-      navBarContent: {
-        flexDirection: 'row',
-        paddingHorizontal: 10,
-      },
-      navBarItem: {
-        backgroundColor: '#6A5ACD',
-        height: 50,
-        paddingHorizontal: 20,
-        borderRadius: 10,
-        marginHorizontal: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      navBarText: {
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: 14,
-      },
+  container: {
+    flex: 1,
+    backgroundColor: '#white',
+  },
+  contentContainer: {
+    paddingBottom: 40,
+    paddingHorizontal: 10,
+  },
+  header: {
+    paddingTop: 15,
+    paddingHorizontal: 20,
+    marginBottom: 10,
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#333',
+    textAlign: 'center',
+  },
+  refreshButton: {
+    position: 'absolute',
+    right: 20,
+    top: 15,
+    padding: 6,
+    backgroundColor: '#e8eaf6',
+    borderRadius: 20,
+  },
 });
 
 export default Graphs;

@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import {
   View, Text, TextInput, FlatList, Alert, StyleSheet,
-  TouchableOpacity, ScrollView
+  TouchableOpacity, ScrollView, Platform
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import * as Notifications from 'expo-notifications';
+import Navigation2 from './components/Navagation/Navagation2'; // Import Navigation2
+import HeaderMenu from './components/Common/HeaderMenu'; // Import HeaderMenu
+import BudgetForm from './components/Budget/BudgetForm'; // Import BudgetForm
+import BudgetItem from './components/Budget/BudgetItem'; // Import BudgetItem
 
 const BudgetTracking = () => {
   const navigation = useNavigation();
@@ -33,14 +37,18 @@ const BudgetTracking = () => {
   }, []);
 
   const sendNotification = async (message) => {
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: 'Budget Alert!',
-        body: message,
-        sound: 'default',
-      },
-      trigger: null,
-    });
+    if (Platform.OS !== 'web') { // Ensure notifications are not scheduled on the web
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: 'Budget Alert!',
+          body: message,
+          sound: 'default',
+        },
+        trigger: null,
+      });
+    } else {
+      console.warn('Notifications are not supported on the web platform.');
+    }
   };
 
   const fetchBudgets = async () => {
@@ -168,51 +176,21 @@ const BudgetTracking = () => {
 
   return (
     <View style={styles.container}>
+      <HeaderMenu /> {/* Add HeaderMenu at the top */}
       <Text style={styles.title}>Budgets</Text>
 
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.navBarContainer}
-        contentContainerStyle={styles.navBarContent}
-      >
-        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('expensetracking')}>
-          <Text style={styles.navBarText}>Expense Tracking</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('incomeDocumentation')}>
-          <Text style={styles.navBarText}>Income Documentation</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('saving_goals')}>
-          <Text style={styles.navBarText}>Saving Goals</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('graphs')}>
-          <Text style={styles.navBarText}>Reporting Analytics</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navBarItem} onPress={() => navigation.navigate('budgetOverview')}>
-          <Text style={styles.navBarText}>Budget Overview</Text> {/* New navigation option */}
-        </TouchableOpacity>
-      </ScrollView>
+      <Navigation2 /> {/* Add Navigation2 component */}
 
       <View style={{ flex: 45 }}>
         <FlatList
           data={budgets}
           keyExtractor={(item) => item.id}
           renderItem={({ item, index }) => (
-            <View style={styles.budgetItem}>
-              <View>
-                <Text>Category: {item.category}</Text>
-                <Text>Monthly Limit: ${parseFloat(item.monthly_limit).toFixed(2)}</Text>
-                <Text>Used Amount: ${parseFloat(item.used_amount).toFixed(2)}</Text> {/* Display used amount */}
-              </View>
-              <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.roundButton} onPress={() => handleDeleteBudget(item.id)}>
-                  <Text style={styles.buttonText}>Delete</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.roundButton} onPress={() => toggleEditMode(index)}>
-                  <Text style={styles.buttonText}>Edit</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+            <BudgetItem
+              item={item}
+              onDelete={() => handleDeleteBudget(item.id)}
+              onEdit={() => toggleEditMode(index)}
+            />
           )}
         />
       </View>
@@ -224,115 +202,65 @@ const BudgetTracking = () => {
       </View>
 
       {showInputBudget && (
-        <View style={styles.modalContainer}>
-          <Picker
-            selectedValue={newBudget.category}
-            style={styles.input}
-            onValueChange={(itemValue) => setNewBudget({ ...newBudget, category: itemValue })}
-          >
-            <Picker.Item label="Select Category" value="" />
-            {categories.map((cat, index) => (
-              <Picker.Item key={index} label={cat} value={cat} />
-            ))}
-          </Picker>
-          <TextInput
-            style={styles.input}
-            placeholder="Monthly Limit"
-            value={newBudget.monthly_limit}
-            onChangeText={(text) => setNewBudget({ ...newBudget, monthly_limit: text })}
-            keyboardType="numeric"
-          />
-          <TouchableOpacity style={styles.roundButton} onPress={handleAddBudget}>
-            <Text style={styles.buttonText}>Add Budget</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.roundButton} onPress={() => setShowInputBudget(false)}>
-            <Text style={styles.buttonText}>Cancel</Text>
-          </TouchableOpacity>
-        </View>
+        <BudgetForm
+          title="Add Budget"
+          values={newBudget}
+          categories={categories}
+          onChange={setNewBudget}
+          onSubmit={handleAddBudget}
+          onCancel={() => setShowInputBudget(false)}
+        />
       )}
 
       {showEditModal && (
-        <View style={styles.modalContainer}>
-          <Picker
-            selectedValue={editedBudget.category}
-            style={styles.input}
-            onValueChange={(itemValue) => setEditedBudget({ ...editedBudget, category: itemValue })}
-          >
-            <Picker.Item label="Select Category" value="" />
-            {categories.map((cat, index) => (
-              <Picker.Item key={index} label={cat} value={cat} />
-            ))}
-          </Picker>
-          <TextInput
-            style={styles.input}
-            value={editedBudget.monthly_limit.toString()}
-            onChangeText={(text) => setEditedBudget({ ...editedBudget, monthly_limit: text })}
-            placeholder="Monthly Limit"
-            keyboardType="numeric"
-          />
-          <TouchableOpacity style={styles.roundButton} onPress={() => handleSaveEdit(editedBudget.id)}>
-            <Text style={styles.buttonText}>Save</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.roundButton} onPress={() => setShowEditModal(false)}>
-            <Text style={styles.buttonText}>Cancel</Text>
-          </TouchableOpacity>
-        </View>
+        <BudgetForm
+          title="Edit Budget"
+          values={editedBudget}
+          categories={categories}
+          onChange={setEditedBudget}
+          onSubmit={() => handleSaveEdit(editedBudget.id)}
+          onCancel={() => setShowEditModal(false)}
+        />
       )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: '#fff' },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20, color: '#6A5ACD' },
-  input: {
-    height: 40, borderColor: '#ccc', borderWidth: 1, marginBottom: 10,
-    paddingHorizontal: 10, borderRadius: 5,
-  },
-  budgetItem: {
-    padding: 15, backgroundColor: '#fff', marginBottom: 10, borderRadius: 5,
-    shadowColor: '#000', shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1, shadowRadius: 5, elevation: 2,
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-  },
-  buttonContainer: { flexDirection: 'column', gap: 10 },
-  roundButton: {
-    backgroundColor: '#6A5ACD', borderRadius: 20,
-    paddingVertical: 10, paddingHorizontal: 20,
-    justifyContent: 'center', alignItems: 'center',
-  },
-  buttonText: { color: '#fff', fontSize: 14 },
-  addButtonContainer: { position: 'absolute', bottom: 20, left: 20 },
-  modalContainer: {
-    position: 'absolute', top: '50%', left: '50%',
-    transform: [{ translateX: -150 }, { translateY: -150 }],
-    width: 300, backgroundColor: '#fff', padding: 20, borderRadius: 10,
-    shadowColor: '#000', shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1, shadowRadius: 5, elevation: 2,
-  },
-  navBarContainer: {
+  safeArea: {
+    flex: 1,
     backgroundColor: '#fff',
-    paddingVertical: 10,
-    paddingTop: 10,
   },
-  navBarContent: {
-    flexDirection: 'row',
-    paddingHorizontal: 10,
-  },
-  navBarItem: {
-    backgroundColor: '#6A5ACD',
-    height: 50,
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
     paddingHorizontal: 20,
-    borderRadius: 10,
-    marginHorizontal: 5,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: '#6A5ACD',
+    textAlign: 'center',
+  },
+  roundButton: {
+    backgroundColor: '#6A5ACD',
+    borderRadius: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  navBarText: {
+  buttonText: {
     color: '#fff',
-    fontWeight: 'bold',
     fontSize: 14,
   },
+  addButtonContainer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+  },
+
 });
 
 export default BudgetTracking;
